@@ -1,0 +1,1 @@
+export const base_url = "https://thlc-backend.onrender.com";

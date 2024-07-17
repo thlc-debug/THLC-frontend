@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "image": "/y4.png",
+        "place": "São Paulo, Brazil",
+        "name": "Grand Hyatt Sao Paulo",
+        "rating": 4.1,
+        "people": 243,
+        "days": 4,
+        "price": 220
+    },
+    {
+        "id": 2,
+        "image": "/y5.png",
+        "place": "Rio de Janeiro, Brazil",
+        "name": "Hotel Fasano Rio De Janeiro",
+        "rating": 4.8,
+        "people": 243,
+        "days": 4,
+        "price": 225
+    },
+    {
+        "id": 3,
+        "image": "/y6.png",
+        "place": "São Paulo, Brazil",
+        "name": "Rosewood Sao Paulo",
+        "rating": 4.8,
+        "people": 243,
+        "days": 4,
+        "price": 225
+    }
+]

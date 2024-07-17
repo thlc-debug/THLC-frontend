@@ -1,0 +1,93 @@
+[
+    {
+      "id": 1,
+      "name": "Blue Origin Farms",
+      "priceRange": "$1000 - 5000 USD",
+      "address": "100 Smart Street, Sydney, Australia",
+      "country": "Australia",
+      "image": "/y1.png",
+      "isFavorite": false
+    },
+    {
+      "id": 2,
+      "name": "Mountain Retreat",
+      "priceRange": "$500 - 3000 USD",
+      "address": "200 Peaceful Lane, Thimphu, Bhutan",
+      "country": "Bhutan",
+      "image": "/y2.png",
+      "isFavorite": false
+    },
+    {
+      "id": 3,
+      "name": "Beachside Resort",
+      "priceRange": "$800 - 4500 USD",
+      "address": "300 Ocean Drive, Suva, Fiji",
+      "country": "Fiji",
+      "image": "/y3.png",
+      "isFavorite": false
+    },
+    {
+      "id": 4,
+      "name": "Heritage Palace",
+      "priceRange": "$1200 - 6000 USD",
+      "address": "400 Royal Street, Jaipur, India",
+      "country": "India",
+      "image": "/y4.png",
+      "isFavorite": false
+    },
+    {
+      "id": 5,
+      "name": "Urban Oasis",
+      "priceRange": "$900 - 5000 USD",
+      "address": "500 Central Avenue, Tokyo, Japan",
+      "country": "Japan",
+      "image": "/y5.png",
+      "isFavorite": false
+    },
+    {
+        "id": 6,
+        "name": "Blue Origin Farms",
+        "priceRange": "$1000 - 5000 USD",
+        "address": "100 Smart Street, Sydney, Australia",
+        "country": "Australia",
+        "image": "/y1.png",
+        "isFavorite": false
+      },
+      {
+        "id": 7,
+        "name": "Mountain Retreat",
+        "priceRange": "$500 - 3000 USD",
+        "address": "200 Peaceful Lane, Thimphu, Bhutan",
+        "country": "Bhutan",
+        "image": "/y6.png",
+        "isFavorite": false
+      },
+      {
+        "id": 8,
+        "name": "Beachside Resort",
+        "priceRange": "$800 - 4500 USD",
+        "address": "300 Ocean Drive, Suva, Fiji",
+        "country": "Fiji",
+        "image": "/y3.png",
+        "isFavorite": false
+      },
+      {
+        "id": 9,
+        "name": "Heritage Palace",
+        "priceRange": "$1200 - 6000 USD",
+        "address": "400 Royal Street, Jaipur, India",
+        "country": "India",
+        "image": "/hotel-img3.jpeg",
+        "isFavorite": false
+      },
+      {
+        "id": 10,
+        "name": "Urban Oasis",
+        "priceRange": "$900 - 5000 USD",
+        "address": "500 Central Avenue, Tokyo, Japan",
+        "country": "Japan",
+        "image": "/y4.png",
+        "isFavorite": false
+      }
+  ]
+  

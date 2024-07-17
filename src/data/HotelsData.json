@@ -1,0 +1,87 @@
+[
+    {
+        "id": 1,
+        "name": "Arakur Ushuaia Resort & Spa",
+        "location": "Ushuaia, Argentina",
+        "rating": 4,
+        "description": "Located in a privileged environment, within the Cerro Alarkén Natural Reserve, Arakur is much more than a luxury hotel. It is an experience that will leave an unforgettable impression in the memory of its visitors.",
+        "features": [
+            "Guided Adventures",
+            "Secluded",
+            "Romantic",
+            "Ski Destination",
+            "Restaurant and/or Bar",
+           " Spa",
+            "Fitness Center"
+        ],
+        "image": "./top-hotel.jpeg",
+        "img1": "y1.png",
+        "img2": "y2.png",
+        "img3": "y3.png",
+        "img4": "y4.png"
+    },
+    {
+        "id": 2,
+        "name": "Grand Hyatt Sao Paulo",
+        "location": "São Paulo, Brazil",
+        "rating": 5,
+        "description": "Situated in the city’s vibrant business district, our centrally located hotel puts you close to São Paulo’s best restaurants, shopping centers and attractions. Whether you’re visiting for business or pleasure, enjoy comfort, impeccable service and stunning views of São Paulo from your room.",
+        "features": [
+            "Pet-Friendly",
+            "Romantic",
+            "Urban",
+            "Restaurant and/or Bar",
+            "Spa",
+            "Fitness Center",
+            "Pool"
+        ],
+        "image": "./top-hotel.jpeg",
+        "img1": "y1.png",
+        "img2": "y2.png",
+        "img3": "y3.png",
+        "img4": "y4.png"
+    },
+    {
+        "id": 3,
+        "name": "Mandarin Oriental, Santiago",
+        "location": "Santiago, Chile",
+        "rating": 4,
+        "description": "Mandarin Oriental, Santiago, one of the most iconic buildings in the city, is the first Mandarin Oriental in South America. The state-of-the-art rooms, suites and facilities offer the ultimate luxury experience framed by breathtaking Andes mountains.",
+        "features": [
+            "Business-Friendly",
+            "Pet-Friendly",
+            "Urban",
+            "Restaurant and/or Bar",
+            "Fitness Center",
+            "Pool",
+            "Card Member Favorite",
+            "Parking",
+            "Electric Vehicle Charging",
+            "Airport Transportation"
+        ],
+        "image": "./top-hotel.jpeg",
+        "img1": "y5.png",
+        "img2": "y4.png",
+        "img3": "y6.png",
+        "img4": "y2.png"
+    },
+    {
+        "id": 4,
+        "name": "JW Marriott Lima",
+        "location": "Lima, Peru",
+        "rating": 4,
+        "description": "Situated within steps of the beach and Costa Verde, our hotel is also convenient to Lima attractions like the Cathedral of Lima and Larcomar entertainment center. Our Lima, Peru luxury hotel offers elegant rooms with plush beds and crisp linens. Spacious rooms and suites provide ocean views.",
+        "features": [
+           " Romantic",
+            "Urban",
+            "Restaurant and/or Bar",
+            "Spa",
+            "Fitness Center"
+        ],
+        "image": "./top-hotel.jpeg",
+        "img1": "y4.png",
+        "img2": "y2.png",
+        "img3": "y3.png",
+        "img4": "y6.png"
+    }
+]

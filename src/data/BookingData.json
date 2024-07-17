@@ -1,0 +1,56 @@
+[
+    {
+        "id": 1,
+        "img": "./y1.png",
+        "name": "Dubai International Airport Hotel",
+        "status": "Booked",
+        "date": "Today",
+        "room": "A21",
+        "adults": 2
+    },
+    {
+        "id": 2,
+        "img": "./y1.png",
+        "name": "Mumbai International Airport Hotel",
+        "status": "Booked",
+        "date": "Today",
+        "room": "A21",
+        "adults": 2
+    },
+    {
+        "id": 3,
+        "img": "./y1.png",
+        "name": "Russia International Airport Hotel",
+        "status": "Booked",
+        "date": "Today",
+        "room": "A21",
+        "adults": 2
+    },
+    {
+        "id": 4,
+        "img": "./y1.png",
+        "name": "Italy International Airport Hotel",
+        "status": "Booked",
+        "date": "2024-09-10",
+        "room": "A21",
+        "adults": 2
+    },
+    {
+        "id": 5,
+        "img": "./y1.png",
+        "name": "Moscow International Airport Hotel",
+        "status": "Pending",
+        "date": "Yesterday",
+        "room": "A21",
+        "adults": 2
+    },
+    {
+        "id": 6,
+        "img": "./y1.png",
+        "name": "Delhi International Airport Hotel",
+        "status": "Pending",
+        "date": "Today",
+        "room": "A21",
+        "adults": 2
+    }
+]

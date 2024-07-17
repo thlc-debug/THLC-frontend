@@ -1,0 +1,28 @@
+[
+    {
+        "id":1, 
+        "name":"Meluha - The Fern", 
+        "email":"hotel@gmail.com",
+        "location":{
+            "city":"Mumbai",
+            "country":"India"
+        },
+        "reviewRatings":4.3,
+        "stars":4,
+        "rooms":{
+            "type":"Deluxe Rooms"
+        },
+        "about":"With spectacular views of Arabian Sea and beautiful Mumbai, Taj Lands End Mumbai offers luxury accommodation to meet the needs of business and leisure travellers. The contemporarily decorated guest rooms at this 5-star property are equipped with comfy bedding, flat-screen TV and an en suite marble bathroom..",
+        "address":"Band Stand, 400 050, Mumbai",
+        "phone":66681234,
+        "fax": 66994488,
+        "price":99,
+        "facilities":[
+            "offers fitness center",
+            "Breakfast",
+            "AC",
+            "Free WiFi",
+            "Spa"
+        ]
+    }
+]

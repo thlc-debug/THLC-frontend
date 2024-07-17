@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "image": "/y1.png",
+        "place": "Ushuaia, Argentina",
+        "name": "Arakur Ushuaia Resort & Spa",
+        "rating": 4.1,
+        "people": 243,
+        "days": 2,
+        "price": 220
+    },
+    {
+        "id": 2,
+        "image": "/y2.png",
+        "place": "Buenos Aires, Argentina",
+        "name": "Faena Hotel Buenos Aires",
+        "rating": 4.8,
+        "people": 243,
+        "days": 1,
+        "price": 225
+    },
+    {
+        "id": 3,
+        "image": "/y3.png",
+        "place": "Puerto Iguazú, Argentina",
+        "name": "Gran Melia Iguazu",
+        "rating": 4.8,
+        "people": 243,
+        "days": 4,
+        "price": 225
+    }
+]
