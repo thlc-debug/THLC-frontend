@@ -270,6 +270,9 @@ const SigninPage = () => {
             <button
               type="button"
               className="w-full text-white bg-gray-800 hover:bg-gray-900 rounded-full py-2 mb-2"
+              onClick={() => {
+              window.location.href = `${base_url}/api/auth/google`;
+              }}
             >
               Google
             </button>
