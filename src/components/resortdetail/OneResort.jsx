@@ -7,6 +7,9 @@ import Highlight from '../contact/Highlight';
 import { GoArrowUpRight } from "react-icons/go";
 import Link from 'next/link';
 import { base_url } from '@/base_url';
+import Modal from 'react-modal';
+import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
 
 const StarRating = ({ rating }) => {
   const stars = [];
@@ -25,6 +28,8 @@ const Loader = () => (
 const OneHotel = ({ id }) => {
   const [hotel, setHotel] = useState(null);
   const [highlighted, setHighlighted] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [photoIndex, setPhotoIndex] = useState(0);
 
   const api = base_url;
 
@@ -55,6 +60,23 @@ const OneHotel = ({ id }) => {
     setHighlighted(index);
   };
 
+  const handleOpenModal = (index) => {
+    setPhotoIndex(index);
+    setIsOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsOpen(false);
+  };
+
+  const handlePrevImage = () => {
+    setPhotoIndex((photoIndex + hotel.photoUrls.length - 1) % hotel.photoUrls.length);
+  };
+
+  const handleNextImage = () => {
+    setPhotoIndex((photoIndex + 1) % hotel.photoUrls.length);
+  };
+
   if (!hotel) {
     return <Loader />;
   }
@@ -81,7 +103,7 @@ const OneHotel = ({ id }) => {
         <div className='grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 gap-2'>
           {hotel.photoUrls.slice(0, 5).map((image, index) => (
             <div key={index} className='w-full h-64 overflow-hidden'>
-              <img className='shadow-2xl hover:scale-105 w-full h-full object-cover rounded-md' src={image.replace("www.dropbox.com", "dl.dropboxusercontent.com")} alt={`hotel-${index}`} />
+              <img className='shadow-2xl hover:scale-105 w-full h-full object-cover rounded-md' src={image.replace("www.dropbox.com", "dl.dropboxusercontent.com")} alt={`hotel-${index}`} onClick={() => handleOpenModal(index)} />
             </div>
           ))}
         </div>
@@ -113,7 +135,7 @@ const OneHotel = ({ id }) => {
 
         </div>
       </div>
-      <div className='px-10 md:pb-10 md:pt-10 py-10 md:mr-[10rem] sm:mr-10 md:text-lg text-md flex flex-wrap'>
+      {/* <div className='px-10 md:pb-10 md:pt-10 py-10 md:mr-[10rem] sm:mr-10 md:text-lg text-md flex flex-wrap'>
         {hotel.rooms.map((room, index) => (
           <Highlight
             key={index}
@@ -122,7 +144,41 @@ const OneHotel = ({ id }) => {
             onClick={() => handleHighlight(index)}
           />
         ))}
-      </div>
+      </div> */}
+      <Modal
+        isOpen={isOpen}
+        onRequestClose={handleCloseModal}
+        contentLabel="Image Modal"
+        className="fixed inset-0 flex items-center justify-center p-4 bg-black bg-opacity-75"
+      >
+        <div className="relative w-full max-w-4xl max-h-full">
+          <button
+            className="absolute top-4 right-4 text-white text-2xl"
+            onClick={handleCloseModal}
+          >
+            &times;
+          </button>
+          <Zoom>
+            <img
+              className="w-full h-auto object-contain"
+              src={hotel.photoUrls[photoIndex].replace("www.dropbox.com", "dl.dropboxusercontent.com")}
+              alt={`hotel-${photoIndex}`}
+            />
+          </Zoom>
+          <button
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-2xl"
+            onClick={handlePrevImage}
+          >
+            &#10094;
+          </button>
+          <button
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-2xl"
+            onClick={handleNextImage}
+          >
+            &#10095;
+          </button>
+        </div>
+      </Modal>
     </div>
   );
 };

@@ -10,6 +10,8 @@ import { base_url } from '@/base_url';
 import Modal from 'react-modal';
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
+import { FaTimes } from 'react-icons/fa';
+
 
 const StarRating = ({ rating }) => {
   const stars = [];
@@ -50,7 +52,7 @@ const OneHotel = ({ id }) => {
 
       const data = await res.json();
       setHotel(data);
-      console.log(data);
+      // console.log(data);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -107,6 +109,7 @@ const OneHotel = ({ id }) => {
         <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 gap-2">
           {hotel.photoUrls.slice(0, 5).map((image, index) => (
             <div key={index} className="w-full h-64 overflow-hidden">
+              
               <img
                 className="shadow-2xl hover:scale-105 w-full h-full object-cover rounded-md cursor-pointer"
                 src={image.replace("www.dropbox.com", "dl.dropboxusercontent.com")}
@@ -126,8 +129,8 @@ const OneHotel = ({ id }) => {
           </div>
         </div>
         <div className="mt-5 sm:w-2/5 text-center m-auto md:mx-[5rem] text-black">
-          <div className="text-4xl font-bold">Contact</div>
-          <div className="pt-5">{hotel.address}</div>
+          {/* <div className="text-4xl font-bold">Contact</div> */}
+          {/* <div className="pt-5">yjfy{hotel.address}</div> */}
           <Link href={`/checkout?id=${hotel._id}`}>
             <button className="bg-black text-white m-auto my-10 flex items-center justify-center rounded-full px-4 py-2 sm:px-6 sm:py-3">
               Book Now <GoArrowUpRight className="ml-2" />
