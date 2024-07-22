@@ -97,8 +97,8 @@ const OneHotel = ({ id }) => {
         <div className='mt-5 sm:w-2/5 text-center m-auto md:mx-[5rem] text-black'>
           <div className='text-4xl font-bold'>Contact</div>
           <div className='pt-5'>{hotel.address}</div>
-          <div>Phone: {hotel.phone || 'Not Available'}</div>
-          <div>Mail: {hotel.email || 'Not Available'}</div>
+          {/* <div>Phone: {hotel.phone || 'Not Available'}</div> */}
+          {/* <div>Mail: {hotel.email || 'Not Available'}</div> */}
           
           <Link href={`/checkout?id=${hotel._id}`}>
             <button className="bg-black text-white m-auto my-10 flex items-center justify-center rounded-full px-4 py-2 sm:px-6 sm:py-3">
