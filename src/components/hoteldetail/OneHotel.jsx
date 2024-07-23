@@ -1,16 +1,18 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
-import { FaStar } from 'react-icons/fa';
-import Highlight from '../contact/Highlight';
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import { FaStar } from "react-icons/fa";
+import Highlight from "../contact/Highlight";
 import { GoArrowUpRight } from "react-icons/go";
+
 import Link from 'next/link';
 import { base_url } from '@/base_url';
 import Modal from 'react-modal';
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
 import { FaTimes } from 'react-icons/fa';
+import BackButton from "../BackButton";
 
 
 const StarRating = ({ rating }) => {
@@ -72,7 +74,9 @@ const OneHotel = ({ id }) => {
   };
 
   const handlePrevImage = () => {
-    setPhotoIndex((photoIndex + hotel.photoUrls.length - 1) % hotel.photoUrls.length);
+    setPhotoIndex(
+      (photoIndex + hotel.photoUrls.length - 1) % hotel.photoUrls.length
+    );
   };
 
   const handleNextImage = () => {
@@ -111,10 +115,12 @@ const OneHotel = ({ id }) => {
             <div key={index} className="w-full h-64 overflow-hidden">
               
               <img
-                className="shadow-2xl hover:scale-105 w-full h-full object-cover rounded-md cursor-pointer"
-                src={image.replace("www.dropbox.com", "dl.dropboxusercontent.com")}
+                className="shadow-2xl hover:scale-105 w-full h-full object-cover rounded-md"
+                src={image.replace(
+                  "www.dropbox.com",
+                  "dl.dropboxusercontent.com"
+                )}
                 alt={`hotel-${index}`}
-                onClick={() => handleOpenModal(index)}
               />
             </div>
           ))}
@@ -174,7 +180,10 @@ const OneHotel = ({ id }) => {
           <Zoom>
             <img
               className="w-full h-auto object-contain"
-              src={hotel.photoUrls[photoIndex].replace("www.dropbox.com", "dl.dropboxusercontent.com")}
+              src={hotel.photoUrls[photoIndex].replace(
+                "www.dropbox.com",
+                "dl.dropboxusercontent.com"
+              )}
               alt={`hotel-${photoIndex}`}
             />
           </Zoom>

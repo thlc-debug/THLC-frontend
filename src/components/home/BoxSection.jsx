@@ -73,7 +73,8 @@ const BoxSection = () => {
     // Fetch countries when the component mounts
     axios.get(`${base_url}/newHotel/countries-alphabetical`)
       .then(response => {
-        setCountries(response.data);
+        const data = response.data.filter(country => country !== 'Various')
+        setCountries(data);
       })
       .catch(error => {
         console.error('Error fetching countries:', error);
@@ -105,7 +106,7 @@ const BoxSection = () => {
   const handleSearch = () => {
     // console.log('selected:', selectedCity);
     if (!selectedCity) return;
-    router.push(`/hotelsin?search=${selectedCity}`);
+    router.push(`/hotelsin?city=${selectedCity}&country=${selectedCountry}`);
   };
 
   const handleOutsideClick = (event) => {

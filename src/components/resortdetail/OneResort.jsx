@@ -1,15 +1,17 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
-import { FaStar } from 'react-icons/fa';
-import Highlight from '../contact/Highlight';
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import { FaStar } from "react-icons/fa";
+import Highlight from "../contact/Highlight";
 import { GoArrowUpRight } from "react-icons/go";
+
 import Link from 'next/link';
 import { base_url } from '@/base_url';
 import Modal from 'react-modal';
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
+import BackButton from "../BackButton";
 
 const StarRating = ({ rating }) => {
   const stars = [];
@@ -50,8 +52,6 @@ const OneHotel = ({ id }) => {
 
       const data = await res.json();
       setHotel(data);
-      // console.log(data);
-    
     } catch (error) {
       console.error("Error:", error);
     }
@@ -83,7 +83,7 @@ const OneHotel = ({ id }) => {
   }
 
   return (
-    <div className='h-full w-full'>
+    <div className="h-full w-full">
       <section className="relative h-[500px] w-auto z-0">
         <div className="absolute inset-0 pointer-events-none">
           <Image
@@ -96,12 +96,19 @@ const OneHotel = ({ id }) => {
           <div className="absolute inset-0 bg-black opacity-30"></div>
         </div>
         <div className="relative flex flex-col items-center justify-center h-full text-white pointer-events-auto">
-          <h1 className="md:text-[70px] text-[40px] font-bold mb-8 mt-[130px]">{hotel.name}</h1>
-          <p className="text-lg md:text-[19px] text-[14px]">{hotel.city}, {hotel.country}</p>
+          {/* <div className="ms-10 mr-auto">
+            <BackButton />
+          </div> */}
+          <h1 className="md:text-[70px] text-[40px] font-bold mb-8 mt-[130px]">
+            {hotel.name}
+          </h1>
+          <p className="text-lg md:text-[19px] text-[14px]">
+            {hotel.city}, {hotel.country}
+          </p>
         </div>
       </section>
-      <div className='mx-5 my-10'>
-        <div className='grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 gap-2'>
+      <div className="mx-5 my-10">
+        <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 gap-2">
           {hotel.photoUrls.slice(0, 5).map((image, index) => (
             <div key={index} className='w-full h-64 overflow-hidden'>
               <img className='shadow-2xl hover:scale-105 w-full h-full object-cover rounded-md' src={image.replace("www.dropbox.com", "dl.dropboxusercontent.com")} alt={`hotel-${index}`} onClick={() => handleOpenModal(index)} />
@@ -109,9 +116,11 @@ const OneHotel = ({ id }) => {
           ))}
         </div>
       </div>
-      <div className='md:flex'>
+      <div className="md:flex">
         <div className="mx-5 mt-10">
-          <div className="text-4xl font-bold text-center md:text-left">Facilities</div>
+          <div className="text-4xl font-bold text-center md:text-left">
+            Facilities
+          </div>
           <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {hotel.facilities.slice(1, 5).map((facility, index) => (
               <div
@@ -123,8 +132,9 @@ const OneHotel = ({ id }) => {
             ))}
           </div>
         </div>
-        <div className='mt-5 sm:w-2/5 text-center m-auto md:mx-[5rem] text-black'>
-          <div className='text-4xl font-bold pb-2'>Contact</div>
+
+        <div className="mt-5 sm:w-2/5 text-center m-auto md:mx-[5rem] text-black">
+          <div className="text-4xl font-bold pb-2">Contact</div>
           {/* <div className='pt-5'>{hotel.address}</div> */}
           <div>City: {hotel.city}</div>
           <div>Country: {hotel.country}</div>
