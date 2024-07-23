@@ -31,7 +31,7 @@ const Find = () => {
             <button
               onClick={() => {
                 if (searchInput === "") return
-                router.push(`/hotels?search=${searchInput}`)
+                router.push(`/hotelsin?search=${searchInput}`)
               }}
               className="h-14  font-f_3 text-lg w-28 md:w-40 text-black rounded-full bg-white hover:bg-gray-200 transition"
             >

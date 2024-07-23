@@ -7,6 +7,9 @@ import Highlight from "../contact/Highlight";
 import { GoArrowUpRight } from "react-icons/go";
 import Link from "next/link";
 import { base_url } from "@/base_url";
+import Modal from "react-modal";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
 import BackButton from "../BackButton";
 
 const StarRating = ({ rating }) => {
@@ -26,6 +29,8 @@ const Loader = () => (
 const OneHotel = ({ id }) => {
   const [hotel, setHotel] = useState(null);
   const [highlighted, setHighlighted] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [photoIndex, setPhotoIndex] = useState(0);
 
   const api = base_url;
 
@@ -56,6 +61,25 @@ const OneHotel = ({ id }) => {
     setHighlighted(index);
   };
 
+  const handleOpenModal = (index) => {
+    setPhotoIndex(index);
+    setIsOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsOpen(false);
+  };
+
+  const handlePrevImage = () => {
+    setPhotoIndex(
+      (photoIndex + hotel.photoUrls.length - 1) % hotel.photoUrls.length
+    );
+  };
+
+  const handleNextImage = () => {
+    setPhotoIndex((photoIndex + 1) % hotel.photoUrls.length);
+  };
+
   if (!hotel) {
     return <Loader />;
   }
@@ -74,9 +98,6 @@ const OneHotel = ({ id }) => {
           <div className="absolute inset-0 bg-black opacity-30"></div>
         </div>
         <div className="relative flex flex-col items-center justify-center h-full text-white pointer-events-auto">
-          {/* <div className="ms-10 mr-auto">
-            <BackButton />
-          </div> */}
           <h1 className="md:text-[70px] text-[40px] font-bold mb-8 mt-[130px]">
             {hotel.name}
           </h1>
@@ -132,6 +153,43 @@ const OneHotel = ({ id }) => {
           />
         ))}
       </div>
+      <Modal
+        isOpen={isOpen}
+        onRequestClose={handleCloseModal}
+        contentLabel="Image Modal"
+        className="fixed inset-0 flex items-center justify-center p-4 bg-black bg-opacity-75"
+      >
+        <div className="relative w-full max-w-4xl max-h-full">
+          <button
+            className="absolute top-4 right-4 text-white text-2xl"
+            onClick={handleCloseModal}
+          >
+            &times;
+          </button>
+          <Zoom>
+            <img
+              className="w-full h-auto object-contain"
+              src={hotel.photoUrls[photoIndex].replace(
+                "www.dropbox.com",
+                "dl.dropboxusercontent.com"
+              )}
+              alt={`hotel-${photoIndex}`}
+            />
+          </Zoom>
+          <button
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-2xl"
+            onClick={handlePrevImage}
+          >
+            &#10094;
+          </button>
+          <button
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-2xl"
+            onClick={handleNextImage}
+          >
+            &#10095;
+          </button>
+        </div>
+      </Modal>
     </div>
   );
 };
