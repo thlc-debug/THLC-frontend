@@ -15,11 +15,12 @@ const FeaturedDestinations = () => {
   useEffect(() => {
     async function fetchCountries() {
       try {
+        const cityResponse = await fetch(`${base_url}/newHotel/cities-alphabetical`)
+        const cities = await cityResponse.json();
         const response = await fetch(`${base_url}/cityImg/fetchAllImg`);
         const data = await response.json();
-        // console.log('Fetched data:', data); // Debugging log
-        setCountries(data.slice(0, 10)); // Limiting to 10 countries
-        // console.log("data:", countries)
+        const filteredData = data.filter(obj => cities.includes(obj.city))
+        setCountries(filteredData.slice(0, 20));
       } catch (error) {
         console.error('Failed to fetch countries:', error);
       }
@@ -92,13 +93,13 @@ const FeaturedDestinations = () => {
       </div>
       <div className={`grid grid-cols-1 ${numVisibleCards > 1 ? 'md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3' : ''} gap-6 transition-transform duration-400 ease-in-out`}>
         {countries.length > 0 ? getVisibleDestinations().map((destination, index) => (
-          <Link href={`/hotelsin?search=${destination.city}`} key={index}>
+          <Link href={`/hotelsin?city=${destination.city}`} key={index}>
             <div
               className="bg-white p-4 rounded-lg border border-gray-400 flex items-center transform transition-transform duration-400 ease-in-out hover:scale-105 cursor-pointer"
             >
               <img src={getDirectImageUrl(destination.photoUrl)} alt={destination._id} className="w-[90px] h-[90px] rounded-full mr-4" />
               <div>
-                <h3 className="text-xl font-bold">{destination.city ? destination.city : "Aruba"}</h3>
+                <h3 className="text-xl font-bold">{destination.city}</h3>
               </div>
             </div>
           </Link>
@@ -107,7 +108,7 @@ const FeaturedDestinations = () => {
         )}
       </div>
     </div>
-  ); 
+  );
 };
 
 export default FeaturedDestinations;

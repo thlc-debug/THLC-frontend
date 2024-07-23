@@ -34,7 +34,7 @@ const BestOfOne = ({ city, hotels }) => {
           {/* <p className="md:text-lg text-md">50+ hotels</p> */}
         </div>
         <div className="flex space-x-2">
-          <Link className='font-f_3 ' href={`/hotelsin?search=${city}`}>See All</Link>
+          <Link className='font-f_3 ' href={`/hotelsin?city=${city}`}>See All</Link>
         </div>
       </div>
       <div className={`grid grid-cols-1 ${numVisibleCards > 1 ? 'sm:grid-cols-2' : ''} ${numVisibleCards > 2 ? 'lg:grid-cols-3' : ''} gap-6 transition-transform duration-400 ease-in-out`}>

@@ -28,22 +28,16 @@ const Page = () => {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
   const searchParams = useSearchParams();
-  const searchQuery = searchParams.get('search') || '';
-  const [searchInput, setSearchInput] = useState(searchQuery);
+  const cityQuery = searchParams.get('city') || '';
+  const countryQuery = searchParams.get('country') || '';
+  const [searchInput, setSearchInput] = useState(cityQuery);
+  const [countryInput, setCountryInput] = useState(countryQuery)
 
   const api = base_url;
 
   useEffect(() => {
-    if (searchQuery) {
-      applyFilter();
-    } else {
-      fetchHotels();
-    }
-  }, [searchQuery]);
-
-  useEffect(() => {
-    setSearchInput(searchQuery);
-  }, [searchQuery]);
+    applyFilter();
+  }, [searchInput])
 
   const showMoreCards = () => {
     setVisibleCards((prevVisibleCards) => prevVisibleCards + 5);
@@ -52,11 +46,13 @@ const Page = () => {
   const handleInput = (e) => {
     const value = e.target.value;
     setSearchInput(value);
+    setCountryInput('');
   };
 
   const applyFilter = () => {
     const params = new URLSearchParams(searchParams);
-    params.set('search', searchInput);
+    params.set('city', searchInput);
+    params.set('country', '');
     router.push(`?${params.toString()}`);
     handleFilter(searchInput);
   };
@@ -89,7 +85,7 @@ const Page = () => {
 
     try {
       setLoading(true);
-      const res = await fetch(`${api}/newHotel/hotel-by-city/${searchValue}`, {
+      const res = await fetch(`${api}/search/hotels?city=${searchValue}&country=${countryInput}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -109,7 +105,7 @@ const Page = () => {
   // Debounce effect for filtering
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      if (searchInput !== searchQuery) {
+      if (searchInput !== cityQuery) {
         handleFilter();
       }
     }, 500); // Adjust the delay as needed
