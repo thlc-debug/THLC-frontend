@@ -18,7 +18,7 @@ const Loader = () => (
 
 const NoResults = () => (
   <div className="flex items-center justify-center min-h-screen">
-    <h1 className="text-2xl font-semibold">Sorry, we currently do not have hotels in this city.</h1>
+    <h1 className="text-2xl font-semibold text-gray-800">Sorry, we currently do not have hotels in this city.</h1>
   </div>
 );
 
@@ -26,6 +26,8 @@ const Page = () => {
   const [visibleCards, setVisibleCards] = useState(5);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedTypes, setSelectedTypes] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   const router = useRouter();
   const searchParams = useSearchParams();
   const cityQuery = searchParams.get('city') || '';
@@ -38,6 +40,10 @@ const Page = () => {
   useEffect(() => {
     applyFilter();
   }, [searchInput])
+
+  useEffect(() => {
+    filterByType(selectedTypes);
+  }, [selectedTypes, data]);
 
   const showMoreCards = () => {
     setVisibleCards((prevVisibleCards) => prevVisibleCards + 5);
@@ -60,7 +66,7 @@ const Page = () => {
   const fetchHotels = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`${api}/fetch/hotel`, {
+      const res = await fetch(`${api}/newHotel`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -68,7 +74,6 @@ const Page = () => {
       });
 
       const response = await res.json();
-      // console.log("Data: ", response)
       setData(response);
     } catch (error) {
       console.error("Error:", error);
@@ -93,7 +98,6 @@ const Page = () => {
       });
 
       const response = await res.json();
-      // console.log("response: ", response);
       setData(response);
     } catch (error) {
       console.error("Error:", error);
@@ -102,16 +106,32 @@ const Page = () => {
     }
   }, 300);
 
-  // Debounce effect for filtering
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       if (searchInput !== cityQuery) {
         handleFilter();
       }
-    }, 500); // Adjust the delay as needed
+    }, 500);
 
     return () => clearTimeout(timeoutId);
   }, [searchInput]);
+
+  const filterByType = (types) => {
+    if (types.length === 0) {
+      setFilteredData(data);
+    } else {
+      const filtered = data.filter(item => types.includes(item.type));
+      setFilteredData(filtered);
+    }
+  };
+
+  const handleTypeChange = (type) => {
+    setSelectedTypes(prevTypes =>
+      prevTypes.includes(type)
+        ? prevTypes.filter(t => t !== type)
+        : [...prevTypes, type]
+    );
+  };
 
   return (
     <div className='font-f_3'>
@@ -122,20 +142,52 @@ const Page = () => {
         handleInput={handleInput}
         handleFilter={applyFilter}
       />
+      <div className="flex flex-col items-center my-4">
+       
+        <div className="flex flex-wrap justify-center gap-4 w-full max-w-2xl">
+          <label className="flex items-center px-4 py-3 text-sm text-gray-700 rounded-md shadow-sm bg-white border border-gray-300 hover:bg-gray-50 cursor-pointer transition-all ease-in-out duration-200">
+            <input
+              type="checkbox"
+              checked={selectedTypes.includes('Hotel')}
+              onChange={() => handleTypeChange('Hotel')}
+              className="mr-3"
+            />
+            <span className="text-gray-800 font-medium">Luxury Hotels</span>
+          </label>
+          <label className="flex items-center px-4 py-3 text-sm text-gray-700 rounded-md shadow-sm bg-white border border-gray-300 hover:bg-gray-50 cursor-pointer transition-all ease-in-out duration-200">
+            <input
+              type="checkbox"
+              checked={selectedTypes.includes('Villa')}
+              onChange={() => handleTypeChange('Villa')}
+              className="mr-3"
+            />
+            <span className="text-gray-800 font-medium">Exclusive Villas</span>
+          </label>
+          <label className="flex items-center px-4 py-3 text-sm text-gray-700 rounded-md shadow-sm bg-white border border-gray-300 hover:bg-gray-50 cursor-pointer transition-all ease-in-out duration-200">
+            <input
+              type="checkbox"
+              checked={selectedTypes.includes('Resort')}
+              onChange={() => handleTypeChange('Resort')}
+              className="mr-3"
+            />
+            <span className="text-gray-800 font-medium">Elegant Resorts</span>
+          </label>
+        </div>
+      </div>
       {loading ? (
         <Loader />
       ) : (
         <div className="flex flex-col gap-4 p-4">
-          {data.length === 0 ? (
+          {filteredData.length === 0 ? (
             <NoResults />
           ) : (
             <>
-              {data.slice(0, visibleCards).map((hotel, i) => (
+              {filteredData.slice(0, visibleCards).map((hotel, i) => (
                 <Card key={i} data={hotel} />
               ))}
-              {visibleCards < data.length && (
+              {visibleCards < filteredData.length && (
                 <button
-                  className="text-center text-xl text-black font-normal py-2 rounded-md"
+                  className="text-center text-xl text-black font-normal py-2 px-4 rounded-md border border-gray-300 bg-white hover:bg-gray-50 transition-all ease-in-out duration-200"
                   onClick={showMoreCards}
                 >
                   See More
