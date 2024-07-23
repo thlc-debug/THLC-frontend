@@ -72,7 +72,7 @@ const Page = () => {
       });
 
       const response = await res.json();
-      // console.log("Data: ", response)
+      //  console.log("Data: ", response)
       setData(response);
     } catch (error) {
       console.error("Error:", error);
@@ -97,7 +97,7 @@ const Page = () => {
       });
 
       const response = await res.json();
-      // console.log("response: ", response);
+       console.log("response: ", response);
       setData(response);
     } catch (error) {
       console.error("Error:", error);
