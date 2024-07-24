@@ -30,22 +30,20 @@ const Page = () => {
   const [filteredData, setFilteredData] = useState([]);
   const router = useRouter();
   const searchParams = useSearchParams();
-  const searchQuery = searchParams.get('search') || '';
-  const [searchInput, setSearchInput] = useState(searchQuery);
+  const cityQuery = searchParams.get('city') || '';
+  const countryQuery = searchParams.get('country') || '';
+  const [searchInput, setSearchInput] = useState(cityQuery);
+  const [countryInput, setCountryInput] = useState(countryQuery)
 
   const api = base_url;
 
   useEffect(() => {
-    if (searchQuery) {
-      applyFilter();
-    } else {
-      fetchHotels();
-    }
-  }, [searchQuery]);
+    applyFilter();
+  }, [searchInput])
 
   useEffect(() => {
-    setSearchInput(searchQuery);
-  }, [searchQuery]);
+    filterByType(selectedTypes);
+  }, [selectedTypes, data]);
 
   useEffect(() => {
     filterByType(selectedTypes);
@@ -58,11 +56,13 @@ const Page = () => {
   const handleInput = (e) => {
     const value = e.target.value;
     setSearchInput(value);
+    setCountryInput('');
   };
 
   const applyFilter = () => {
     const params = new URLSearchParams(searchParams);
-    params.set('search', searchInput);
+    params.set('city', searchInput);
+    params.set('country', '');
     router.push(`?${params.toString()}`);
     handleFilter(searchInput);
   };
@@ -94,7 +94,7 @@ const Page = () => {
 
     try {
       setLoading(true);
-      const res = await fetch(`${api}/newHotel/hotel-by-city/${searchValue}`, {
+      const res = await fetch(`${api}/search/hotels?city=${searchValue}&country=${countryInput}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -112,7 +112,7 @@ const Page = () => {
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      if (searchInput !== searchQuery) {
+      if (searchInput !== cityQuery) {
         handleFilter();
       }
     }, 500);

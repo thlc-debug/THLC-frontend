@@ -51,7 +51,7 @@ const BestChoice = () => {
                 //  <Link href="/contact">
                 <div
                   key={index}
-                  onClick={() => router.push(`/hotelsin?search=${hotel.title}`)}
+                  onClick={() => router.push(`/hotelsin?city=${hotel.title}`)}
                   className="flex gap-4 items-center rounded-lg border border-gray-300 py-3 px-4 hover:cursor-pointer hover:shadow-md transition duration-300"
                 >
                   <div className="w-10 h-10 md:w-[100px] md:h-[100px] overflow-hidden rounded-full flex items-center justify-center">
