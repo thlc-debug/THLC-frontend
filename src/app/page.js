@@ -15,12 +15,23 @@ import BoxSection from '@/components/home/BoxSection';
 import TopVillas from '@/components/home/TopVillas';
 import Services from '@/components/home/Services';
 import OurService from '@/components/home/OurService';
+import Script from 'next/script';
 
 
 const Home = () => {
 
   return (
     <div className='font-f_3'>
+      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-X0KQ7SFZ67"></Script>
+      <Script id="google-tag-manager">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-X0KQ7SFZ67');
+        `}
+      </Script>
       <Header />
       <HeroSection />
       <BoxSection />

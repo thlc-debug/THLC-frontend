@@ -45,6 +45,10 @@ const Page = () => {
     filterByType(selectedTypes);
   }, [selectedTypes, data]);
 
+  useEffect(() => {
+    filterByType(selectedTypes);
+  }, [selectedTypes, data]);
+
   const showMoreCards = () => {
     setVisibleCards((prevVisibleCards) => prevVisibleCards + 5);
   };
