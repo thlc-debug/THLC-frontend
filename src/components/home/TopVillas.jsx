@@ -91,7 +91,7 @@ const TopVillas = () => {
       <div className='p-4 sm:p-6 md:p-10 h-auto md:h-[375px] my-5 w-full bg-gray-100 border-2 border-gray-200 rounded-xl'>
         <Slider {...settings}>
           {hotels.map(item => (
-            <Link href={`/villas`} className="p-3 relative hover:cursor-pointer no-focus-outline block" key={item._id}>
+            <Link href={`/villasdetail?id=${item._id}`} className="p-3 relative hover:cursor-pointer no-focus-outline block" key={item._id}>
 
               <div key={item._id} className=' relative'>
                 <img className='brightness-75 rounded-xl h-[250px] md:h-[270px] w-[250px] md:w-[275px] mx-auto hover:brightness-50' src={getDirectImageUrl(item.photoUrls[0])} alt={item.name} />
