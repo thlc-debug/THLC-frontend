@@ -36,7 +36,7 @@ const OneVilla = ({ id }) => {
 
   const fetchHotelDetail = async (hotelId) => {
     try {
-      const res = await fetch(`${api}/api/villas/${hotelId}`, {
+      const res = await fetch(`${api}/newHotel/${hotelId}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -58,12 +58,14 @@ const OneVilla = ({ id }) => {
     return <Loader />;
   }
 
+ //  console.log(hotel)
+
   return (
     <div className='h-full w-full'>
       <section className="relative h-[500px] w-auto z-0">
         <div className="absolute inset-0 pointer-events-none">
           <Image
-            src="/top-hotel.jpeg"
+            src="/heroHome/pexels-pixabay-258154.jpg"
             alt="Background"
             layout="fill"
             objectFit="cover"
