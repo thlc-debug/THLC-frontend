@@ -139,18 +139,18 @@ const OneHotel = ({ id }) => {
           <div>City: {hotel.city}</div>
           <div>Country: {hotel.country}</div>
           {hotel.price ? (
-  <Link href={`/checkout?id=${hotel._id}`}>
-    <button className="bg-black text-white m-auto my-10 flex items-center justify-center rounded-full px-4 py-2 sm:px-6 sm:py-3">
-      Book Now <GoArrowUpRight className="ml-2" />
-    </button>
-  </Link>
-) : (
-  <a href="tel:+91-9888334677">
-  <button className="bg-black text-white m-auto my-10 flex items-center justify-center rounded-full px-4 py-2 sm:px-6 sm:py-3" >
-    Call Now
-  </button>
-  </a>
-)}
+            <Link href={`/checkout?id=${hotel._id}`}>
+              <button className="bg-black text-white m-auto my-10 flex items-center justify-center rounded-full px-4 py-2 sm:px-6 sm:py-3">
+                Book Now <GoArrowUpRight className="ml-2" />
+              </button>
+            </Link>
+          ) : (
+            <a href="tel:+91-9888334677">
+              <button className="bg-black text-white m-auto my-10 flex items-center justify-center rounded-full px-4 py-2 sm:px-6 sm:py-3" >
+                Call Now
+              </button>
+            </a>
+          )}
 
         </div>
       </div>
