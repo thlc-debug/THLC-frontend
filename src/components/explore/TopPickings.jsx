@@ -7,7 +7,7 @@ import SeeMoreButton from "../utils/SeeMoreButton";
 
 const RANGE = 30;
 
-const numCardsToDisplay = () => {
+export const numCardsToDisplay = () => {
   if (window.innerWidth < 768) {
     return 1;
   } else if (window.innerWidth < 1024) {
@@ -80,10 +80,12 @@ const TopPickings = () => {
     return resorts.slice(0, visibleCards);
   };
 
-  const addTwoNewCards = () => {
+  const addNewCards = () => {
     if (resorts.length === 0) return;
-    if (visibleCards + 3 > resorts.length) return;
-    setVisibleCards((prev) => prev + numCardsToDisplay());
+
+    const newCards = numCardsToDisplay();
+    if (visibleCards + newCards > resorts.length) return;
+    setVisibleCards((prev) => prev + newCards);
   };
 
   return (
@@ -103,7 +105,7 @@ const TopPickings = () => {
         </div>
       ) : (
         <div className="container mx-auto max-w-6xl lg:px-0 px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {resorts.length > 0 &&
               getVisibleResorts().map((resort, index) => (
                 <Link href={`/resortdetail?id=${resort._id}`} key={resort._id}>
@@ -133,7 +135,7 @@ const TopPickings = () => {
           </div>
 
           {resorts.length > 0 && visibleCards < resorts.length && (
-            <SeeMoreButton func={addTwoNewCards} />
+            <SeeMoreButton func={addNewCards} />
           )}
         </div>
       )}
