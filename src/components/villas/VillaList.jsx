@@ -51,6 +51,7 @@ const VillaList = () => {
         const response = await fetch(`${api}/fetch/villa`);
         const data = await response.json();
         setVillas(data);
+        console.log(data);
         setVisibleVillas(data.slice(0, 15));
       } catch (error) {
         console.error('Failed to fetch hotels:', error);
