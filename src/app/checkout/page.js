@@ -8,7 +8,7 @@ import Confirmation from "@/components/checkouts/Confirmation";
 import Link from "next/link";
 import withAuth from "@/utils/withAuth";
 import { useSearchParams } from "next/navigation";
-import BackButton from "@/components/BackButton";
+import BackButton from "@/components/utils/BackButton";
 
 const Loader = () => (
   <div className="flex items-center justify-center min-h-screen">

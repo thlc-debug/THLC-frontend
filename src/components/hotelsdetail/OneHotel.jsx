@@ -6,13 +6,13 @@ import { FaStar } from "react-icons/fa";
 import Highlight from "../contact/Highlight";
 import { GoArrowUpRight } from "react-icons/go";
 
-import Link from 'next/link';
-import { base_url } from '@/base_url';
-import Zoom from 'react-medium-image-zoom';
-import 'react-medium-image-zoom/dist/styles.css';
-import { FaTimes } from 'react-icons/fa';
-import Modal from 'react-modal';
-import BackButton from "../BackButton";
+import Link from "next/link";
+import { base_url } from "@/base_url";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
+import { FaTimes } from "react-icons/fa";
+import Modal from "react-modal";
+import BackButton from "../utils/BackButton";
 
 const StarRating = ({ rating }) => {
   const stars = [];
@@ -74,13 +74,14 @@ const OneHotel = ({ id }) => {
   };
 
   const handlePrevImage = () => {
-    setPhotoIndex((photoIndex + hotel.photoUrls.length - 1) % hotel.photoUrls.length);
+    setPhotoIndex(
+      (photoIndex + hotel.photoUrls.length - 1) % hotel.photoUrls.length
+    );
   };
 
   const handleNextImage = () => {
     setPhotoIndex((photoIndex + 1) % hotel.photoUrls.length);
   };
-
 
   const handleZoomChange = (shouldZoom) => {
     setIsZoomed(shouldZoom);
@@ -118,15 +119,17 @@ const OneHotel = ({ id }) => {
       <div className="mx-5 my-10">
         <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 gap-2">
           {hotel.photoUrls.slice(0, 5).map((image, index) => (
-            <div key={index} className='w-full h-64 overflow-hidden'>
-                <img
-                  className='shadow-2xl hover:scale-105 w-full h-full object-cover rounded-md cursor-pointer'
-                  src={image.replace("www.dropbox.com", "dl.dropboxusercontent.com")}
-                  alt={`hotel-${index}`}
-                  onClick={() => handleOpenModal(index)}
-                />
+            <div key={index} className="w-full h-64 overflow-hidden">
+              <img
+                className="shadow-2xl hover:scale-105 w-full h-full object-cover rounded-md cursor-pointer"
+                src={image.replace(
+                  "www.dropbox.com",
+                  "dl.dropboxusercontent.com"
+                )}
+                alt={`hotel-${index}`}
+                onClick={() => handleOpenModal(index)}
+              />
               {/* </Zoom> */}
-
             </div>
           ))}
         </div>
@@ -157,23 +160,23 @@ const OneHotel = ({ id }) => {
             ))}
           </div>
         </div>
-        <div className='mt-5 sm:w-2/5 text-center m-auto md:mx-[5rem] text-black'>
-          <div className='text-4xl font-bold pb-2'>Contact</div>
+        <div className="mt-5 sm:w-2/5 text-center m-auto md:mx-[5rem] text-black">
+          <div className="text-4xl font-bold pb-2">Contact</div>
           <div>City: {hotel.city}</div>
           <div>Country: {hotel.country}</div>
           {hotel.price ? (
-  <Link href={`/checkout?id=${hotel._id}`}>
-    <button className="bg-black text-white m-auto my-10 flex items-center justify-center rounded-full px-4 py-2 sm:px-6 sm:py-3">
-      Book Now <GoArrowUpRight className="ml-2" />
-    </button>
-  </Link>
-) : (
-  <a href="tel:+91-9888334677">
-  <button className="bg-black text-white m-auto my-10 flex items-center justify-center rounded-full px-4 py-2 sm:px-6 sm:py-3" >
-    Call Now
-  </button>
-  </a>
-)}
+            <Link href={`/checkout?id=${hotel._id}`}>
+              <button className="bg-black text-white m-auto my-10 flex items-center justify-center rounded-full px-4 py-2 sm:px-6 sm:py-3">
+                Book Now <GoArrowUpRight className="ml-2" />
+              </button>
+            </Link>
+          ) : (
+            <a href="tel:+91-9888334677">
+              <button className="bg-black text-white m-auto my-10 flex items-center justify-center rounded-full px-4 py-2 sm:px-6 sm:py-3">
+                Call Now
+              </button>
+            </a>
+          )}
         </div>
       </div>
       <Modal
@@ -192,7 +195,10 @@ const OneHotel = ({ id }) => {
           <Zoom>
             <img
               className="w-full h-auto object-contain"
-              src={hotel.photoUrls[photoIndex].replace("www.dropbox.com", "dl.dropboxusercontent.com")}
+              src={hotel.photoUrls[photoIndex].replace(
+                "www.dropbox.com",
+                "dl.dropboxusercontent.com"
+              )}
               alt={`hotel-${photoIndex}`}
             />
           </Zoom>
