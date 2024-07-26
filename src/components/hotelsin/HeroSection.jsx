@@ -21,7 +21,7 @@ const Hero = ({cityName}) => {
                 sequence={[
                     
                     'Our Recommendations',
-                    5000 
+                    3000 
 
                 ]}
                 wrapper="span"

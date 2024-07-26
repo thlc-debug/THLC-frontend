@@ -51,7 +51,7 @@ const Hero = () => {
                     <TypeAnimation
                         sequence={[
                             'Luxury Chains',
-                            5000
+                            3000
                         ]}
                         wrapper="span"
                         speed={10}

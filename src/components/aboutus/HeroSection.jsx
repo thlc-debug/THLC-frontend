@@ -71,7 +71,7 @@ const Hero = () => {
           className="md:text-[70px] text-[60px] font-bold mb-8 mt-[130px]"
         >
           <TypeAnimation
-            sequence={["About Us", 5000]}
+            sequence={["About Us", 3000]}
             wrapper="span"
             speed={10}
             repeat={Infinity}

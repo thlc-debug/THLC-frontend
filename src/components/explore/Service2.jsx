@@ -96,7 +96,7 @@ const service = [
   },
   {
     id: 14,
-    name: "Other Services",
+    name: "Custom Services",
     photo: "/home/other-services.jpg",
     formComponent: OtherServicesForm,
   }
