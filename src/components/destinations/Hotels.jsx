@@ -29,7 +29,7 @@ const Hotels = () => {
     } else if (window.innerWidth < 1024) {
       setNumVisibleCards(6);
     } else {
-      setNumVisibleCards(9);
+      setNumVisibleCards(8);
     }
   };
 

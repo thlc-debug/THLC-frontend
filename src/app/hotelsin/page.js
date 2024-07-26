@@ -33,17 +33,17 @@ const Page = () => {
   const cityQuery = searchParams.get('city') || '';
   const countryQuery = searchParams.get('country') || '';
   const [searchInput, setSearchInput] = useState(cityQuery);
-  const [countryInput, setCountryInput] = useState(countryQuery)
+  const [countryInput, setCountryInput] = useState(countryQuery);
 
   const api = base_url;
 
   useEffect(() => {
-    applyFilter();
-  }, [searchInput])
-
-  useEffect(() => {
-    filterByType(selectedTypes);
-  }, [selectedTypes, data]);
+    if (cityQuery || searchInput) {
+      handleFilter(cityQuery || searchInput);
+    } else {
+      fetchHotels();
+    }
+  }, []);
 
   useEffect(() => {
     filterByType(selectedTypes);
@@ -62,7 +62,7 @@ const Page = () => {
   const applyFilter = () => {
     const params = new URLSearchParams(searchParams);
     params.set('city', searchInput);
-    params.set('country', '');
+    // params.set('country', '');
     router.push(`?${params.toString()}`);
     handleFilter(searchInput);
   };
@@ -87,14 +87,14 @@ const Page = () => {
   };
 
   const handleFilter = useDebouncedCallback(async (searchValue = searchInput) => {
-    if (searchInput === "") {
+    if (searchValue.trim() === "") {
       fetchHotels();
       return;
     }
 
     try {
       setLoading(true);
-      const res = await fetch(`${api}/search/hotels?city=${searchValue}&country=${countryInput}`, {
+      const res = await fetch(`${api}/search/hotels?city=${searchValue.trim()}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -111,13 +111,9 @@ const Page = () => {
   }, 300);
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      if (searchInput !== cityQuery) {
-        handleFilter();
-      }
-    }, 500);
-
-    return () => clearTimeout(timeoutId);
+    if (searchInput !== cityQuery) {
+      handleFilter();
+    }
   }, [searchInput]);
 
   const filterByType = (types) => {
@@ -147,7 +143,6 @@ const Page = () => {
         handleFilter={applyFilter}
       />
       <div className="flex flex-col items-center my-4">
-       
         <div className="flex flex-wrap justify-center gap-4 w-full max-w-2xl">
           <label className="flex items-center px-4 py-3 text-sm text-gray-700 rounded-md shadow-sm bg-white border border-gray-300 hover:bg-gray-50 cursor-pointer transition-all ease-in-out duration-200">
             <input
