@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaCheckCircle, FaRegCreditCard, FaPaypal, FaGoogle, FaApplePay } from "react-icons/fa";
 import { IoIosArrowDropdown, IoIosArrowDropup } from "react-icons/io";
 import { CiSquarePlus } from "react-icons/ci";
@@ -7,6 +7,7 @@ import Paypal from "./paypal/Paypal";
 const PaymentDetails = ({ nextStep }) => {
   const [showDropdown, setShowDropdown] = useState(true);
   const [showPaypal, setShowPaypal] = useState(false)
+  const [amount, setAmount] = useState(null)
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
@@ -20,6 +21,11 @@ const PaymentDetails = ({ nextStep }) => {
     // { name: "Stripe", icon: <FaRegCreditCard className="text-red-400" /> },
     // { name: "Apple Pay", icon: <FaApplePay className="text-black text-2xl" /> },
   ];
+
+  useEffect(() => {
+    const storedBookingInfo = JSON.parse(localStorage.getItem("bookingInfo"));
+    setAmount(storedBookingInfo.price)
+  }, [])
 
   const handlePaymentMethodSelect = (e) => {
     e.preventDefault()
@@ -35,6 +41,7 @@ const PaymentDetails = ({ nextStep }) => {
 
   return (
     <div className="flex flex-col gap-5 max-w-2xl mx-auto p-6 bg-gray-100 mt-10 rounded-md">
+
 
       {/* Payment Method Dropdown */}
       <div className="flex bg-white justify-between items-center p-6 rounded-md shadow-md cursor-pointer" onClick={toggleDropdown}>
@@ -66,6 +73,10 @@ const PaymentDetails = ({ nextStep }) => {
             </button>
           ))}
         </div>
+      )}
+
+      {amount && (
+        <div className="text-xl font-bold text-right">Amount: ${amount}</div>
       )}
 
       {/* <div className="flex flex-col bg-white items-center p-6 rounded-md shadow-md mt-5">
