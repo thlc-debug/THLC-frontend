@@ -20,16 +20,16 @@ const BestChoice = () => {
     <div className="w-full px-4 pb-5">
       <div className="w-full mx-auto my-10 bg-no-repeat bg-cover rounded-md md:rounded-[60px]" >
         <div className="flex flex-col gap-6 mt-5 sm:mt-10">
-          <h1 className="font-semibold  mt-10 text-[28px] md:text-[40px] text-center text-black">
+          <div className="font-semibold  mt-10 text-[28px] md:text-[40px] text-center text-black">
             Discover the best choice for you
-          </h1>
+          </div>
 
           <div className="sm:mt-5 sm:mb-10  mx-auto p-5 rounded-md md:rounded-[30px] bg-white w-full max-w-[1000px] shadow-lg">
             <div className="flex flex-col md:flex-row items-center justify-between px-5">
               <div className="flex flex-col gap-1 mb-4 md:mb-0 text-center md:text-left">
-                <h2 className="text-[#000000] text-[16px] md:text-[18px] font-medium">
+                <div className="text-[#000000] text-[16px] md:text-[18px] font-medium">
                   50+ destinations
-                </h2>
+                </div>
                 <p className="text-[#000000] text-[14px] md:text-[15px]">
                   Explore more than 50 destinations now.
                 </p>
@@ -58,9 +58,9 @@ const BestChoice = () => {
                     <img src={hotel.image} alt={`${hotel.title}`} className="w-full h-full object-cover" />
                   </div>
                   <div className="flex flex-col justify-center">
-                    <h2 className="text-black text-[20px] md:text-[24px] font-semibold">
+                    <div className="text-black text-[20px] md:text-[24px] font-semibold">
                       Hotels in {hotel.title}
-                    </h2>
+                    </div>
                     {/* <p className="text-[#00000080] text-[14px] md:text-[15px]">
                     {hotel.location}
                  </p> */}

@@ -8,12 +8,12 @@ import "slick-carousel/slick/slick-theme.css";
 
 const Hero = () => {
     const images = [
-        { src: "/adare-manor-aerial-image.jpg", alt: "image1" },
-        { src: "/heroimg/Explore/fernando-alvarez-rodriguez-M7GddPqJowg-unsplash.jpg", alt: "image2" },
-        { src: "/heroimg/destination/Dubai, UAE.jpg", alt: "image3" },
-        { src: "/heroimg/Hotels_Villas/james-wheeler-0vysUcbfYx4-unsplash.jpg", alt: "image4" },
-        { src: "/heroimg/Home/pexels-diego-f-parra-33199-843633.jpg", alt: "image5" },
-        { src: "/heroimg/Explore/fernando-alvarez-rodriguez-M7GddPqJowg-unsplash.jpg", alt: "image6" },
+        { src: "/heroimg/destination/Aruba.jpg", alt: "image1" },
+        { src: "/heroimg/destination/Bodrum, Türkiye.jpg", alt: "image2" },
+        { src: "/heroimg/destination/Costa Rica.jpg", alt: "image3" },
+        { src: "/heroimg/Home/pexels-diego-f-parra-33199-843633.jpg", alt: "image4" },
+        { src: "/heroimg/Explore/pexels-miles-hardacre-1263314-2404370.jpg", alt: "image5" },
+        { src: "/heroimg/Explore/harlie-raethel-fjVnFfC1-BY-unsplash.jpg", alt: "image6" },
     ];
 
     const settings = {
@@ -51,14 +51,14 @@ const Hero = () => {
                     <TypeAnimation
                         sequence={[
                             'Contact Us',
-                            5000
+                            3000
                         ]}
                         wrapper="span"
                         speed={10}
                         repeat={Infinity}
                     />
                 </h1>
-                <p className="text-lg md:text-[19px] text-[14px]">Reach out to us for your doubt & custom bookings..</p>
+                <h2 className="text-lg md:text-[19px] text-[14px]">Reach out to us for your doubt & custom bookings..</h2>
                 <p>Home › Contactus</p>
             </div>
         </section>

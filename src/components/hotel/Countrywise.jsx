@@ -94,7 +94,7 @@ const Countrywise = () => {
                   src={getDirectImageUrl(country.photoUrl)}
                   alt={country._id} />
                 <div className="absolute bottom-0 w-full py-4 bg-black bg-opacity-50 rounded-b-xl flex items-center justify-center text-white text-center">
-                  <h2 className="text-lg sm:text-xl font-f_2 font-bold">{country.city}</h2>
+                  <div className="text-lg sm:text-xl font-f_2 font-bold">{country.city}</div>
                 </div>
               </div>
             </Link>

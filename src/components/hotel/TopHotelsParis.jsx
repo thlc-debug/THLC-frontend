@@ -74,8 +74,8 @@ class TopHotelsParis extends Component {
                 <div key={item._id} className=' relative'>
                   <img className='rounded-xl brightness-75 h-[200px] md:h-[270px] w-full mx-auto hover:brightness-50' src={getDirectImageUrl(item.photoUrls[0])} alt={item.name} />
                   <div className="absolute bottom-0 w-full py-2 bg-black bg-opacity-50 rounded-b-xl text-white text-center">
-                    <h2 className="text-md font-f_3">{item.name}</h2>
-                    <h2 className="text-md font-f_3">{item.city}, {item.country}</h2>
+                    <div className="text-md font-f_3">{item.name}</div>
+                    <div className="text-md font-f_3">{item.city}, {item.country}</div>
                   </div>
                 </div>
               </Link>

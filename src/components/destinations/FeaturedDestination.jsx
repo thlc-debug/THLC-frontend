@@ -79,7 +79,7 @@ const FeaturedDestinations = () => {
     <div className="max-w-5xl sm:mx-auto mx-6 p-4 pb-14 pt-[80px] relative">
       <div className="flex justify-between items-center mb-4">
         <div>
-          <h2 className="md:text-4xl text-2xl font-bold">Featured Destinations</h2>
+          <div className="md:text-4xl text-2xl font-bold">Featured Destinations</div>
           <p className="md:text-lg text-md">2000+ hotels</p>
         </div>
         <div className="flex space-x-2">

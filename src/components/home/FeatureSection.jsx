@@ -6,7 +6,7 @@ const Features = () => {
         <section className="md:py-[2rem]  py-10 max-w-screen overflow-hidden bg-white min-h-screen flex  items-center justify-center">
             <div className="container mx-auto px-4 md:px-0 max-w-6xl justify-center ">
                 <div className="text-center md:mb-10 mb-5">
-                    <h2 className="text-[30px] lg:text-[47px]  text-black font-bold mb-4">Features we provide</h2>
+                    <div className="text-[30px] lg:text-[47px]  text-black font-bold mb-4">Features we provide</div>
                     {/* <p className="text-gray-500 lg:text-[24px] md:text-[20px] font-f_3 text-[18px] text-center px-2 pb-8">Explore the unexplored, Lorem ipsum dolor sit amet, consectetur adipiscing elit,</p> */}
                 </div>
                 <div className="space-y-8 md:-mr-14 md:ml-[70px] md:mt-14 ">

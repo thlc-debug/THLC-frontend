@@ -89,7 +89,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="relative h-[80vh] md:h-[90vh] w-full overflow-hidden">
+    <div className="relative h-[75vh] md:h-[85vh] w-full overflow-hidden">
       {imageTransitions((style, i) => (
         <animated.div key={i} className="absolute w-full h-full" style={style}>
           <div className="relative h-full">

@@ -14,7 +14,7 @@ const HotelCard = ({ imageSrc, location, name, description, reverse, by, id }) =
         />
       </div>
       <div className={`md:ml-4 text-center md:text-left justify-center  md:mt-10 ${reverse ? 'md:mr-4' : ''}`}>
-        <h2 className="md:text-4xl mb-2 text-3xl font-bold">{name}</h2>
+        <div className="md:text-4xl mb-2 text-3xl font-bold">{name}</div>
         <span className="bg-gray-200 text-gray-700 rounded-full px-3 py-1 text-sm font-medium">{location}</span>
         <p className="mt-2 text-gray-700 text-md">{description}</p>
         <p className="mt-2 text-md italic text-gray-500">`Trusted by {by}+ customers`</p>

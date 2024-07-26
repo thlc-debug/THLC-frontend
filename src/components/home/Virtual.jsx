@@ -33,9 +33,9 @@ const Virtual = () => {
   return (
     <div className="py-10 md:py-20 bg-white min-h-screen flex items-center justify-center">
   <div className="container mx-auto px-4 md:px-8 max-w-6xl">
-    <h1 className="text-black text-3xl md:text-4xl font-bold text-center mb-10">
+    <div className="text-black text-3xl md:text-4xl font-bold text-center mb-10">
       Connect with our Virtual Assistants at any time of your convenience!
-    </h1>
+    </div>
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
       {selectedCard ? (
         <BookingCalendar

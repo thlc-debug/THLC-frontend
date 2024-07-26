@@ -103,9 +103,9 @@ const OneHotel = ({ id }) => {
           <h1 className="md:text-[70px] text-[40px] font-bold mb-8 mt-[130px]">
             {hotel.name}
           </h1>
-          <p className="text-lg md:text-[19px] text-[14px]">
+          <h2 className="text-lg md:text-[19px] text-[14px]">
             {hotel.city}, {hotel.country}
-          </p>
+          </h2>
         </div>
       </section>
       <div className="mx-5 my-10">
