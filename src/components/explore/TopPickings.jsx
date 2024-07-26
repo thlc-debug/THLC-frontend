@@ -42,7 +42,7 @@ const TopPickings = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setVisibleCards(numCardsToDisplay());
+      setVisibleCards(3 * numCardsToDisplay());
     };
 
     handleResize();
@@ -83,7 +83,7 @@ const TopPickings = () => {
   const addNewCards = () => {
     if (resorts.length === 0) return;
 
-    const newCards = numCardsToDisplay();
+    const newCards = 3 * numCardsToDisplay();
     if (visibleCards + newCards > resorts.length) return;
     setVisibleCards((prev) => prev + newCards);
   };
@@ -112,11 +112,10 @@ const TopPickings = () => {
                   <div
                     className={`rounded-lg shadow-lg overflow-hidden hover:cursor-pointer transform transition-transform duration-500 ease-in-out `}
                     style={{
-                      backgroundImage: `url(${
-                        loadedImages[index % resorts.length]
-                          ? getDirectImageUrl(resort.photoUrls[0])
-                          : defaultImageUrl
-                      })`,
+                      backgroundImage: `url(${loadedImages[index % resorts.length]
+                        ? getDirectImageUrl(resort.photoUrls[0])
+                        : defaultImageUrl
+                        })`,
                       backgroundSize: "cover",
                       backgroundPosition: "center",
                       height: "350px",
@@ -134,7 +133,7 @@ const TopPickings = () => {
               ))}
           </div>
 
-          {resorts.length > 0 && visibleCards < resorts.length && (
+          {resorts.length > 0 && visibleCards < resorts.length - 3 && (
             <SeeMoreButton func={addNewCards} />
           )}
         </div>

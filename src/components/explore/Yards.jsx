@@ -38,7 +38,7 @@ const Yards = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setVisibleHotels(numCardsToDisplay());
+      setVisibleHotels(3 * numCardsToDisplay());
     };
 
     handleResize();
@@ -84,7 +84,7 @@ const Yards = () => {
   const addNewCards = () => {
     if (hotels.length === 0) return;
 
-    const newCards = numCardsToDisplay();
+    const newCards = 3 * numCardsToDisplay();
     if (visibleHotels + newCards > hotels.length) return;
     setVisibleHotels((prev) => prev + newCards);
   };
@@ -135,7 +135,7 @@ const Yards = () => {
               ))}
           </div>
 
-          {hotels.length > 0 && visibleHotels < hotels.length && (
+          {hotels.length > 0 && visibleHotels < hotels.length - 3 && (
             <SeeMoreButton func={addNewCards} />
           )}
         </div>
