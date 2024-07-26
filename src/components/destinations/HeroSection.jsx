@@ -11,7 +11,7 @@ const Hero = () => {
         { src: "/heroimg/destination/Antartica.jpg", alt: "image1" },
         { src: "/heroimg/destination/Bangkok, Thailand.jpg", alt: "image2" },
         { src: "/heroimg/destination/Cairo, Egypt.jpg", alt: "image3" },
-        { src: "/heroimg/destination/Dubai, UAE.jpg", alt: "image4" },
+        { src: "/destination_bg.webp", alt: "image4" },
         { src: "/heroimg/destination/Gothenburg, Sweden.jpg", alt: "image5" },
         { src: "/heroimg/destination/Paris, France.jpg", alt: "image6" },
     ];
@@ -39,7 +39,7 @@ const Hero = () => {
                                 alt={image.alt}
                                 layout="fill"
                                 objectFit="cover"
-                                className="object-cover"
+                                className="object-cover "
                             />
                             <div className="absolute inset-0 bg-black opacity-50"></div>
                         </div>
@@ -51,14 +51,14 @@ const Hero = () => {
                     <TypeAnimation
                         sequence={[
                             'Destinations',
-                            5000
+                            3000
                         ]}
                         wrapper="span"
                         speed={10}
                         repeat={Infinity}
                     />
                 </h1>
-                <p className="text-lg md:text-[19px] text-[14px]">Explore New Destinations..</p>
+                <h2 className="text-lg md:text-[19px] text-[14px]">Explore New Destinations..</h2>
                 <p>Home › Destinations</p>
             </div>
         </section>

@@ -1,1 +1,1 @@
-export const base_url = "https://thlc-backend-v5yz.onrender.com";
+export const base_url = "https://thlc-backend.vercel.app";

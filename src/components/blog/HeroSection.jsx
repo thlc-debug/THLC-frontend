@@ -51,14 +51,14 @@ const Hero = () => {
                     <TypeAnimation
                         sequence={[
                             'Blogs',
-                            5000
+                            3000
                         ]}
                         wrapper="span"
                         speed={10}
                         repeat={Infinity}
                     />
                 </h1>
-                <p className="text-lg md:text-[19px] text-[14px]">Insightful Travel & Hotel Booking Advice.</p>
+                <h2 className="text-lg md:text-[19px] text-[14px]">Insightful Travel & Hotel Booking Advice.</h2>
                 <p>Home › Blogs</p>
             </div>
         </section>

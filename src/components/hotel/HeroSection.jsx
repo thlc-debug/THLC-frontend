@@ -9,7 +9,7 @@ import "slick-carousel/slick/slick-theme.css";
 const Hero = () => {
     const images = [
         { src: "/heroimg/Hotels_Villas/adam-winger-5zX1KAjPl4o-unsplash.jpg", alt: "image1" },
-        { src: "/heroimg/Hotels_Villas/avi-werde-hHz4yrvxwlA-unsplash.jpg", alt: "image2" },
+        { src: "/hotel_bg.webp", alt: "image2" },
         { src: "/heroimg/Hotels_Villas/frames-for-your-heart-zSG-kd-L6vw-unsplash.jpg", alt: "image3" },
         { src: "/heroimg/Hotels_Villas/james-wheeler-0vysUcbfYx4-unsplash.jpg", alt: "image4" },
         { src: "/heroimg/Hotels_Villas/marvin-meyer-8CDuHXff3zo-unsplash.jpg", alt: "image5" },
@@ -51,14 +51,14 @@ const Hero = () => {
                     <TypeAnimation
                         sequence={[
                             'Hotels',
-                            5000
+                            3000
                         ]}
                         wrapper="span"
                         speed={10}
                         repeat={Infinity}
                     />
                 </h1>
-                <p className="text-lg md:text-[19px] text-[14px]">Insightful Travel & Hotel Booking Advice.</p>
+                <h2 className="text-lg md:text-[19px] text-[14px]">Insightful Travel & Hotel Booking Advice.</h2>
                 <p>Home › Hotels</p>
             </div>
         </section>

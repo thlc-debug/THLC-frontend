@@ -71,15 +71,15 @@ const Hero = () => {
           className="md:text-[70px] text-[60px] font-bold mb-8 mt-[130px]"
         >
           <TypeAnimation
-            sequence={["About Us", 5000]}
+            sequence={["About Us", 3000]}
             wrapper="span"
             speed={10}
             repeat={Infinity}
           />
         </h1>
-        <p className="text-lg md:text-[19px] text-[14px]">
+        <h2 className="text-lg md:text-[19px] text-[14px]">
           We provide unparalleled hospitality and luxurious experience..
-        </p>
+        </h2>
         <p>Home › Aboutus</p>
       </div>
     </section>

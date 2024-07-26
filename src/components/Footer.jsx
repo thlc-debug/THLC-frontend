@@ -10,6 +10,8 @@ import { base_url } from "@/base_url";
 import { IoLocation } from "react-icons/io5";
 import { FaHotel } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
+import { MdCall } from "react-icons/md";
+
 
 
 const Footer = () => {
@@ -90,9 +92,20 @@ const Footer = () => {
           {/* <div className="text-gray-400 leading-relaxed text-sm md:text-lg flex gap-[10px] mb-[10px]">
           <FaHotel className="text-[2.2rem]"/>  Welcome to The Luxury Hotel Concierge, the top destination for customised premium vacation experiences.
           </div> */}
-          <div className="text-gray-400 leading-relaxed text-sm md:text-lg flex  gap-[10px]">
-         <IoLocation className="text-[2.2rem]"/>  213-214 2nd floor Sector 124, Sunny Enclave, Sahibzada Ajit Singh Nagar, Kharar, Punjab 140301
-                    </div>
+          <div className="text-gray-400 leading-relaxed text-sm md:text-lg flex   ">
+          <a
+                href="https://www.google.com/maps/@30.7405912,76.6753299,19.62z?entry=ttu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className=" flex gap-[10px] "
+                
+            ><IoLocation  className="text-[2.5rem]"/>  213-214 2nd floor Sector 124, Sunny Enclave, Sahibzada Ajit Singh Nagar, Kharar, Punjab 140301
+          </a>
+          </div>
+          <div className="text-gray-400 leading-relaxed text-sm md:text-lg flex gap-[5px]  ">
+          <MdCall  className="text-[1.2rem] mt-1"/>  +91-9888334677
+          
+          </div>
         </div>
         <div className="leading-relaxed">
           <div className="text-gray-200 text-lg pb-2"><b>Company</b></div>

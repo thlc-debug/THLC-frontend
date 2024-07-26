@@ -6,9 +6,9 @@ const BlogCard = ({ data }) => {
     <div className="max-w-[95%] lg:max-w-[1023.75px] h-auto flex flex-col lg:flex-row justify-between p-5 rounded-md border border-gray-300 mx-auto my-5 bg-white shadow-md">
       {/* content */}
       <div className="flex flex-col justify-center lg:w-2/3 gap-4 p-2 lg:p-5">
-        <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 leading-tight">
+        <div className="text-2xl lg:text-3xl font-bold text-gray-900 leading-tight">
           {data.heading}
-        </h1>
+        </div>
         <div>
           <p className="text-gray-600 text-base lg:text-lg leading-relaxed text-justify">
             {data.paragraph}

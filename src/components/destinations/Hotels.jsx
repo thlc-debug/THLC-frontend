@@ -179,7 +179,7 @@ const Hotels = () => {
     {showFilterModal && (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
         <div ref={modalRef} className="bg-white rounded-lg p-10 max-w-md shadow-lg">
-          <h2 className="text-lg font-bold mb-4">Select Country</h2>
+          <div className="text-lg font-bold mb-4">Select Country</div>
           {countries.map((country) => (
             <label key={country} className="flex items-center mb-2">
               <input

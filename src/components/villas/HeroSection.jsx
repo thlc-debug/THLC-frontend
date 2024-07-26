@@ -13,7 +13,7 @@ const Hero = () => {
       alt: "image5",
     },
     {
-      src: "/heroimg/Hotels_Villas/frames-for-your-heart-zSG-kd-L6vw-unsplash.jpg",
+      src: "/hotel_bg.webp",
       alt: "image3",
     },
     {
@@ -72,15 +72,15 @@ const Hero = () => {
           className="md:text-[70px] text-[60px] font-bold mb-8 mt-[130px]"
         >
           <TypeAnimation
-            sequence={["Villas", 5000]}
+            sequence={["Villas", 3000]}
             wrapper="span"
             speed={10}
             repeat={Infinity}
           />
         </h1>
-        <p className="text-lg md:text-[19px] text-[14px]">
+        <h2 className="text-lg md:text-[19px] text-[14px]">
           Find villas as you convience.
-        </p>
+        </h2>
         <p>Home › Villas</p>
       </div>
     </section>

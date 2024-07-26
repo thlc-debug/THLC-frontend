@@ -8,10 +8,10 @@ import "slick-carousel/slick/slick-theme.css";
 
 const Hero = () => {
     const images = [
-        { src: "/heroimg/Explore/artur-aldyrkhanov-UHmwZc0lG00-unsplash.jpg", alt: "image1" },
+        { src: "/explore_bg.webp", alt: "image1" },
         { src: "/heroimg/Explore/fernando-alvarez-rodriguez-M7GddPqJowg-unsplash.jpg", alt: "image2" },
         { src: "/heroimg/Explore/manuel-moreno-DGa0LQ0yDPc-unsplash.jpg", alt: "image3" },
-        { src: "/heroimg/Explore/pexels-yu-ma-118637087-15162714.jpg", alt: "image4" },
+        { src: "/explore_bg4.jpg", alt: "image4" },
         { src: "/heroimg/Explore/upgraded-points-wpVBeMMl0vE-unsplash.jpg", alt: "image5" },
         { src: "/heroimg/Explore/harlie-raethel-fjVnFfC1-BY-unsplash.jpg", alt: "image6" },
     ];
@@ -51,14 +51,14 @@ const Hero = () => {
                     <TypeAnimation
                         sequence={[
                             'Explore',
-                            5000
+                            3000
                         ]}
                         wrapper="span"
                         speed={10}
                         repeat={Infinity}
                     />
                 </h1>
-                <p className="text-lg md:text-[19px] text-[14px]">Explore New Destinations..</p>
+                <h2 className="text-lg md:text-[19px] text-[14px]">Explore New Destinations..</h2>
                 <p>Home › Explore</p>
             </div>
         </section>

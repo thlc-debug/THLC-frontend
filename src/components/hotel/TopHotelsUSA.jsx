@@ -62,7 +62,7 @@ const ImageWithTextOverlay = ({ imageUrl, text }) => {
         <div className="relative">
             <img src={imageUrl} alt="Image" className="w-full h-auto" />
             <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-center">
-                <h2 className="text-4xl font-bold">{text}</h2>
+                <div className="text-4xl font-bold">{text}</div>
             </div>
         </div>
     );
@@ -105,7 +105,7 @@ class TopHotelsUSA extends Component {
                     </div>
                     
                     <div className="absolute bottom-4 inset-x-4 flex items-center justify-center text-white text-center">
-                        <h2 className="text-sm md:text-md font-f_2 font-bold">{item.name}</h2>
+                        <div className="text-sm md:text-md font-f_2 font-bold">{item.name}</div>
                     </div>
                 </div>
             ))}

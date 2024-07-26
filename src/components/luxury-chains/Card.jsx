@@ -74,7 +74,7 @@ const Card = ({ data }) => {
     <div className="w-full flex justify-center p-4">
       <div className="w-full max-w-[1200px] border border-gray-300 rounded-md flex flex-col gap-4 p-6 bg-white shadow-lg">
         <div className="flex justify-between items-center">
-          <h1 className="text-[#000000E5] font-semibold text-2xl sm:text-3xl md:text-4xl">{data.name}</h1>
+          <div className="text-[#000000E5] font-semibold text-2xl sm:text-3xl md:text-4xl">{data.name}</div>
           {/* <div
             className="flex items-center border border-gray-300 justify-center w-10 h-10 rounded-full cursor-pointer"
             onClick={handleWishlistToggle}
