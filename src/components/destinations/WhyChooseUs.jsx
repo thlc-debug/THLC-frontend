@@ -7,7 +7,7 @@ const WhyChooseUs = () => {
         <div className="max-w-5xl mx-auto px-4 py-[100px]">
             <div className="bg-white rounded-2xl border-2 border-gray-200 p-8 flex flex-col md:flex-row items-center md:items-start md:space-x-8 relative overflow-hidden">
                 <div className="flex-1 md:p-10 p-5">
-                    <h2 className="text-3xl font-bold mb-7">Why choose us?</h2>
+                    <div className="text-3xl font-bold mb-7">Why choose us?</div>
                     <div className="mb-4">
                         <div className="flex items-start mb-2">
                             <FaTicketAlt className="text-xl mr-3 mt-1" />

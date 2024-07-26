@@ -75,9 +75,9 @@ const FeaturedHotels = () => {
       <div className="max-w-6xl mx-auto p-4">
         <div className="flex flex-col md:flex-row justify-between items-center mb-10">
           <div className="flex flex-col justify-center mb-4 md:mb-0 text-center md:text-left">
-            <h1 className="text-4xl text-black font-bold mb-2">
+            <div className="text-4xl text-black font-bold mb-2">
               Luxury Hubs of the World
-            </h1>
+            </div>
             <p className="text-black text-sm">50+ hotels</p>
           </div>
         </div>

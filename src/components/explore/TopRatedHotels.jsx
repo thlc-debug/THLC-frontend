@@ -57,7 +57,7 @@ const TopRatedHotels = () => {
       <div className="w-full max-w-6xl mx-auto p-4">
         <div className="flex flex-col md:flex-row justify-between items-center mb-4">
           <div className="flex flex-col justify-center mb-4 md:mb-0 text-center md:text-left">
-            <h1 className="text-3xl text-black font-bold">Top Rated Hotels</h1>
+            <div className="text-3xl text-black font-bold">Top Rated Hotels</div>
             <p className="text-black mt-2 text-sm">55+ hotels</p>
           </div>
           <div className="flex gap-2 items-center justify-center">
@@ -81,7 +81,7 @@ const TopRatedHotels = () => {
 
           <div className="flex flex-col justify-center gap-4 w-full">
             <div>
-              <h1 className="text-2xl font-semibold text-black">{getVisibleHotel().name}</h1>
+              <div className="text-2xl font-semibold text-black">{getVisibleHotel().name}</div>
               <p className="text-sm text-gray-600">{`${getVisibleHotel().city}, ${getVisibleHotel().country}`}</p>
             </div>
             <div className="flex items-center gap-2">

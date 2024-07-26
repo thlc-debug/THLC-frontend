@@ -29,8 +29,8 @@ const Hero = ({cityName}) => {
                 // style={{ display: 'inline-block' }}
                 repeat={Infinity}
             /></h1>
-                {/* <p className="text-lg md:text-[19px] text-[14px]">Find hotels as per your convinence..</p>
-                <p>Home › Hotels</p> */}
+                 <h2 className="text-lg md:text-[19px] text-[14px]">Find hotels as per your convinence..</h2>
+                {/* <p>Home › Hotels</p> */} 
             </div>
         </section>
     );

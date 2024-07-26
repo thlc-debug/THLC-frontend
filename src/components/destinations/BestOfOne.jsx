@@ -30,7 +30,7 @@ const BestOfOne = ({ city, hotels }) => {
     <div className="max-w-5xl sm:mx-auto mx-6 p-4 pb-14 pt-[80px] relative">
       <div className="flex justify-between items-center mb-4">
         <div>
-          <h2 className="md:text-4xl  mb-5 text-2xl font-bold">Best Of {city}</h2>
+          <div className="md:text-4xl  mb-5 text-2xl font-bold">Best Of {city}</div>
           {/* <p className="md:text-lg text-md">50+ hotels</p> */}
         </div>
         <div className="flex space-x-2">

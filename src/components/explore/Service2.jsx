@@ -187,7 +187,7 @@ function Service2() {
     <div className="w-full max-w-6xl m-auto my-[5rem]  px-4 pb-8">
       <div className="flex flex-col md:flex-row justify-between items-center mb-10">
         <div className="flex flex-col justify-center mb-4 md:mb-0 text-center md:text-left">
-          <h1 className="text-4xl text-black font-bold mb-2">Our Services</h1>
+          <div className="text-4xl text-black font-bold mb-2">Our Services</div>
         </div>
       </div>
 

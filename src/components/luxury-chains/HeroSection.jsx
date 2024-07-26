@@ -58,7 +58,7 @@ const Hero = () => {
                         repeat={Infinity}
                     />
                 </h1>
-                <p className="text-lg md:text-[19px] text-[14px]">Find hotels as per your convenience...</p>
+                <h2 className="text-lg md:text-[19px] text-[14px]">Find hotels as per your convenience...</h2>
                 <p>Home › Luxury-Chains</p>
             </div>
         </section>

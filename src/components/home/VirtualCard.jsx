@@ -11,7 +11,7 @@ const VirtualCard = ({ data, onContactClick }) => {
   </div>
 
   <div className="flex flex-col justify-center items-center w-full space-y-2">
-    <h1 className="text-2xl text-black font-semibold text-center">{data.heading}</h1>
+    <div className="text-2xl text-black font-semibold text-center">{data.heading}</div>
     <p className="text-gray-400 text-sm text-center">{data.info}</p>
   </div>
     <Link href="/contact">

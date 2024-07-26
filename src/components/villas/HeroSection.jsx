@@ -78,9 +78,9 @@ const Hero = () => {
             repeat={Infinity}
           />
         </h1>
-        <p className="text-lg md:text-[19px] text-[14px]">
+        <h2 className="text-lg md:text-[19px] text-[14px]">
           Find villas as you convience.
-        </p>
+        </h2>
         <p>Home › Villas</p>
       </div>
     </section>

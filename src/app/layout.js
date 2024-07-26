@@ -1,8 +1,8 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "- The Luxury Hotel Concierge / Personal Luxury Services",
-  description: "Experience Personalised luxury with TheLuxuryHotelConcierge. Discover Top Luxury Hotels, Villas, Safaris, Procurement, services and efforts VISA request",
+  title: "The Luxury Hotel Concierge| Personalized Luxury Services",
+  description: "Experience Personalized luxury with TheLuxuryHotelConcierge. Discover Top Luxury Hotels, Villas, Safaris, Procurement, Services and effortless VISA requests.",
 };
 
 export default function RootLayout({ children }) {

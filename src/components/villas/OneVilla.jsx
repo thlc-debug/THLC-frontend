@@ -74,7 +74,7 @@ const OneVilla = ({ id }) => {
           <div className="absolute inset-0 bg-black opacity-30"></div>
         </div>
         <div className="relative flex flex-col items-center justify-center h-full text-white pointer-events-auto">
-          <h1 className="md:text-[70px] text-[40px] font-bold mb-8 mt-[130px]">{hotel.name}</h1>
+          <div className="md:text-[70px] text-[40px] font-bold mb-8 mt-[130px]">{hotel.name}</div>
           <p className="text-lg md:text-[19px] text-[14px]">{hotel.city}, {hotel.country}</p>
         </div>
       </section>
@@ -90,7 +90,7 @@ const OneVilla = ({ id }) => {
       <div className='md:flex'>
         <div className="mx-5 mt-10">
           <div className="text-4xl font-bold text-center md:text-left">Facilities</div>
-          {/* <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
                         {hotel.facilities.slice(1, 5).map((facility, index) => (
                             <div
                                 key={index}
@@ -99,7 +99,7 @@ const OneVilla = ({ id }) => {
                                 {facility}
                             </div>
                         ))}
-                    </div> */}
+                    </div>
         </div>
         <div className='mt-5 sm:w-2/5 text-center m-auto md:mx-[5rem] text-black'>
           <div className='text-4xl font-bold pb-2'>Contact</div>

@@ -59,7 +59,7 @@ const Hero = () => {
                     />
                 </h1>
                 {/* <p className="text-lg md:text-[19px] text-[14px]"></p> */}
-                <p>Home › Your Bookings</p>
+                <h2>Home › Your Bookings</h2>
             </div>
         </section>
     );

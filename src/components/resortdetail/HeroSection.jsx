@@ -69,7 +69,7 @@ const Hero = () => {
       {dummydata.map(item => (
         <div key={item.id} className="relative flex flex-col items-center justify-center h-full  text-white pointer-events-auto">
           <h1 className="md:text-[70px] text-[60px] font-bold mb-8 mt-[130px]">{item.name}</h1>
-          <p className="text-lg md:text-[19px] text-[14px]">{item.city}, {item.country}</p>
+          <h2 className="text-lg md:text-[19px] text-[14px]">{item.city}, {item.country}</h2>
 
         </div>
       ))}
