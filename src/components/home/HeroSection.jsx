@@ -12,7 +12,7 @@ import VisaForm from '../forms/VisaForm';
 import Safariform from '../forms/Safariform';
 
 const images = [
-  { src: '/heroHome/pexels-h1ghland_fox-396772126-26737937.jpg', link: "/explore", alt: 'Background 1', title: 'The Carlton', description: 'Skiing in the Lush White Snow of a Switzerland this Winter!' },
+  { src: '/home_bg.webp', link: "/explore", alt: 'Background 1', title: 'The Carlton', description: 'Skiing in the Lush White Snow of a Switzerland this Winter!' },
   { src: '/Aman-le-melezin-chourchevel-exterior.webp', link: "/explore", alt: 'Background 2', title: 'Aman Le melezin', description: 'Let us Take you on your next vacation with your loved ones!' },
   { src: '/umaid-bhawan-2-866x487.jpg', link: "/explore", alt: 'Background 3', title: 'Umaid Bhawan Palace', description: 'Experience the Royal Era with our selection of Palaces!' },
   { src: '/adare-manor-aerial-image.jpg', link: "/explore", alt: 'Background 4', title: 'The Adare Manor', description: 'The Rich History held within the Castles of Ireland awaits you!' },
