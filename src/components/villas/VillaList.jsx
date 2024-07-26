@@ -76,7 +76,8 @@ const VillaList = () => {
   const VillaSlider = ({ villas }) => (
     <div className="grid gap-20 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
       {villas.map(item => (
-        <Link href={""} onClick={() => openModal(item)} key={item.id}>
+        // onClick={() => openModal(item)} 
+        <Link href={`/villasdetail?id=${item._id}`} key={item.id}>
           <div className="relative group">
             <img className="brightness-75 rounded-xl h-[200px] sm:h-[300px] w-full object-cover hover:brightness-50 transition duration-300"
               src={getDirectImageUrl(item.photoUrls[0])}
@@ -91,7 +92,7 @@ const VillaList = () => {
       ))}
     </div>
   );
-
+     // console.log(villas)
   return (
     <div className="mt-[7rem] mb-[7rem] w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="p-5 h-auto w-full my-5">
