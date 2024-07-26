@@ -6,12 +6,12 @@ import { FaStar } from "react-icons/fa";
 import Highlight from "../contact/Highlight";
 import { GoArrowUpRight } from "react-icons/go";
 
-import Link from 'next/link';
-import { base_url } from '@/base_url';
-import Modal from 'react-modal';
-import Zoom from 'react-medium-image-zoom';
-import 'react-medium-image-zoom/dist/styles.css';
-import BackButton from "../BackButton";
+import Link from "next/link";
+import { base_url } from "@/base_url";
+import Modal from "react-modal";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
+import BackButton from "../utils/BackButton";
 
 const StarRating = ({ rating }) => {
   const stars = [];
@@ -71,7 +71,9 @@ const OneHotel = ({ id }) => {
   };
 
   const handlePrevImage = () => {
-    setPhotoIndex((photoIndex + hotel.photoUrls.length - 1) % hotel.photoUrls.length);
+    setPhotoIndex(
+      (photoIndex + hotel.photoUrls.length - 1) % hotel.photoUrls.length
+    );
   };
 
   const handleNextImage = () => {
@@ -110,8 +112,16 @@ const OneHotel = ({ id }) => {
       <div className="mx-5 my-10">
         <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 gap-2">
           {hotel.photoUrls.slice(0, 5).map((image, index) => (
-            <div key={index} className='w-full h-64 overflow-hidden'>
-              <img className='shadow-2xl hover:scale-105 w-full h-full object-cover rounded-md' src={image.replace("www.dropbox.com", "dl.dropboxusercontent.com")} alt={`hotel-${index}`} onClick={() => handleOpenModal(index)} />
+            <div key={index} className="w-full h-64 overflow-hidden">
+              <img
+                className="shadow-2xl hover:scale-105 w-full h-full object-cover rounded-md"
+                src={image.replace(
+                  "www.dropbox.com",
+                  "dl.dropboxusercontent.com"
+                )}
+                alt={`hotel-${index}`}
+                onClick={() => handleOpenModal(index)}
+              />
             </div>
           ))}
         </div>
@@ -146,12 +156,11 @@ const OneHotel = ({ id }) => {
             </Link>
           ) : (
             <a href="tel:+91-9888334677">
-              <button className="bg-black text-white m-auto my-10 flex items-center justify-center rounded-full px-4 py-2 sm:px-6 sm:py-3" >
+              <button className="bg-black text-white m-auto my-10 flex items-center justify-center rounded-full px-4 py-2 sm:px-6 sm:py-3">
                 Call Now
               </button>
             </a>
           )}
-
         </div>
       </div>
       {/* <div className='px-10 md:pb-10 md:pt-10 py-10 md:mr-[10rem] sm:mr-10 md:text-lg text-md flex flex-wrap'>
@@ -180,7 +189,10 @@ const OneHotel = ({ id }) => {
           <Zoom>
             <img
               className="w-full h-auto object-contain"
-              src={hotel.photoUrls[photoIndex].replace("www.dropbox.com", "dl.dropboxusercontent.com")}
+              src={hotel.photoUrls[photoIndex].replace(
+                "www.dropbox.com",
+                "dl.dropboxusercontent.com"
+              )}
               alt={`hotel-${photoIndex}`}
             />
           </Zoom>

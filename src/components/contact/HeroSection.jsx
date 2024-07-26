@@ -8,12 +8,12 @@ import "slick-carousel/slick/slick-theme.css";
 
 const Hero = () => {
     const images = [
-        { src: "/adare-manor-aerial-image.jpg", alt: "image1" },
-        { src: "/heroimg/Explore/fernando-alvarez-rodriguez-M7GddPqJowg-unsplash.jpg", alt: "image2" },
-        { src: "/heroimg/destination/Dubai, UAE.jpg", alt: "image3" },
-        { src: "/heroimg/Hotels_Villas/james-wheeler-0vysUcbfYx4-unsplash.jpg", alt: "image4" },
-        { src: "/heroimg/Home/pexels-diego-f-parra-33199-843633.jpg", alt: "image5" },
-        { src: "/heroimg/Explore/fernando-alvarez-rodriguez-M7GddPqJowg-unsplash.jpg", alt: "image6" },
+        { src: "/heroimg/destination/Aruba.jpg", alt: "image1" },
+        { src: "/heroimg/destination/Bodrum, Türkiye.jpg", alt: "image2" },
+        { src: "/heroimg/destination/Costa Rica.jpg", alt: "image3" },
+        { src: "/heroimg/Home/pexels-diego-f-parra-33199-843633.jpg", alt: "image4" },
+        { src: "/heroimg/Explore/pexels-miles-hardacre-1263314-2404370.jpg", alt: "image5" },
+        { src: "/heroimg/Explore/harlie-raethel-fjVnFfC1-BY-unsplash.jpg", alt: "image6" },
     ];
 
     const settings = {

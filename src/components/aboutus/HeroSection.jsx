@@ -9,28 +9,28 @@ import "slick-carousel/slick/slick-theme.css";
 const Hero = () => {
   const images = [
     {
-      src: "/heroimg/Explore/fernando-alvarez-rodriguez-M7GddPqJowg-unsplash.jpg",
+      src: "/Cannes, France.jpg",
       alt: "image2",
     },
     {
-      src: "/heroimg/Explore/upgraded-points-wpVBeMMl0vE-unsplash.jpg",
+      src: "/luxury-hotel-2.webp",
       alt: "image5",
     },
     {
-      src: "/heroimg/Explore/harlie-raethel-fjVnFfC1-BY-unsplash.jpg",
+      src: "/Umaid Bhawan Palace.jpg",
       alt: "image6",
     },
     {
-      src: "/heroimg/Explore/artur-aldyrkhanov-UHmwZc0lG00-unsplash.jpg",
+      src: "/heroimg/destination/Antartica.jpg",
       alt: "image1",
     },
 
     {
-      src: "/heroimg/Explore/manuel-moreno-DGa0LQ0yDPc-unsplash.jpg",
+      src: "/heroimg/destination/Dubai, UAE.jpg",
       alt: "image3",
     },
     {
-      src: "/heroimg/Explore/pexels-yu-ma-118637087-15162714.jpg",
+      src: "/heroimg/destination/Cannes, France.jpg",
       alt: "image4",
     },
   ];

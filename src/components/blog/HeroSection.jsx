@@ -10,10 +10,10 @@ const Hero = () => {
     const images = [
         { src: "/heroimg/destination/Athens, Greece.jpg", alt: "image1" },
         { src: "/heroimg/destination/Hanoi, Vietnam.jpg", alt: "image2" },
-        { src: "/heroimg/Home/pexels-mikesingapore-2274018.jpg", alt: "image3" },
-        { src: "/heroimg/Hotels_Villas/marvin-meyer-8CDuHXff3zo-unsplash.jpg", alt: "image4" },
+        { src: "/heroimg/Explore/artur-aldyrkhanov-UHmwZc0lG00-unsplash.jpg", alt: "image3" },
+        { src: "/heroimg/Home/pexels-pixabay-258154.jpg", alt: "image4" },
         { src: "/heroimg/destination/Gothenburg, Sweden.jpg", alt: "image5" },
-        { src: "/heroimg/Explore/fernando-alvarez-rodriguez-M7GddPqJowg-unsplash.jpg", alt: "image6" },
+        { src: "/heroimg/destination/Cairo, Egypt.jpg", alt: "image6" },
     ];
 
     const settings = {
