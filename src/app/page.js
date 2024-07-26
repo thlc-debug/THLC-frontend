@@ -22,16 +22,6 @@ const Home = () => {
 
   return (
     <div className='font-f_3'>
-      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-X0KQ7SFZ67"></Script>
-      <Script id="google-tag-manager">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-
-          gtag('config', 'G-X0KQ7SFZ67');
-        `}
-      </Script>
       <Header />
       <HeroSection />
       <BoxSection />
