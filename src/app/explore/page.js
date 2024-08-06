@@ -10,14 +10,9 @@ import Footer from '../../components/Footer';
 import Offers from '@/components/explore/Offers';
 import Service from '@/components/explore/Service';
 import Service2 from '@/components/explore/Service2';
-import Head from 'next/head';
+
 const page = () => {
   return (
-
-    <>
-      <Head>
-        <link rel="canonical" href="https://theluxuryhotelconcierge.com/explore" />
-      </Head>
     <div className='font-f_3'>
       <Header />
       <Hero />
@@ -29,7 +24,6 @@ const page = () => {
       <Service2 />
       <Footer />
     </div>
-    </>
   );
 }
 

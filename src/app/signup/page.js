@@ -9,7 +9,7 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import "react-toastify/dist/ReactToastify.css";
 import { base_url } from "@/base_url";
 import { fetchUserDetails } from "@/utils/fetchUserDetails";
-import Head from "next/head";
+
 const Page = () => {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -134,10 +134,6 @@ const Page = () => {
   };
 
   return (
-    <>
-      <Head>
-        <link rel="canonical" href="https://theluxuryhotelconcierge.com/signup" />
-      </Head>
     <div className="font-f_3">
       <ToastContainer />
       {loading && (
@@ -281,7 +277,6 @@ const Page = () => {
         </div>
       </div>
     </div>
-    </>
   );
 };
 

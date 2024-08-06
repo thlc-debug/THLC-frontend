@@ -10,7 +10,7 @@ import StaycationDeals from '@/components/destinations/StaycationDeals';
 import WhyChooseUs from '@/components/destinations/WhyChooseUs';
 import Hotels from '@/components/destinations/Hotels';
 import { base_url } from '@/base_url';
-import Head from 'next/head';
+
 const Page = () => {
   const [hotels, setHotels] = useState([]);
   const [hotelOne, setHotelOne] = useState([]);
@@ -60,10 +60,6 @@ const Page = () => {
   };
 
   return (
-    <>
-      <Head>
-        <link rel="canonical" href="https://theluxuryhotelconcierge.com/destinations" />
-      </Head>
     <div className='font-f_3'>
       <Header />
       <Hero />
@@ -90,7 +86,6 @@ const Page = () => {
       {/* <StaycationDeals /> */}
       <Footer />
     </div>
-    </>
   );
 }
 
