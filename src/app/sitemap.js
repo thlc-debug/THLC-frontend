@@ -1,7 +1,4 @@
-import { base_url } from "@/base_url";
-
-// const url=`http://localhost:3000`
-const url = base_url;
+const url = "https://theluxuryhotelconcierge.com";
 
 export default function sitemap() {
   return [

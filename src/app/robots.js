@@ -1,6 +1,4 @@
-import { base_url } from "@/base_url";
-
-const url = base_url;
+const url = "https://theluxuryhotelconcierge.com";
 
 export default function robots() {
   return {
