@@ -95,7 +95,8 @@ const OneHotel = ({ id }) => {
             alt="Background"
             layout="fill"
             objectFit="cover"
-            className="object-cover"
+            className="object-cover"   
+            
           />
           <div className="absolute inset-0 bg-black opacity-30"></div>
         </div>
@@ -104,7 +105,7 @@ const OneHotel = ({ id }) => {
             {hotel.name}
           </h1>
           <h2 className="text-lg md:text-[19px] text-[14px]">
-            {hotel.city}, {hotel.country}
+            {hotel.city}  {hotel.country}
           </h2>
         </div>
       </section>
