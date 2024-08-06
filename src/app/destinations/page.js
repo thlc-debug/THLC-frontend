@@ -16,8 +16,11 @@ const Page = () => {
   const [hotelOne, setHotelOne] = useState([]);
   const [hotelTwo, setHotelTwo] = useState([]);
   const [hotelThree, setHotelThree] = useState([]);
-  const [hotelFour, setHotelFour]= useState([]);
-  const [hotelFive, setHotelFive]= useState([]);
+  const [hotelFour, setHotelFour] = useState([]);
+  const [hotelFive, setHotelFive] = useState([]);
+  const [hotelSix, setHotelSix] = useState([]);
+  const [hotelSeven, setHotelSeven] = useState([]);
+  const [hotelEight, setHotelEight] = useState([]);
 
 
   useEffect(() => {
@@ -35,8 +38,11 @@ const Page = () => {
     const hotelsInArgentina = hotels.filter(hotel => hotel.city === "Paris");
     const hotelsInBrazil = hotels.filter(hotel => hotel.city === "New York");
     const hotelsInLondon = hotels.filter(hotel => hotel.city === "London");
-    const hotelsInSanFrancisco  = hotels.filter(hotel => hotel.city === "San Francisco");
+    const hotelsInSanFrancisco = hotels.filter(hotel => hotel.city === "San Francisco");
     const hotelsInMexico = hotels.filter(hotel => hotel.city === "Austin");
+    const hotelsInChicago = hotels.filter(hotel => hotel.city === "Chicago");
+    const hotelsInLasVegas = hotels.filter(hotel => hotel.city === "Las Vegas");
+    const hotelsInMiami = hotels.filter(hotel => hotel.city === "Los Angeles");
 
 
     setHotelOne(hotelsInArgentina);
@@ -47,6 +53,9 @@ const Page = () => {
 
     setHotelFour(hotelsInSanFrancisco);
     setHotelFive(hotelsInMexico);
+    setHotelSix(hotelsInChicago);
+    setHotelSeven(hotelsInLasVegas);
+    setHotelEight(hotelsInMiami);
 
   };
 
@@ -64,10 +73,14 @@ const Page = () => {
 
       <WhyChooseUs />
 
-      
+
       <BestOfOne city="San Francisco" hotels={hotelFour} />
       <BestOfOne city="Paris" hotels={hotelOne} />
       <BestOfOne city="Austin" hotels={hotelFive} />
+      <BestOfOne city="Chicago" hotels={hotelSix} />
+
+      <BestOfOne city="Las Vegas" hotels={hotelSeven} />
+      <BestOfOne city="Los Angeles" hotels={hotelEight} />
 
 
       {/* <StaycationDeals /> */}

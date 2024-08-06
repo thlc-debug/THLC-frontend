@@ -23,6 +23,7 @@ const BestOfOne = ({ city, hotels }) => {
   }, []);
 
   const getDirectImageUrl = (url) => {
+    if (!url) return url
     return url.replace("?rlkey=", "?raw=1&rlkey=");
   };
 

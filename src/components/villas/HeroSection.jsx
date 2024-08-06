@@ -13,7 +13,7 @@ const Hero = () => {
       alt: "image5",
     },
     {
-      src: "/heroimg/Hotels_Villas/frames-for-your-heart-zSG-kd-L6vw-unsplash.jpg",
+      src: "/hotel_bg.webp",
       alt: "image3",
     },
     {

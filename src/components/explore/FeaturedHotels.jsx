@@ -5,7 +5,7 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import { base_url } from "@/base_url";
 import SeeMoreButton from "../utils/SeeMoreButton";
 
-const RANGE = 15;
+const RANGE = 30;
 
 const FeaturedHotels = () => {
   const [hotels, setHotels] = useState([]);
@@ -25,7 +25,7 @@ const FeaturedHotels = () => {
         filteredHotels = filteredHotels.slice(0, RANGE);
         setHotels(filteredHotels);
         preloadImages(filteredHotels);
-        setVisibleHotels([filteredHotels[currentIndex]]);
+        setVisibleHotels([filteredHotels[currentIndex], filteredHotels[currentIndex + 1], filteredHotels[currentIndex + 2]]);
         setIsLoading(false);
       } catch (error) {
         console.error("Failed to fetch hotels:", error);
@@ -65,8 +65,8 @@ const FeaturedHotels = () => {
 
   const addVisibleHotels = () => {
     if (hotels.length === 0) return;
-    const nextIndex = (currentIndex + 1) % hotels.length;
-    setVisibleHotels((prevHotels) => [...prevHotels, hotels[nextIndex]]);
+    const nextIndex = (currentIndex + 3) % hotels.length;
+    setVisibleHotels((prevHotels) => [...prevHotels, hotels[nextIndex], hotels[nextIndex + 1], hotels[nextIndex + 2]]);
     setCurrentIndex(nextIndex);
   };
 
@@ -115,7 +115,7 @@ const FeaturedHotels = () => {
           ))
         )}
 
-        {hotels.length > 0 && currentIndex < hotels.length - 1 && (
+        {hotels.length > 0 && currentIndex < hotels.length - 3 && (
           <SeeMoreButton func={addVisibleHotels} />
         )}
 
