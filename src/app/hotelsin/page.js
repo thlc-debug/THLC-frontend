@@ -9,7 +9,7 @@ import Footer from "@/components/Footer";
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useDebouncedCallback } from 'use-debounce';
 import { base_url } from "@/base_url";
-
+import Head from 'next/head';
 const Loader = () => (
   <div className="flex items-center justify-center min-h-screen">
     <div className="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-32 w-32"></div>
@@ -134,6 +134,10 @@ const Page = () => {
   };
 
   return (
+    <>
+      <Head>
+        <link rel="canonical" href="https://theluxuryhotelconcierge.com" />
+      </Head>
     <div className='font-f_3'>
       <Header />
       <HeroSection cityName={searchInput} />
@@ -198,6 +202,7 @@ const Page = () => {
       )}
       <Footer />
     </div>
+    </>
   );
 };
 

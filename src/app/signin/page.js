@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import ClipLoader from "react-spinners/ClipLoader";
 import { fetchUserDetails } from "@/utils/fetchUserDetails";
 import { setToken } from "@/utils/setToken";
-
+import Head from "next/head";
 const SigninPage = () => {
   const [isHiddenDivVisible, setIsHiddenDivVisible] = useState(false);
   const [isPasswordResetVisible, setIsPasswordResetVisible] = useState(false);
@@ -153,6 +153,11 @@ const SigninPage = () => {
 
 
   return (
+
+    <>
+      <Head>
+        <link rel="canonical" href="https://theluxuryhotelconcierge.com/signin" />
+      </Head>
     <div className="font-f_3">
       <ToastContainer />
       {loading && (
@@ -310,6 +315,7 @@ const SigninPage = () => {
         />
       </div>
     </div>
+    </>
   );
 };
 

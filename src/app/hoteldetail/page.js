@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import OneHotel from "@/components/hoteldetail/OneHotel";
 import React, { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-
+import Head from "next/head";
 const Loader = () => (
   <div className="flex items-center justify-center min-h-screen">
     <div className="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-32 w-32"></div>
@@ -22,6 +22,10 @@ const Page = () => {
   }, [searchParams]);
 
   return (
+    <>
+    <Head>
+        <link rel="canonical" href="https://theluxuryhotelconcierge.com/hotel" />
+    </Head>
     <div className="font-f_3">
       <Header />
       <Suspense fallback={<Loader />}>
@@ -29,6 +33,8 @@ const Page = () => {
       </Suspense>
       <Footer />
     </div>
+    </>
+
   );
 }
 

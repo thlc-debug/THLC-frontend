@@ -10,7 +10,7 @@ import Chains from '@/components/hotel/Chains';
 import Countrywise from '@/components/hotel/Countrywise';
 import { base_url } from "@/base_url";
 import HotelList from '@/components/hotel/HotelList';
-
+import Head from 'next/head';
 const Page = () => {
   const [visibleCards, setVisibleCards] = useState(5);
   const [hotels, setHotels] = useState([]);
@@ -69,6 +69,10 @@ const Page = () => {
   };
 
   return (
+  <>
+    <Head>
+        <link rel="canonical" href="https://theluxuryhotelconcierge.com/hotel" />
+      </Head>
     <div className='font-f_3'>
       <Header />
       <Hero />
@@ -128,6 +132,7 @@ const Page = () => {
 
       <Footer />
     </div>
+    </>
   );
 };
 
