@@ -8,7 +8,7 @@ import DashBoard from '@/components/admin/DashBoard';
 import Bookings from '@/components/admin/Bookings';
 import Hotels from '@/components/admin/Hotels';
 import Users from '@/components/admin/Users';
-
+import Head from 'next/head'
 
 
 
@@ -31,6 +31,11 @@ const Page = () => {
   };
 
   return (
+    <>
+      <Head>
+        <link rel="canonical" href="https://theluxuryhotelconcierge.com/admin" />
+      </Head>
+      
     <div className='flex font-f_3 min-h-screen bg-zinc-100 overflow-hidden'>
       {/* aside nav bar */}
       <div className='fixed h-full w-[10%] flex flex-col shadow-lg items-center gap-10 bg-[#FFFFFF]'>
@@ -62,6 +67,7 @@ const Page = () => {
         {renderComponent()}
       </div>
     </div>
+    </>
   );
 }
 

@@ -8,7 +8,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import withAuth from '@/utils/withAuth';
 import axios from 'axios';
 import { base_url } from "@/base_url";
-
+import Head from 'next/head';
 const Waitlist = () => {
   const [waitlistHotels, setWaitlistHotels] = useState([]);
 
@@ -56,6 +56,11 @@ const Waitlist = () => {
   };
 
   return (
+    <>
+
+      <Head>
+        <link rel="canonical" href="https://theluxuryhotelconcierge.com/wishlist" />
+      </Head>
     <div className='font-f_3'>
       <Header />
       <section className="relative h-96">
@@ -128,6 +133,7 @@ const Waitlist = () => {
       </div>
       <Footer />
     </div>
+    </>
   );
 };
 

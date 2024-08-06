@@ -9,7 +9,7 @@ import Link from "next/link";
 import withAuth from "@/utils/withAuth";
 import { useSearchParams } from "next/navigation";
 import BackButton from "@/components/utils/BackButton";
-
+import Head from 'next/head'
 const Loader = () => (
   <div className="flex items-center justify-center min-h-screen">
     <div className="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-32 w-32"></div>
@@ -39,6 +39,10 @@ const Payment = () => {
   };
 
   return (
+    <>
+    <Head>
+        <link rel="canonical" href="https://theluxuryhotelconcierge.com/checkout" />
+    </Head>
     <div className="min-h-screen font-f_3 bg-white bg-opacity-50 flex flex-col items-center justify-center relative">
       <div
         className="absolute inset-0 bg-cover bg-center filter blur-sm"
@@ -120,6 +124,7 @@ const Payment = () => {
         )}
       </div>
     </div>
+    </>
   );
 };
 
