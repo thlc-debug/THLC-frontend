@@ -6,7 +6,7 @@ import Hero from "@/components/blog/HeroSection";
 import NewsLetter from "@/components/blog/NewsLetter";
 // import Search from "@/components/blog/Search";
 import React from "react";
-import Head from 'next/head'
+
 const page = () => {
   const data1 = [
     {
@@ -68,10 +68,6 @@ const page = () => {
     },
   ];
   return (
-  <>
-      <Head>
-        <link rel="canonical" href="https://theluxuryhotelconcierge.com/blog" />
-      </Head>
     <div className="font-f_3">
       <Header />
       <Hero />
@@ -94,7 +90,6 @@ const page = () => {
        {/* <Category/> */}
        <Footer/>
     </div>
-    </>
   );
 };
 
