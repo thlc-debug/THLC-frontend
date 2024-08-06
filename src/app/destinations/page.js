@@ -11,6 +11,8 @@ import WhyChooseUs from '@/components/destinations/WhyChooseUs';
 import Hotels from '@/components/destinations/Hotels';
 import { base_url } from '@/base_url';
 
+
+
 const Page = () => {
   const [hotels, setHotels] = useState([]);
   const [hotelOne, setHotelOne] = useState([]);

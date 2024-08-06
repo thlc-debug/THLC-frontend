@@ -4,6 +4,8 @@ import ContactSection from '@/components/contact/ContactSection'
 import Hero from '@/components/contact/HeroSection'
 import React from 'react'
 
+
+
 export default function page() {
   return (
     <div className='font-f_3'>

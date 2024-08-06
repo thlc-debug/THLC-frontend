@@ -7,6 +7,8 @@ import NewsLetter from "@/components/blog/NewsLetter";
 // import Search from "@/components/blog/Search";
 import React from "react";
 
+
+
 const page = () => {
   const data1 = [
     {
