@@ -11,7 +11,7 @@ const Hero = () => {
         { src: "/heroimg/destination/Antartica.jpg", alt: "image1" },
         { src: "/heroimg/destination/Bangkok, Thailand.jpg", alt: "image2" },
         { src: "/heroimg/destination/Cairo, Egypt.jpg", alt: "image3" },
-        { src: "/heroimg/destination/Dubai, UAE.jpg", alt: "image4" },
+        { src: "/destination_bg.webp", alt: "image4" },
         { src: "/heroimg/destination/Gothenburg, Sweden.jpg", alt: "image5" },
         { src: "/heroimg/destination/Paris, France.jpg", alt: "image6" },
     ];
@@ -39,7 +39,7 @@ const Hero = () => {
                                 alt={image.alt}
                                 layout="fill"
                                 objectFit="cover"
-                                className="object-cover"
+                                className="object-cover "
                             />
                             <div className="absolute inset-0 bg-black opacity-50"></div>
                         </div>
