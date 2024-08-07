@@ -94,8 +94,9 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="flex flex-col md:flex-row justify-between items-start mt-5 md:mt-16 gap-[20px] md:gap-0">
-        <div className="md:w-1/4">
+      <div className="flex flex-col md:flex-row md:justify-between justify-center items-center text-center md:text-left  md:items-start mt-5 md:mt-16 gap-[20px] md:gap-0">
+        
+        <div className="md:w-1/4 ">
           <div className="text-lg text-gray-200 pb-2 md:pb-8">
             <b>TheLuxuryHotelConcierge</b>
           </div>
@@ -107,18 +108,18 @@ const Footer = () => {
               href="https://www.google.com/maps/@30.7405912,76.6753299,19.62z?entry=ttu"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex gap-[10px]"
+              className="flex md:gap-[7px]"
             >
               <IoLocation className="text-[2.5rem]" /> 213-214 2nd floor Sector
               124, Sunny Enclave, Sahibzada Ajit Singh Nagar, Kharar, Punjab
               140301
             </a>
           </div>
-          <div className="text-gray-400 leading-relaxed text-sm md:text-lg flex gap-[5px]  ">
+          <div className="text-gray-400 leading-relaxed text-sm md:text-lg flex gap-[5px] justify-center items-center md:items-start md:justify-start  ">
             <MdCall className="text-[1.2rem] mt-1" /> +91-9888334677
           </div>
         </div>
-        <div className="leading-relaxed">
+        <div className="leading-relaxed ">
           <div className="text-gray-200 text-lg pb-2">
             <b>Company</b>
           </div>
