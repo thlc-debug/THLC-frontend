@@ -11,6 +11,8 @@ import Countrywise from '@/components/hotel/Countrywise';
 import { base_url } from "@/base_url";
 import HotelList from '@/components/hotel/HotelList';
 
+
+
 const Page = () => {
   const [visibleCards, setVisibleCards] = useState(5);
   const [hotels, setHotels] = useState([]);

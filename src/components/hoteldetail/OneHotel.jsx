@@ -95,12 +95,13 @@ const OneHotel = ({ id }) => {
             alt="Background"
             layout="fill"
             objectFit="cover"
-            className="object-cover"
+            className="object-cover"   
+            
           />
           <div className="absolute inset-0 bg-black opacity-30"></div>
         </div>
         <div className="relative flex flex-col items-center justify-center h-full text-white pointer-events-auto">
-          <h1 className="md:text-[70px] text-[40px] font-bold mb-8 mt-[130px]">
+          <h1 className="md:text-[70px] text-[40px] text-center font-bold mb-8 mt-[130px]">
             {hotel.name}
           </h1>
           <h2 className="text-lg md:text-[19px] text-[14px]">
@@ -125,13 +126,20 @@ const OneHotel = ({ id }) => {
         </div>
       </div>
       <div className="md:flex">
-        <div className="sm:w-3/5 m-auto text-center md:mx-[5rem] text-black">
-          <div className="text-4xl font-bold">About</div>
-          <div className="pt-5">{hotel.about}</div>
-          <div>
-            <StarRating rating={hotel.stars} />
-          </div>
+      <div className="sm:w-3/5 m-auto text-center md:mx-[5rem] mb-3 text-black">
+          {hotel.about ? (
+            <>
+              <div className="text-4xl font-bold mb-4">About</div>
+              <div className="text-lg leading-relaxed">{hotel.about}</div>
+              <div>
+                <StarRating rating={hotel.stars} />
+              </div>
+            </>
+          ) : (
+            <div className="text-lg">Discover the exquisite details of this hotel and secure your reservation today!</div>
+          )}
         </div>
+        
         <div className="mt-5 sm:w-2/5 text-center m-auto md:mx-[5rem] text-black">
           {/* <div className="text-4xl font-bold">Contact</div> */}
           {/* <div className="pt-5">yjfy{hotel.address}</div> */}

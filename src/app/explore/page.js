@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/explore/HeroSection';
@@ -10,6 +11,8 @@ import Footer from '../../components/Footer';
 import Offers from '@/components/explore/Offers';
 import Service from '@/components/explore/Service';
 import Service2 from '@/components/explore/Service2';
+
+
 
 const page = () => {
   return (
