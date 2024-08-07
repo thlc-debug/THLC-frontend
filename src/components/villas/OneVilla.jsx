@@ -74,7 +74,7 @@ const OneVilla = ({ id }) => {
           <div className="absolute inset-0 bg-black opacity-30"></div>
         </div>
         <div className="relative flex flex-col items-center justify-center text-center h-full text-white pointer-events-auto">
-          <div className="md:text-[70px] text-[40px] font-bold mb-8 mt-[130px]">{hotel.name}</div>
+          <div className="md:text-[70px] text-[40px] text-center font-bold mb-8 mt-[130px]">{hotel.name}</div>
           <p className="text-lg md:text-[19px] text-[14px]">{hotel.city}, {hotel.country}</p>
         </div>
       </section>

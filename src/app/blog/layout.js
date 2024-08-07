@@ -2,7 +2,7 @@ import Head from 'next/head';
 
 export const metadata = {
   title: "Luxury Travel Insights | The Luxury Hotel Concierge Blog",
-  description: " Experience Personalized luxury with TheLuxuryHotelConcierge. Discover Top Luxury Hotels, Villas, Safaris, Procurement, Services and effortless VISA requests.",
+  description: "Experience Personalized luxury with TheLuxuryHotelConcierge. Discover Top Luxury Hotels, Villas, Safaris, Procurement Services and effortless VISA requests.",
  
 };
 

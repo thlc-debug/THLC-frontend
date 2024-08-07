@@ -3,7 +3,7 @@ import Head from 'next/head';
 
 export const metadata = {
     title: "Destinations to Explore | The Luxury Hotel Concierge",
-    description: " Experience Personalized luxury with TheLuxuryHotelConcierge. Discover Top Luxury Hotels, Villas, Safaris, Procurement, Services and effortless VISA requests.",
+    description: "Experience Personalized luxury with TheLuxuryHotelConcierge. Discover Top Luxury Hotels, Villas, Safaris, Procurement Services and effortless VISA requests.",
    
   };
 
