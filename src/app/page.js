@@ -15,6 +15,7 @@ import BoxSection from '@/components/home/BoxSection';
 import TopVillas from '@/components/home/TopVillas';
 import Services from '@/components/home/Services';
 import OurService from '@/components/home/OurService';
+import Script from 'next/script';
 
 
 const Home = () => {

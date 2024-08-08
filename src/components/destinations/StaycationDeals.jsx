@@ -62,7 +62,7 @@ const StaycationDeals = () => {
                             {/* {deals.map((item)=>{ */}
                                     <div >
                                   <p className="mb-2 text-sm">Enjoy these cool staycation promotions.</p>
-                                  <h2 className="mb-4 text-2xl font-bold">Best Staycation Deals</h2>
+                                  <div className="mb-4 text-2xl font-bold">Best Staycation Deals</div>
                                   <Link href="/hotels"><button className="px-4 py-2 w-[110px] text-sm bg-white text-gray-800 rounded-lg">See Hotels</button></Link>
                                   </div>
                             {/* })} */}

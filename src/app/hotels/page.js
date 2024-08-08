@@ -11,11 +11,15 @@ import Countrywise from '@/components/hotel/Countrywise';
 import { base_url } from "@/base_url";
 import HotelList from '@/components/hotel/HotelList';
 
+
+
 const Page = () => {
   const [visibleCards, setVisibleCards] = useState(5);
   const [hotels, setHotels] = useState([]);
   const [hotelOne, setHotelOne] = useState([]);
   const [hotelTwo, setHotelTwo] = useState([]);
+  const [hotelThree, setHotelThree] = useState([]);
+  const [hotelFour, setHotelFour] = useState([]);
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [filteredHotels, setFilteredHotels] = useState([]);
 
@@ -39,10 +43,14 @@ const Page = () => {
 
   const filterHotels = (hotels) => {
     const hotelsInCanada = hotels.filter(hotel => hotel.country === "Canada");
+    const hotelsInThailand = hotels.filter(hotel => hotel.country === "Thailand");
     const hotelsInMexico = hotels.filter(hotel => hotel.country === "Mexico");
+    const hotelsInIndonesia = hotels.filter(hotel => hotel.country === "Indonesia");
 
     setHotelOne(hotelsInCanada);
     setHotelTwo(hotelsInMexico);
+    setHotelThree(hotelsInThailand);
+    setHotelFour(hotelsInIndonesia);
   };
 
   const filterByType = (types) => {
@@ -68,8 +76,10 @@ const Page = () => {
       <Hero />
       <Chains />
       <TopHotelsParis city="Canada" hotels={hotelOne} />
+      <TopHotelsParis city="Thailand" hotels={hotelThree} />
       <Countrywise />
       <TopHotelsParis city="Mexico" hotels={hotelTwo} />
+      <TopHotelsParis city="Indonesia" hotels={hotelFour} />
 
       <div className='flex flex-col items-center my-4'>
         <div className="flex flex-wrap justify-center gap-4 w-full max-w-2xl">

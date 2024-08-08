@@ -39,7 +39,7 @@ const Category = () => {
   return (
     <div className='w-full max-w-[1023px] h-auto flex flex-col justify-center items-center gap-5 mx-auto px-5  py-10'>
       <div className='flex justify-between items-center w-full'>
-        <h1 className='font-bold text-xl sm:text-5xl text-[#2B2C34]'>Browse the category</h1>
+        <div className='font-bold text-xl sm:text-5xl text-[#2B2C34]'>Browse the category</div>
         <p className='text-lg sm:text-2xl text-[#2B2C34E5] font-medium cursor-pointer '>see all</p>
       </div>
       <div className='md:pb-10 md:pt-10 py-10  md:mr-[10rem] sm:mr-10 mr-5 md:text-lg text-md flex flex-wrap '>
