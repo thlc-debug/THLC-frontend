@@ -90,9 +90,11 @@ const Footer = () => {
           {/* <div className="text-gray-400 leading-relaxed text-sm md:text-lg flex gap-[10px] mb-[10px]">
           <FaHotel className="text-[2.2rem]"/>  Welcome to The Luxury Hotel Concierge, the top destination for customised premium vacation experiences.
           </div> */}
+          <Link href="https://www.google.co.in/maps/place/Chandigarh/@30.7219251,76.7521701,12z/data=!4m6!3m5!1s0x390fed0be66ec96b:0xa5ff67f9527319fe!8m2!3d30.7333148!4d76.7794179!16zL20vMDFmMXE4?entry=ttu">
           <div className="text-gray-400 leading-relaxed text-sm md:text-lg flex  gap-[10px]">
-         <IoLocation className="text-[2.2rem]"/>  213-214 2nd floor Sector 124, Sunny Enclave, Sahibzada Ajit Singh Nagar, Kharar, Punjab 140301
+         <IoLocation className="text-[2.2rem]"/>Chandigarh, India
                     </div>
+          </Link>
         </div>
         <div className="leading-relaxed">
           <div className="text-gray-200 text-lg pb-2"><b>Company</b></div>
@@ -114,7 +116,7 @@ const Footer = () => {
 
       <hr className="h-px my-6 bg-gray-200 border-0 dark:bg-gray-700" />
       <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-        <div className="text-gray-500 text-xs md:text-lg">© 2021 TheLuxuryHotelConcierge. All rights reserved</div>
+        <div className="text-gray-500 text-xs md:text-lg">© 2021-2024 TheLuxuryHotelConcierge. All rights reserved</div>
         <div className="flex gap-4">
           <div className="text-gray-500 text-xs md:text-lg cursor-pointer">Terms</div>
           <div className="text-gray-500 text-xs md:text-lg cursor-pointer">Cookies</div>
