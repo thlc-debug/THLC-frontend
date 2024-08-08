@@ -113,7 +113,7 @@ const Page = () => {
         </div>
       </div>
 
-      {filteredHotels.slice(0, visibleCards).map((hotel, i) => (
+      {filteredHotels.filter(hotel => hotel.price !== null && hotel.price !== undefined && hotel.price !== 0) .slice(0, visibleCards).map((hotel, i) => (
         <HotelList key={i} hotels={hotel} />
       ))}
 
