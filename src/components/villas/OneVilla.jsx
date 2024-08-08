@@ -109,12 +109,14 @@ const OneVilla = ({ id }) => {
           {/* <div>City: {hotel.location.city}</div>
                     <div>Country: {hotel.location.country}</div> */}
           {hotel.price ? (
+            <><div className="text-xl mb-2 mt-10">$ {hotel.price} per night</div>
             <Link href={`/checkout?id=${hotel._id}`}>
-              <div className="text-xl mb-2 mt-10">$ {hotel.price} per night</div>
+              
               <button className="bg-black text-white m-auto my-5 flex items-center justify-center rounded-full px-4 py-2 sm:px-6 sm:py-3">
                 Book Now <GoArrowUpRight className="ml-2" />
               </button>
             </Link>
+            </>
           ) : (
             <a href="tel:+91-9888334677">
               <button className="bg-black text-white m-auto my-5 flex items-center justify-center rounded-full px-4 py-2 sm:px-6 sm:py-3">
