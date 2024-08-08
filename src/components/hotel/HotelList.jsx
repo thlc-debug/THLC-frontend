@@ -13,7 +13,7 @@ const HotelList = ({ hotels }) => {
   const [liked, setLiked] = useState(false);
   const router = useRouter();
   const [userDetails, setUserDetails] = useState(getUserDetailsFromLocalStorage());
-  //   console.log(first)
+     console.log(hotels);
 
   useEffect(() => {
     if (userDetails && Array.isArray(userDetails.wishlist)) {
@@ -87,11 +87,14 @@ const HotelList = ({ hotels }) => {
             <img key={i} src={image} alt={`image-${i}`} className="object-cover w-full h-32 sm:h-48 md:h-64 rounded-md" />
           ))}
         </div>
+        <div className='flex justify-between'>
+        <div className='text-md md:text-lg ml-2 '>$ {hotels.price} per night</div>
 
-        <div className="flex justify-end">
+        <div className="flex  ">
           <div className="flex items-center gap-1">
             {starElements}
           </div>
+        </div>
         </div>
 
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
