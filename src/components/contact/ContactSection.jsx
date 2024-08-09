@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useState } from 'react';
-import { FaSquareFacebook, FaTwitter, FaYoutube } from "react-icons/fa6";
+import { FaSquareFacebook, FaSquareXTwitter, FaYoutube } from "react-icons/fa6";
 import { RiInstagramFill } from "react-icons/ri";
 import Highlight from './Highlight';
+
 
 const components = [
   { id: 1, name: 'Virtual Assistance' },
@@ -70,11 +71,11 @@ export default function ContactSection() {
             <div className='sm:text-3xl md:text-4xl text-2xl md:leading-normal leading-snug'>
               Reach out to us for more details & <b>custom bookings</b>
             </div>
-            <div className='md:mt-[10rem] my-1 text-gray-500'>email: contact@theluxuryhotelconcierge.com</div>
-            <div className='md:my-10 my-1 text-gray-500'>Ph no: +91-9888334677</div>
+            <a href="mailto:contact@theluxuryhotelconcierge.com"><div className='md:mt-[10rem] my-1 cursor-pointer text-gray-500'>Email: contact@theluxuryhotelconcierge.com</div></a>
+             <a href="tel:+919888334677"><div className='md:my-10 my-1 cursor-pointer text-gray-500'>Ph no: +91-9888334677</div></a>
             <div className="text-gray-500 flex items-center md:gap-4 gap-2 text-xl md:text-2xl">
               <FaSquareFacebook aria-label="Facebook" />
-              <FaTwitter aria-label="Twitter" />
+              <FaSquareXTwitter aria-label="Twitter" />
               <FaYoutube aria-label="YouTube" />
               <RiInstagramFill aria-label="Instagram" />
             </div>
