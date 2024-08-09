@@ -28,7 +28,7 @@ const Loader = () => (
   </div>
 );
 
-const OneHotel = ({ id }) => {
+const OneHotel = ({ id, getDetails }) => {
   const [hotel, setHotel] = useState(null);
   const [highlighted, setHighlighted] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -54,6 +54,7 @@ const OneHotel = ({ id }) => {
       const data = await res.json();
       setHotel(data);
       console.log(data);
+      getDetails(data);
     } catch (error) {
       console.error("Error:", error);
     }

@@ -28,6 +28,26 @@ export default function RootLayout({ children }) {
           gtag('config', 'G-X0KQ7SFZ67');
         `}
         </Script>
+
+        {/* TODO : Add logo */}
+
+        <Script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "The Luxury Hotel Concierge",
+              url: "https://theluxuryhotelconcierge.com/",
+              logo: "https://www.example.com/logo.png",
+              contactPoint: {
+                "@type": "ContactPoint",
+                telephone: "+91-9888334677",
+                contactType: "Customer service",
+              },
+            }),
+          }}
+        ></Script>
       </Head>
       <body className="font-f_3">{children}</body>
     </html>
