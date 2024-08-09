@@ -3,7 +3,7 @@ import Head from "next/head";
 export const metadata = {
   title: "Luxury Travel Insights | The Luxury Hotel Concierge Blog",
   description:
-    "Experience Personalized luxury with TheLuxuryHotelConcierge. Discover Top Luxury Hotels, Villas, Safaris, Procurement Services and effortless VISA requests.",
+    "Stay updated with luxury travel tips, hotel reviews, and expert insights on The Luxury Hotel Concierge blog. Explore for inspiration.",
   alternates: {
     canonical: "https://theluxuryhotelconcierge.com/blog",
   },
