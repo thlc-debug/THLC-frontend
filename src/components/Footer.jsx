@@ -111,8 +111,8 @@ target="_blank"
          <IoLocation className="text-[2.2rem]"/>Chandigarh, India
                     </div>
         </Link>
-          <div className="text-gray-400 leading-relaxed text-sm md:text-lg flex gap-[5px] justify-center items-center md:items-start md:justify-start  ">
-            <MdCall className="text-[1.2rem] mt-1" /> +91-9888334677
+          <div className="text-gray-400 leading-relaxed text-sm mt-3 md:text-lg flex gap-2 justify-center items-center md:items-start md:justify-start  ">
+            <MdCall className="text-[1.8rem] " /> +91-9888334677
           </div>
         </div>
         <div className="leading-relaxed ">
@@ -129,42 +129,42 @@ target="_blank"
               About Us
             </div>
           </Link>
-          <a
-            href="mailto:booking@theluxuryhotelconcierge.co.in"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/contact"
           >
             <div className="text-gray-400 cursor-pointer text-sm md:text-lg">
               Careers
             </div>
-          </a>
+          </Link>
         </div>
         <div className="leading-relaxed">
+          <Link href="/contact">
           <div className="text-gray-200 text-lg pb-2">
             <b>Support</b>
           </div>
-          <a
-            href="mailto:booking@theluxuryhotelconcierge.co.in"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <div className="text-gray-400 cursor-pointer text-sm md:text-lg">
+           </Link>
+          <Link href="/contact">
+          <div className="text-gray-400 cursor-pointer text-sm md:text-lg">
               Help Center
             </div>
-          </a>
+           </Link>
           <Link href="/contact">
             <div className="text-gray-400 cursor-pointer text-sm md:text-lg">
               Contact Us
             </div>
           </Link>
-          <div className="text-gray-400 cursor-pointer text-sm md:text-lg">
+         <Link href="/contact">
+         <div className="text-gray-400 cursor-pointer text-sm md:text-lg">
             Status
           </div>
+          </Link>
         </div>
         <div className="leading-relaxed">
+          <Link href="/contact">
           <div className="text-gray-200 text-lg pb-2">
             <b>Legal</b>
           </div>
+          </Link>
           <a
             href="#"
             target="_blank"
@@ -199,7 +199,7 @@ target="_blank"
             >
               <FaSquareFacebook className="text-xl md:text-2xl" />
             </a>
-            <a href="" target="_blank" rel="noopener noreferrer">
+            <a href="https://x.com/theluxuryh19009" target="_blank" rel="noopener noreferrer">
               <FaSquareXTwitter className="text-xl md:text-2xl" />
             </a>
             <a
