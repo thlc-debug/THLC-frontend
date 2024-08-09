@@ -13,7 +13,7 @@ const HotelList = ({ hotels }) => {
   const [liked, setLiked] = useState(false);
   const router = useRouter();
   const [userDetails, setUserDetails] = useState(getUserDetailsFromLocalStorage());
-     console.log(hotels);
+    //  console.log(hotels);
 
   useEffect(() => {
     if (userDetails && Array.isArray(userDetails.wishlist)) {
