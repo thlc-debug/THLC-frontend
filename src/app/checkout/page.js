@@ -46,9 +46,9 @@ const Payment = () => {
       ></div>
       <div className="absolute flex items-center justify-between top-6 left-6 z-20">
         {/* <Link href="/" className="text-2xl font-bold text-black">LuxuryHotelConcierge</Link> */}
-        <div className="ms-5 mr-auto">
+        {/* <div className="ms-5 mr-auto">
           <BackButton />
-        </div>
+        </div> */}
         {step > 1 && (
           <div className="ml-10">
             <button
