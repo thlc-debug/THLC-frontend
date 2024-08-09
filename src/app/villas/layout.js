@@ -2,7 +2,7 @@ import Head from 'next/head';
 
 export const metadata = {
   title: "Exclusive Luxury Villas | The Luxury Hotel Concierge",
-  description: "Experience Personalized luxury with TheLuxuryHotelConcierge. Discover Top Luxury Hotels, Villas, Safaris, Procurement Services and effortless VISA requests.",
+  description: "Experience privacy and luxury in our handpicked villas. The Luxury Hotel Concierge offers top-tier service in stunning global locations.",
  
 };
 
