@@ -1,9 +1,12 @@
-import Head from 'next/head';
+import Head from "next/head";
 
 export const metadata = {
   title: "Luxury Travel Insights | The Luxury Hotel Concierge Blog",
-  description: "Stay updated with luxury travel tips, hotel reviews, and expert insights on The Luxury Hotel Concierge blog. Explore for inspiration.",
- 
+  description:
+    "Stay updated with luxury travel tips, hotel reviews, and expert insights on The Luxury Hotel Concierge blog. Explore for inspiration.",
+  alternates: {
+    canonical: "https://theluxuryhotelconcierge.com/blog",
+  },
 };
 
 const layout = ({ children }) => {
@@ -13,12 +16,10 @@ const layout = ({ children }) => {
         <link rel="canonical" href="https://theluxuryhotelconcierge.com/blog" />
       </Head>
       <body>
-        <div>
-          {children}
-        </div>
+        <div>{children}</div>
       </body>
     </>
-  )
-}
+  );
+};
 
-export default layout
+export default layout;
