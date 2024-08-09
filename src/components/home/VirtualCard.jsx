@@ -9,9 +9,9 @@ const VirtualCard = ({ data, onContactClick }) => {
         <img src={data.img} alt="image" className="object-cover rounded-md w-full h-full" />
       </div>
 
-      <div className="flex flex-col justify-between items-center w-full  h-[calc(100%-250px)]"> {/* Adjust height for content */}
+      <div className="flex flex-col justify-between items-center w-full space-y-2 h-[calc(100%-250px)]"> {/* Adjust height for content */}
         <h1 className="text-2xl text-black font-semibold text-center">{data.heading}</h1>
-        <p className="text-gray-400 text-sm  p-4 text-center ">{data.info}</p>
+        <p className="text-gray-400 text-sm text-center overflow-hidden">{data.info}</p>
         <Link href="/contact">
           <div className="w-full flex justify-center">
             <button

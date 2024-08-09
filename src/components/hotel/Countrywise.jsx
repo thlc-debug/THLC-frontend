@@ -38,9 +38,12 @@ const Countrywise = () => {
   useEffect(() => {
     async function fetchCountries() {
       try {
+        const cityResponse = await fetch(`${base_url}/newHotel/cities-alphabetical`)
+        const cities = await cityResponse.json();
         const response = await fetch(`${base_url}/cityImg/fetchAllImg`);
         const data = await response.json();
-        setCountries(data.slice(0, 20));
+        const filteredData = data.filter(obj => cities.includes(obj.city))
+        setCountries(filteredData.slice(0, 20));
       } catch (error) {
         console.error('Failed to fetch countries:', error);
       }
@@ -85,13 +88,13 @@ const Countrywise = () => {
           {countries.map((country, index) => {
             if (!country.city) return null;
 
-            return <Link href={`/hotelsin?search=${country.city}`} key={index} className='p-2'>
+            return <Link href={`/hotelsin?city=${country.city}&country=${country.country}`} key={index} className='p-2'>
               <div key={index} className='rounded-xl  h-[25rem] mx-2 w-full sm:w-auto relative hover:cursor-pointer'>
                 <img className='rounded-xl brightness-75 h-full w-full mx-auto hover:brightness-50'
                   src={getDirectImageUrl(country.photoUrl)}
                   alt={country._id} />
                 <div className="absolute bottom-0 w-full py-4 bg-black bg-opacity-50 rounded-b-xl flex items-center justify-center text-white text-center">
-                  <h2 className="text-lg sm:text-xl font-f_2 font-bold">{country.city}</h2>
+                  <div className="text-lg sm:text-xl font-f_2 font-bold">{country.city}</div>
                 </div>
               </div>
             </Link>

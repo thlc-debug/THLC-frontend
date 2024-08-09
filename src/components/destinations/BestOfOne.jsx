@@ -23,6 +23,7 @@ const BestOfOne = ({ city, hotels }) => {
   }, []);
 
   const getDirectImageUrl = (url) => {
+    if (!url) return url
     return url.replace("?rlkey=", "?raw=1&rlkey=");
   };
 
@@ -30,11 +31,11 @@ const BestOfOne = ({ city, hotels }) => {
     <div className="max-w-5xl sm:mx-auto mx-6 p-4 pb-14 pt-[80px] relative">
       <div className="flex justify-between items-center mb-4">
         <div>
-          <h2 className="md:text-4xl  mb-5 text-2xl font-bold">Best Of {city}</h2>
+          <div className="md:text-4xl  mb-5 text-2xl font-bold">Best Of {city}</div>
           {/* <p className="md:text-lg text-md">50+ hotels</p> */}
         </div>
         <div className="flex space-x-2">
-          <Link className='font-f_3 ' href={`/hotelsin?search=${city}`}>See All</Link>
+          <Link className='font-f_3 ' href={`/hotelsin?city=${city}`}>See All</Link>
         </div>
       </div>
       <div className={`grid grid-cols-1 ${numVisibleCards > 1 ? 'sm:grid-cols-2' : ''} ${numVisibleCards > 2 ? 'lg:grid-cols-3' : ''} gap-6 transition-transform duration-400 ease-in-out`}>

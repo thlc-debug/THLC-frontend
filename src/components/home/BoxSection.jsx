@@ -73,7 +73,8 @@ const BoxSection = () => {
     // Fetch countries when the component mounts
     axios.get(`${base_url}/newHotel/countries-alphabetical`)
       .then(response => {
-        setCountries(response.data);
+        const data = response.data.filter(country => country !== 'Various')
+        setCountries(data);
       })
       .catch(error => {
         console.error('Error fetching countries:', error);
@@ -105,7 +106,7 @@ const BoxSection = () => {
   const handleSearch = () => {
     // console.log('selected:', selectedCity);
     if (!selectedCity) return;
-    router.push(`/hotelsin?search=${selectedCity}`);
+    router.push(`/hotelsin?city=${selectedCity}&country=${selectedCountry}`);
   };
 
   const handleOutsideClick = (event) => {
@@ -166,7 +167,7 @@ const BoxSection = () => {
           {/* <span className= 'text-[10px] md:text-[15px] mb-5 md:mb-2 font-f_2 text-black rounded-[30px] border border-gray-400 py-1 px-2'>
           it’s time for vacation 🚀
           </span> */}
-          <h2 className="md:text-[50px] text-[20px]  font-bold mx-auto">Discover Luxurious Adventures</h2>
+          <h1 className="md:text-[50px] text-[20px]  font-bold mx-auto">Discover Luxurious Adventures</h1>
           <p className="text-[15px] font-f_2 text-black">Discover the perfect space for you!</p>
 
           <div className="mt-14 m-auto px-2 md:px-8 pb-8 pt-3 rounded-3xl md:max-w-[763px] sm:max-w-[450px] max-w-[360px] w-full bg-white">
@@ -309,7 +310,7 @@ const BoxSection = () => {
                     <button
                       onClick={handleSearch}
                       className="bg-black mt-3 w-full text-white px-4 py-2 rounded-lg flex items-center justify-center"
-                    >Submit
+                    >Search
                     </button>
                   </div>
                 </>

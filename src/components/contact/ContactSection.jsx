@@ -1,10 +1,9 @@
 "use client";
 
 import React, { useState } from 'react';
-import { FaSquareFacebook, FaSquareXTwitter, FaYoutube } from "react-icons/fa6";
+import { FaSquareFacebook, FaSquareXTwitter, FaLinkedin } from "react-icons/fa6";
 import { RiInstagramFill } from "react-icons/ri";
 import Highlight from './Highlight';
-
 
 const components = [
   { id: 1, name: 'Virtual Assistance' },
@@ -71,13 +70,35 @@ export default function ContactSection() {
             <div className='sm:text-3xl md:text-4xl text-2xl md:leading-normal leading-snug'>
               Reach out to us for more details & <b>custom bookings</b>
             </div>
-            <a href="mailto:contact@theluxuryhotelconcierge.com"><div className='md:mt-[10rem] my-1 cursor-pointer text-gray-500'>Email: contact@theluxuryhotelconcierge.com</div></a>
-             <a href="tel:+919888334677"><div className='md:my-10 my-1 cursor-pointer text-gray-500'>Ph no: +91-9888334677</div></a>
+           <a href="mailto:contact@theluxuryhotelconcierge.com"> <div className='md:mt-[10rem] cursor-pointer my-1 text-gray-500'>Email: contact@theluxuryhotelconcierge.com</div></a>
+            <a href="tel:+91-9888334677"><div className='md:my-10 my-1 cursor-pointer text-gray-500'>Ph no: +91-9888334677</div></a>
             <div className="text-gray-500 flex items-center md:gap-4 gap-2 text-xl md:text-2xl">
-              <FaSquareFacebook aria-label="Facebook" />
-              <FaSquareXTwitter aria-label="Twitter" />
-              <FaYoutube aria-label="YouTube" />
-              <RiInstagramFill aria-label="Instagram" />
+            <a
+                href="https://www.facebook.com/profile.php?id=61562328525447&mibextid=ZbWKwL"
+                target="_blank"
+                rel="noopener noreferrer"
+
+            >
+            <FaSquareFacebook className="text-xl md:text-2xl" />
+            </a>
+            <a
+                href=""
+                target="_blank"
+                rel="noopener noreferrer"
+
+            ><FaSquareXTwitter className="text-xl md:text-2xl" /></a>
+              <a
+                href="https://www.linkedin.com/company/luxuryhotelconcierge/"
+                target="_blank"
+                rel="noopener noreferrer"
+
+            ><FaLinkedin  className="text-xl md:text-2xl" /></a>
+              <a
+                href="https://www.instagram.com/theluxuryhotelconcierge?igsh=MzRlODBiNWFlZA=="
+                target="_blank"
+                rel="noopener noreferrer"
+
+            ><RiInstagramFill className="text-xl md:text-2xl" /></a>
             </div>
           </div>
           <div className='md:w-3/5 border-gray-300 border-2 rounded-lg md:p-5 sm:p-4 p-3 md:my-0 my-3 md:mx-0 sm:mx-5 mx-1'>
@@ -170,7 +191,7 @@ export default function ContactSection() {
                 >
                   Send Message
                 </button>
-                <a href="tel:+1234567890">
+                <a href="tel:+91-9888334677">
                   <button
                     type="button"
                     className="md:mx-3 w-full text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-700 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"

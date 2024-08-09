@@ -1,12 +1,18 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
-import { FaStar } from 'react-icons/fa';
-import Highlight from '../contact/Highlight';
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import { FaStar } from "react-icons/fa";
+import Highlight from "../contact/Highlight";
 import { GoArrowUpRight } from "react-icons/go";
-import Link from 'next/link';
-import { base_url } from '@/base_url';
+
+import Link from "next/link";
+import { base_url } from "@/base_url";
+import Modal from "react-modal";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
+import { FaTimes } from "react-icons/fa";
+import BackButton from "../utils/BackButton";
 
 const StarRating = ({ rating }) => {
   const stars = [];
@@ -25,6 +31,8 @@ const Loader = () => (
 const OneHotel = ({ id }) => {
   const [hotel, setHotel] = useState(null);
   const [highlighted, setHighlighted] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [photoIndex, setPhotoIndex] = useState(0);
 
   const api = base_url;
 
@@ -45,7 +53,7 @@ const OneHotel = ({ id }) => {
 
       const data = await res.json();
       setHotel(data);
-       console.log(data)
+      //  console.log(data);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -55,12 +63,31 @@ const OneHotel = ({ id }) => {
     setHighlighted(index);
   };
 
+  const handleOpenModal = (index) => {
+    setPhotoIndex(index);
+    setIsOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsOpen(false);
+  };
+
+  const handlePrevImage = () => {
+    setPhotoIndex(
+      (photoIndex + hotel.photoUrls.length - 1) % hotel.photoUrls.length
+    );
+  };
+
+  const handleNextImage = () => {
+    setPhotoIndex((photoIndex + 1) % hotel.photoUrls.length);
+  };
+
   if (!hotel) {
     return <Loader />;
   }
 
   return (
-    <div className='h-full w-full'>
+    <div className="h-full w-full">
       <section className="relative h-[500px] w-auto z-0">
         <div className="absolute inset-0 pointer-events-none">
           <Image
@@ -68,47 +95,71 @@ const OneHotel = ({ id }) => {
             alt="Background"
             layout="fill"
             objectFit="cover"
-            className="object-cover"
+            className="object-cover"   
+            
           />
           <div className="absolute inset-0 bg-black opacity-30"></div>
         </div>
         <div className="relative flex flex-col items-center justify-center h-full text-white pointer-events-auto">
-          <h1 className="md:text-[70px] text-[40px] font-bold mb-8 mt-[130px]">{hotel.name}</h1>
-          <p className="text-lg md:text-[19px] text-[14px]">{hotel.city}, {hotel.country}</p>
+          <h1 className="md:text-[70px] text-[40px] text-center font-bold mb-8 mt-[130px]">
+            {hotel.name}
+          </h1>
+          <h2 className="text-lg md:text-[19px] text-[14px]">
+            {hotel.city}, {hotel.country}
+          </h2>
         </div>
       </section>
-      <div className='mx-5 my-10'>
-        <div className='grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 gap-2'>
+      <div className="mx-5 my-10">
+        <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 gap-2">
           {hotel.photoUrls.slice(0, 5).map((image, index) => (
-            <div key={index} className='w-full h-64 overflow-hidden'>
-              <img className='shadow-2xl hover:scale-105 w-full h-full object-cover rounded-md' src={image.replace("www.dropbox.com", "dl.dropboxusercontent.com")} alt={`hotel-${index}`} />
+            <div key={index} className="w-full h-64 overflow-hidden">
+              <img
+                className="shadow-2xl hover:scale-105 w-full h-full object-cover rounded-md"
+                src={image.replace(
+                  "www.dropbox.com",
+                  "dl.dropboxusercontent.com"
+                )}
+                alt={`hotel-${index}`}
+              />
             </div>
           ))}
         </div>
       </div>
-      <div className='md:flex'>
-        <div className='sm:w-3/5 m-auto text-center md:mx-[5rem] text-black'>
-          <div className='text-4xl font-bold'>About</div>
-          <div className='pt-5'>{hotel.about}</div>
-          <div>
-            <StarRating rating={hotel.stars} />
-          </div>
+      <div className="md:flex">
+      <div className="sm:w-3/5 m-auto text-center md:mx-[5rem] mb-3 text-black">
+          {hotel.about ? (
+            <>
+              <div className="text-4xl font-bold mb-4">About</div>
+              <div className="text-lg leading-relaxed">{hotel.about}</div>
+              <div>
+                <StarRating rating={hotel.stars} />
+              </div>
+            </>
+          ) : (
+            <div className="text-lg">Discover the exquisite details of this hotel and secure your reservation today!</div>
+          )}
         </div>
-        <div className='mt-5 sm:w-2/5 text-center m-auto md:mx-[5rem] text-black'>
-          <div className='text-4xl font-bold'>Contact</div>
-          <div className='pt-5'>{hotel.address}</div>
-          <div>Phone: {hotel.phone || 'Not Available'}</div>
-          <div>Mail: {hotel.email || 'Not Available'}</div>
-          
-          <Link href={`/checkout?id=${hotel._id}`}>
-            <button className="bg-black text-white m-auto my-10 flex items-center justify-center rounded-full px-4 py-2 sm:px-6 sm:py-3">
-              Book Now <GoArrowUpRight className="ml-2" />
-            </button>
-          </Link>
+        
+        <div className="mt-5 sm:w-2/5 text-center m-auto md:mx-[5rem] text-black">
+          {/* <div className="text-4xl font-bold">Contact</div> */}
+          {/* <div className="pt-5">yjfy{hotel.address}</div> */}
 
+          {hotel.price ? (
+            <Link href={`/checkout?id=${hotel._id}`}>
+              <button className="bg-black text-white m-auto my-10 flex items-center justify-center rounded-full px-4 py-2 sm:px-6 sm:py-3">
+                Book Now <GoArrowUpRight className="ml-2" />
+              </button>
+            </Link>
+          ) : (
+            <a href="tel:+91-9888334677">
+              <button className="bg-black text-white m-auto my-10 flex items-center justify-center rounded-full px-4 py-2 sm:px-6 sm:py-3">
+                Call Now
+              </button>
+            </a>
+          )}
         </div>
       </div>
-      <div className='px-10 md:pb-10 md:pt-10 py-10 md:mr-[10rem] sm:mr-10 md:text-lg text-md flex flex-wrap'>
+      <div className="px-10 md:pb-10 md:pt-10 py-10 md:mr-[10rem] sm:mr-10 md:text-lg text-md flex flex-wrap">
         {hotel.facilities.map((room, index) => (
           <Highlight
             key={index}
@@ -118,6 +169,43 @@ const OneHotel = ({ id }) => {
           />
         ))}
       </div>
+      <Modal
+        isOpen={isOpen}
+        onRequestClose={handleCloseModal}
+        contentLabel="Image Modal"
+        className="fixed inset-0 flex items-center justify-center p-4 bg-black bg-opacity-75"
+      >
+        <div className="relative w-full max-w-4xl max-h-full">
+          <button
+            className="absolute top-4 right-4 text-white text-2xl"
+            onClick={handleCloseModal}
+          >
+            &times;
+          </button>
+          <Zoom>
+            <img
+              className="w-full h-auto object-contain"
+              src={hotel.photoUrls[photoIndex].replace(
+                "www.dropbox.com",
+                "dl.dropboxusercontent.com"
+              )}
+              alt={`hotel-${photoIndex}`}
+            />
+          </Zoom>
+          <button
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-2xl"
+            onClick={handlePrevImage}
+          >
+            &#10094;
+          </button>
+          <button
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-2xl"
+            onClick={handleNextImage}
+          >
+            &#10095;
+          </button>
+        </div>
+      </Modal>
     </div>
   );
 };

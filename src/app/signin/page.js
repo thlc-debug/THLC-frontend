@@ -8,6 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ClipLoader from "react-spinners/ClipLoader";
 import { fetchUserDetails } from "@/utils/fetchUserDetails";
+import { setToken } from "@/utils/setToken";
 
 const SigninPage = () => {
   const [isHiddenDivVisible, setIsHiddenDivVisible] = useState(false);
@@ -130,6 +131,26 @@ const SigninPage = () => {
       setLoading(false);
     }
   };
+
+  
+  const signInGoogle = () =>{
+    window.open(`${base_url}/api/auth/google`, "_blank", "width=500,height=600");
+
+    const messageListener = (event) => {
+      if(event.data){
+        const { token } = event.data;
+        if(token){
+          setToken(token);
+        }
+        else{
+          router.push('/auth/failure');
+        }
+      }
+    };
+
+  window.addEventListener("message", messageListener, { once: true });
+  }
+
 
   return (
     <div className="font-f_3">
@@ -270,6 +291,7 @@ const SigninPage = () => {
             <button
               type="button"
               className="w-full text-white bg-gray-800 hover:bg-gray-900 rounded-full py-2 mb-2"
+              onClick={signInGoogle}
             >
               Google
             </button>
