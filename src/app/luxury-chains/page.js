@@ -12,9 +12,9 @@ export default async function LuxuryChainsPage() {
   return (
     <main className="font-f_3">
       <Header />
-      <Hero />
-      {/* <h1 className="sr-only">Luxury Chains</h1> */}
-      {/* <h2 className="sr-only">Find hotels as per your convenience...</h2> */}
+      {/* <Hero /> */}
+      <h1 className="sr-only">Luxury Chains</h1>
+      <h2 className="sr-only">Find hotels as per your convenience...</h2>
       {/* <Chains hotels={hotels} /> */}
       {/* <Footer /> */}
     </main>
