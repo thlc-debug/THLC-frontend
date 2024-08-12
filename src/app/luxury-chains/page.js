@@ -1,4 +1,4 @@
-// app/luxury-chains/page.jsx
+"use client";
 
 import Hero from "@/components/luxury-chains/HeroSection";
 import Header from "@/components/Header";
