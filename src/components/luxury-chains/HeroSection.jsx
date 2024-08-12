@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { TypeAnimation } from "react-type-animation";
 import Slider from "react-slick";
@@ -63,7 +65,7 @@ const Hero = () => {
         </Slider>
       </div>
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white pointer-events-auto z-10">
-        <h1
+        <div
           id="text"
           className="md:text-[70px] text-[60px] font-bold mb-8 mt-[130px]"
         >
@@ -73,10 +75,10 @@ const Hero = () => {
             speed={10}
             repeat={Infinity}
           />
-        </h1>
-        <h2 className="text-lg md:text-[19px] text-[14px]">
+        </div>
+        <div className="text-lg md:text-[19px] text-[14px]">
           Find hotels as per your convenience...
-        </h2>
+        </div>
         <p>Home › Luxury-Chains</p>
       </div>
     </section>
