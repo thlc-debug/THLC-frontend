@@ -1,5 +1,3 @@
-"use client";
-
 import Hero from "@/components/luxury-chains/HeroSection";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
