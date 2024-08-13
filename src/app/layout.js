@@ -15,6 +15,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <Head>
+        <link rel="canonical" href="https://theluxuryhotelconcierge.com/" />
         <Script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-X0KQ7SFZ67"
