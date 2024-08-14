@@ -5,11 +5,12 @@ import { base_url } from "@/base_url";
 // Renders errors or successful transactions on the screen.
 function Message({ content }) {
   return <p>{content}</p>;
+  
 }
 
 function Paypal({ nextStep }) {
   const initialOptions = {
-    "client-id": 'Aa5phX8YhvEANB76hopTCfnL_wEJpat3k7vuiKjRxMa_sYeMGOJLUMqLlDBzQ_-avhIl9MflGO9l5AfO',
+    "client-id": 'AfYCrbdw9c3J7tdR1EmqfQq7D6nUDrAAi84Xxr1CqKZzkzX-py306qEL-V_19Twtskm1fadxX5_1nbL0',
     "enable-funding": "paylater,venmo",
     "data-sdk-integration-source": "integrationbuilder_sc",
   };
