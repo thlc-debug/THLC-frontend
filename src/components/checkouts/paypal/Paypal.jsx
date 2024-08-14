@@ -5,6 +5,7 @@ import { base_url } from "@/base_url";
 // Renders errors or successful transactions on the screen.
 function Message({ content }) {
   return <p>{content}</p>;
+  
 }
 
 function Paypal({ nextStep }) {
