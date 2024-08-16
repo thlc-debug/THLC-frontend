@@ -1,5 +1,4 @@
 import "./globals.css";
-import Head from "next/head";
 import Script from "next/script";
 
 export const metadata = {
@@ -14,37 +13,20 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <Head>
-        <link rel="canonical" href="https://theluxuryhotelconcierge.com/" />
+      <head>
+        {/* Google Analytics 4 */}
         <Script
-          async
           src="https://www.googletagmanager.com/gtag/js?id=G-KTWVZ8J9KX"
-        ></Script>
-        <Script id="google-tag-manager">
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
           {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-
-          gtag('config', 'G-KTWVZ8J9KX');
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-KTWVZ8J9KX');
           `}
         </Script>
-
-        <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-X0KQ7SFZ67"
-        ></Script>
-        <Script id="google-tag-manager">
-          {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-
-          gtag('config', 'G-X0KQ7SFZ67');
-        `}
-        </Script>
-
-        {/* TODO : Add logo */}
 
         <Script
           type="application/ld+json"
@@ -62,8 +44,10 @@ export default function RootLayout({ children }) {
               },
             }),
           }}
-        ></Script>
-      </Head>
+        />
+
+        <link rel="canonical" href="https://theluxuryhotelconcierge.com/" />
+      </head>
       <body className="font-f_3">{children}</body>
     </html>
   );
