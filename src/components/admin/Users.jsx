@@ -8,62 +8,64 @@ import { base_url } from '@/base_url';
 const Users = () => {
   const [activeHeading, setActiveHeading] = useState('Recents Users');
   const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const data = [
-    {
-      img: "./img1.jpeg",
-      heading: "John Wick (johnwick12@gmail.com)",
-      Booking: "23 June ‘24 8.29 pm",
-      CheckIn: "23 June ‘24 8.29 pm",
-      CheckOut: "23 June ‘24 8.29 pm",
-    },
-    {
-      img: "./img2.webp",
-      heading: "John Wick (johnwick12@gmail.com)",
-      Booking: "23 June ‘24 8.29 pm",
-      CheckIn: "23 June ‘24 8.29 pm",
-      CheckOut: "23 June ‘24 8.29 pm",
-    },
-    {
-      img: "./img3.jpeg",
-      heading: "John Wick (johnwick12@gmail.com)",
-      Booking: "23 June ‘24 8.29 pm",
-      CheckIn: "23 June ‘24 8.29 pm",
-      CheckOut: "23 June ‘24 8.29 pm",
-    },
-    {
-      img: "./img2.webp",
-      heading: "John Wick (johnwick12@gmail.com)",
-      Booking: "23 June ‘24 8.29 pm",
-      CheckIn: "23 June ‘24 8.29 pm",
-      CheckOut: "23 June ‘24 8.29 pm",
-    },
-    {
-      img: "./img1.jpeg",
-      heading: "John Wick (johnwick12@gmail.com)",
-      Booking: "23 June ‘24 8.29 pm",
-      CheckIn: "23 June ‘24 8.29 pm",
-      CheckOut: "23 June ‘24 8.29 pm",
-    },
-    {
-      img: "./img4.jpeg",
-      heading: "John Wick (johnwick12@gmail.com)",
-      Booking: "23 June ‘24 8.29 pm",
-      CheckIn: "23 June ‘24 8.29 pm",
-      CheckOut: "23 June ‘24 8.29 pm",
-    },
-  ];
+  // const data = [
+  //   {
+  //     img: "./img1.jpeg",
+  //     heading: "John Wick (johnwick12@gmail.com)",
+  //     Booking: "23 June ‘24 8.29 pm",
+  //     CheckIn: "23 June ‘24 8.29 pm",
+  //     CheckOut: "23 June ‘24 8.29 pm",
+  //   },
+  //   {
+  //     img: "./img2.webp",
+  //     heading: "John Wick (johnwick12@gmail.com)",
+  //     Booking: "23 June ‘24 8.29 pm",
+  //     CheckIn: "23 June ‘24 8.29 pm",
+  //     CheckOut: "23 June ‘24 8.29 pm",
+  //   },
+  //   {
+  //     img: "./img3.jpeg",
+  //     heading: "John Wick (johnwick12@gmail.com)",
+  //     Booking: "23 June ‘24 8.29 pm",
+  //     CheckIn: "23 June ‘24 8.29 pm",
+  //     CheckOut: "23 June ‘24 8.29 pm",
+  //   },
+  //   {
+  //     img: "./img2.webp",
+  //     heading: "John Wick (johnwick12@gmail.com)",
+  //     Booking: "23 June ‘24 8.29 pm",
+  //     CheckIn: "23 June ‘24 8.29 pm",
+  //     CheckOut: "23 June ‘24 8.29 pm",
+  //   },
+  //   {
+  //     img: "./img1.jpeg",
+  //     heading: "John Wick (johnwick12@gmail.com)",
+  //     Booking: "23 June ‘24 8.29 pm",
+  //     CheckIn: "23 June ‘24 8.29 pm",
+  //     CheckOut: "23 June ‘24 8.29 pm",
+  //   },
+  //   {
+  //     img: "./img4.jpeg",
+  //     heading: "John Wick (johnwick12@gmail.com)",
+  //     Booking: "23 June ‘24 8.29 pm",
+  //     CheckIn: "23 June ‘24 8.29 pm",
+  //     CheckOut: "23 June ‘24 8.29 pm",
+  //   },
+  // ];
 
   useEffect(() => {
     const fetchReservations = async () => {
-      // setLoading(true); // Set loading to true before fetching
+      setLoading(true); // Set loading to true before fetching
       try {
         const response = await axios.get(`${base_url}/user/all`);
         setUsers(response.data);
       } catch (err) {
         setError(err.message);
       } finally {
-        // setLoading(false); // Set loading to false after fetching
+        setLoading(false); // Set loading to false after fetching
       }
     };
 
@@ -96,9 +98,16 @@ const Users = () => {
         </button> */}
       </div>
 
+    
       <div className='bg-white mx-10 p-5 rounded-md shadow-md overflow-x-auto'>
-        {/* Table */}
-        <table className='min-w-full divide-y divide-gray-200'>
+        {loading ? (
+          <div className='flex justify-center items-center h-64'> {/* Centered loading spinner */}
+          <div className='loader border-t-4 border-blue-500 rounded-full w-16 h-16 animate-spin'></div>
+          </div>
+        ) : error ? (
+          <div className='text-red-500'>Error: {error}</div>
+        ) : (
+          <table className='min-w-full divide-y divide-gray-200'>
           <thead className=''>
             <tr>
               <th scope='col' className='px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider'>Guest & Users</th>
@@ -131,6 +140,7 @@ const Users = () => {
             ))}
           </tbody>
         </table>
+        )}
       </div>
     </div>
   );
