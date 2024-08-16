@@ -8,8 +8,8 @@ const StatsCard = ({ title, count, change }) => (
             <p className="text-2xl font-semibold text-gray-900">{count}</p>
         </div>
         <div className="flex items-center text-green-500 mt-2">
-            <span className="ml-1 text-sm">{change}+</span>
-            <FaArrowUp className="h-4 w-4" />
+            {/* <span className="ml-1 text-sm">{change}+</span> */}
+            {/* <FaArrowUp className="h-4 w-4" /> */}
         </div>
     </div>
 );
