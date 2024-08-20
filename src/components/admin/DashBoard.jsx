@@ -1,14 +1,36 @@
+import React, { useState, useEffect } from 'react';
 import StatsCard from '@/components/admin/dashboard/StatsCard';
 import Overview from '@/components/admin/dashboard/Overview';
 import NewBookings from '@/components/admin/dashboard/NewBookings';
 import axios from 'axios';
+import { base_url } from '@/base_url';
 
 export default function Home() {
+  const [newReservationCount, setNewReservationCount] = useState('-');
+  const [pendingReservationCount, setPendingReservationCount] = useState('-');
+  const [confirmedReservationCount, setconfirmedReservationCount] = useState('-');
+
+  useEffect(() => {
+    async function fetchNewBookingsCount() {
+      try {
+        const newRes = await axios.get(`${base_url}/reservation/recent-count`);
+        const pendingRes = await axios.get(`${base_url}/reservation/pending-count`);
+        const confirmedRes = await axios.get(`${base_url}/reservation/confirmed-count`);
+        setNewReservationCount(newRes.data.count);
+        setPendingReservationCount(pendingRes.data.count);
+        setconfirmedReservationCount(confirmedRes.data.count);
+      } catch (error) {
+        console.error("Error fetching new bookings count:", error);
+      }
+    }
+    fetchNewBookingsCount();
+  }, []);
+
   const stats = [
-    { title: "New Bookings", count: 212, change: 12 },
-    { title: "Pending Bookings", count: 212, change: 12 },
-    { title: "Custom Bookings", count: 212, change: 12 },
-    { title: "Approved Bookings", count: 212, change: 12 },
+    { title: "New Bookings", count: newReservationCount, change: 12 },
+    { title: "Pending Bookings", count: pendingReservationCount, change: 12 },
+    { title: "Approved Bookings", count: confirmedReservationCount, change: 12 },
+    // { title: "Custom Bookings", count: 212, change: 12 },
   ];
 
   return (
@@ -19,14 +41,14 @@ export default function Home() {
           <StatsCard key={index} {...stat} />
         ))}
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2">
+      {/* <div className="lg:col-span-2">
           <Overview />
-        </div>
-        <div>
-          <NewBookings />
-        </div>
+        </div> */}
+      <div className="w-full">
+        <NewBookings />
       </div>
     </div>
   );
 }
+
+

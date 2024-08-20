@@ -8,19 +8,20 @@ import { base_url } from '@/base_url';
 const Hotels = () => {
   const [activeHeading, setActiveHeading] = useState('All Hotels');
   const [hotels, setHotels] = useState([]);
-
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   useEffect(() => {
     const fetchReservations = async () => {
-      // setLoading(true); // Set loading to true before fetching
+      setLoading(true); // Set loading to true before fetching
       try {
         const response = await axios.get(`${base_url}/fetch/hotel`);
         setHotels(response.data);
         // console.log((response.data));
       } catch (err) {
-        // setError(err.message);
+        setError(err.message);
         // console.log(err);
       } finally {
-        // setLoading(false); // Set loading to false after fetching
+        setLoading(false); // Set loading to false after fetching
       }
     };
 
@@ -53,9 +54,16 @@ const Hotels = () => {
         </button> */}
       </div>
 
+  
       <div className='bg-white mx-10 p-5 rounded-md shadow-md overflow-x-auto'>
-        {/* Table */}
-        <table className='min-w-full divide-y divide-gray-200'>
+        {loading ? (
+          <div className='flex justify-center items-center h-64'> {/* Centered loading spinner */}
+          <div className='loader border-t-4 border-blue-500 rounded-full w-16 h-16 animate-spin'></div>
+          </div>
+        ) : error ? (
+          <div className='text-red-500'>Error: {error}</div>
+        ) : (
+          <table className='min-w-full divide-y divide-gray-200'>
           <thead className=''>
             <tr>
               <th scope='col' className='px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider'>Hotel Name & Code</th>
@@ -92,6 +100,7 @@ const Hotels = () => {
             ))}
           </tbody>
         </table>
+        )}
       </div>
     </div>
   );
