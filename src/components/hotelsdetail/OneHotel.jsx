@@ -116,7 +116,10 @@ const OneHotel = ({ id, getDetails }) => {
       <div className="mx-5 my-10">
         <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 gap-4">
           {hotel.photoUrls.slice(0, 5).map((image, index) => (
-            <div key={index} className="w-full h-64 overflow-hidden rounded-md shadow-lg">
+            <div
+              key={index}
+              className="w-full h-64 overflow-hidden rounded-md shadow-lg"
+            >
               <img
                 className="shadow-2xl hover:scale-110 transition-transform duration-300 ease-in-out w-full h-full object-cover rounded-md cursor-pointer"
                 src={image.replace(
@@ -129,21 +132,22 @@ const OneHotel = ({ id, getDetails }) => {
             </div>
           ))}
         </div>
-
-       
       </div>
       <div className="md:flex">
         <div className="mx-5 my-10">
-        <div className="sm:w-3/5 m-auto text-center md:mx-[5rem] mb-3 text-black">
-          {hotel.about ? (
-            <>
-              <div className="text-4xl font-bold mb-4">About</div>
-              <div className="text-lg leading-relaxed">{hotel.about}</div>
-            </>
-          ) : (
-            <div className="text-lg">Discover the exquisite details of this hotel and secure your reservation today!</div>
-          )}
-        </div>
+          <div className="sm:w-3/5 m-auto text-center md:mx-[5rem] mb-3 text-black">
+            {hotel.about ? (
+              <>
+                <div className="text-4xl font-bold mb-4">About</div>
+                <div className="text-lg leading-relaxed">{hotel.about}</div>
+              </>
+            ) : (
+              <div className="text-lg">
+                Discover the exquisite details of this hotel and secure your
+                reservation today!
+              </div>
+            )}
+          </div>
           <div className="text-4xl font-bold text-center md:text-left mb-4">
             Facilities
           </div>
@@ -164,15 +168,23 @@ const OneHotel = ({ id, getDetails }) => {
           <div className="text-lg mb-4">Country: {hotel.country}</div>
           {hotel.price ? (
             <>
-            <div className="text-xl mb-2 mt-10">$ {hotel.price} per night</div>
-            <Link href={`/checkout?id=${hotel._id}`}>
-              <button className="bg-black text-white m-auto mb-10 flex items-center justify-center rounded-full px-6 py-3 sm:px-8 sm:py-4 text-lg hover:bg-gray-800 transition-colors duration-200">
-                Book Now <GoArrowUpRight className="ml-2" />
-              </button>
-            </Link>
+              <div className="text-xl mb-2 mt-10">
+                $ {hotel.price} per night
+              </div>
+              <Link href={`/checkout?id=${hotel._id}`}>
+                <button className="bg-black text-white m-auto mb-10 flex items-center justify-center rounded-full px-6 py-3 sm:px-8 sm:py-4 text-lg hover:bg-gray-800 transition-colors duration-200">
+                  Book Now <GoArrowUpRight className="ml-2" />
+                </button>
+              </Link>
             </>
           ) : (
-            <a href="tel:+91-9888334677">
+            <a
+              href={
+                hotel.country == "India"
+                  ? "tel:+91-9888334677"
+                  : `skype:${hotel.phone || "+91-9888334678"}?call`
+              }
+            >
               <button className="bg-black text-white m-auto my-10 flex items-center justify-center rounded-full px-6 py-3 sm:px-8 sm:py-4 text-lg hover:bg-gray-800 transition-colors duration-200">
                 Call Now
               </button>
