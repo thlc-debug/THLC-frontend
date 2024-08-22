@@ -17,7 +17,7 @@ const ContactIcons = ({ className = "" }) => {
       </a>
 
       {/* Email */}
-      <a
+      {/* <a
         href="mailto:contact@hedgemyfunds.com"
         target="_blank"
         rel="noopener noreferrer"
@@ -25,7 +25,7 @@ const ContactIcons = ({ className = "" }) => {
         aria-label="Email"
       >
         <MdOutlineMail size={30} />
-      </a>
+      </a> */}
 
       {/* Skype */}
       <a
