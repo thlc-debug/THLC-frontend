@@ -17,15 +17,15 @@ const ContactIcons = ({ className = "" }) => {
       </a>
 
       {/* Email */}
-      {/* <a
-        href="mailto:contact@hedgemyfunds.com"
+      <a
+        href="mailto:contact@theluxuryhotelconcierge.com"
         target="_blank"
         rel="noopener noreferrer"
         className="text-black hover:text-gray-700"
         aria-label="Email"
       >
         <MdOutlineMail size={30} />
-      </a> */}
+      </a>
 
       {/* Skype */}
       <a
