@@ -11,6 +11,7 @@ export const metadata = {
   },
   keywords:
     "luxury concierge, personalized luxury, top luxury hotels, exclusive villas, luxury travel services, luxury procurement, best luxury concierge services in Paris, affordable luxury travel services in New York, top-rated luxury hotels in Tokyo, exclusive villa rentals in the Caribbean, luxurious stays, premium hotel services, exclusive hotel deals, high-end travel experiences, deluxe accommodations, The Luxury Hotel Concierge, TLHC luxury services, luxury concierge services in Paris, luxury concierge services in New York, luxury travel services in London, exclusive hotel bookings in Dubai, book luxury concierge now, luxury concierge deals online, secure luxury hotel reservations, exclusive villa booking offers",
+  icon: "/favicon.ico",
 };
 
 export default function RootLayout({ children }) {
