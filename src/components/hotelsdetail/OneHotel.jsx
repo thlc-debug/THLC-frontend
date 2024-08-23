@@ -182,7 +182,7 @@ const OneHotel = ({ id, getDetails }) => {
               href={
                 hotel.country == "India"
                   ? "tel:+91-9888334677"
-                  : `skype:${hotel.phone || "+91-9888334678"}?call`
+                  : `skype:${hotel.phone || "+919888664677"}?call`
               }
             >
               <button className="bg-black text-white m-auto my-10 flex items-center justify-center rounded-full px-6 py-3 sm:px-8 sm:py-4 text-lg hover:bg-gray-800 transition-colors duration-200">
