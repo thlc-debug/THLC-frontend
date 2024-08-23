@@ -9,6 +9,7 @@ export default function Home() {
   const [newReservationCount, setNewReservationCount] = useState('-');
   const [pendingReservationCount, setPendingReservationCount] = useState('-');
   const [confirmedReservationCount, setconfirmedReservationCount] = useState('-');
+  const [customBookingCount, setCustomBookingCount] = useState('-');
 
   useEffect(() => {
     async function fetchNewBookingsCount() {
@@ -16,9 +17,11 @@ export default function Home() {
         const newRes = await axios.get(`${base_url}/reservation/recent-count`);
         const pendingRes = await axios.get(`${base_url}/reservation/pending-count`);
         const confirmedRes = await axios.get(`${base_url}/reservation/confirmed-count`);
+        const custom = await axios.get(`${base_url}/reservation/custom-bookings`);
         setNewReservationCount(newRes.data.count);
         setPendingReservationCount(pendingRes.data.count);
         setconfirmedReservationCount(confirmedRes.data.count);
+        setCustomBookingCount(custom.data.count);
       } catch (error) {
         console.error("Error fetching new bookings count:", error);
       }
@@ -30,7 +33,7 @@ export default function Home() {
     { title: "New Bookings", count: newReservationCount, change: 12 },
     { title: "Pending Bookings", count: pendingReservationCount, change: 12 },
     { title: "Approved Bookings", count: confirmedReservationCount, change: 12 },
-    // { title: "Custom Bookings", count: 212, change: 12 },
+    { title: "Custom Bookings", count: customBookingCount, change: 12 },
   ];
 
   return (

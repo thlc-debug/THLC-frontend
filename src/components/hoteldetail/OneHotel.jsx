@@ -95,8 +95,7 @@ const OneHotel = ({ id }) => {
             alt="Background"
             layout="fill"
             objectFit="cover"
-            className="object-cover"   
-            
+            className="object-cover"
           />
           <div className="absolute inset-0 bg-black opacity-30"></div>
         </div>
@@ -126,7 +125,7 @@ const OneHotel = ({ id }) => {
         </div>
       </div>
       <div className="md:flex">
-      <div className="sm:w-3/5 m-auto text-center md:mx-[5rem] mb-3 text-black">
+        <div className="sm:w-3/5 m-auto text-center md:mx-[5rem] mb-3 text-black">
           {hotel.about ? (
             <>
               <div className="text-4xl font-bold mb-4">About</div>
@@ -136,26 +135,33 @@ const OneHotel = ({ id }) => {
               </div>
             </>
           ) : (
-            <div className="text-lg">Discover the exquisite details of this hotel and secure your reservation today!</div>
+            <div className="text-lg">
+              Discover the exquisite details of this hotel and secure your
+              reservation today!
+            </div>
           )}
         </div>
-        
-        <div className="mt-5 sm:w-2/5 text-center m-auto md:mx-[5rem] text-black">
-          {/* <div className="text-4xl font-bold">Contact</div> */}
-          {/* <div className="pt-5">yjfy{hotel.address}</div> */}
 
+        <div className="mt-5 sm:w-2/5 text-center m-auto md:mx-[5rem] text-black">
           {hotel.price ? (
             <>
-             <div className="text-xl mb-2 mt-10">$ {hotel.price} per night</div>
-            <Link href={`/checkout?id=${hotel._id}`}>
-              
-              <button className="bg-black text-white m-auto my-10 flex items-center justify-center rounded-full px-4 py-2 sm:px-6 sm:py-3">
-                Book Now <GoArrowUpRight className="ml-2" />
-              </button>
-            </Link>
+              <div className="text-xl mb-2 mt-10">
+                $ {hotel.price} per night
+              </div>
+              <Link href={`/checkout?id=${hotel._id}`}>
+                <button className="bg-black text-white m-auto my-10 flex items-center justify-center rounded-full px-4 py-2 sm:px-6 sm:py-3">
+                  Book Now <GoArrowUpRight className="ml-2" />
+                </button>
+              </Link>
             </>
           ) : (
-            <a href="tel:+91-9888334677">
+            <a
+              href={
+                hotel.country == "India"
+                  ? "tel:+91-9888334677"
+                  : `skype:${hotel.phone || "+919888664677"}?call`
+              }
+            >
               <button className="bg-black text-white m-auto my-10 flex items-center justify-center rounded-full px-4 py-2 sm:px-6 sm:py-3">
                 Call Now
               </button>
