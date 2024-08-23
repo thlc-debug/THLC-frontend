@@ -6,6 +6,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { toast } from "react-toastify";
 import { base_url } from "@/base_url";
+import { useRouter } from "next/navigation";
 
 const PersonalInfo = ({ id, nextStep }) => {
   const [name, setName] = useState("");
@@ -14,6 +15,9 @@ const PersonalInfo = ({ id, nextStep }) => {
   const [number, setNumber] = useState("");
   const [result, setResult] = useState(<FaArrowRightLong />);
   const [guestCount, setGuestCount] = useState(1);
+  const [resultMessage, setResultMessage] = useState("");
+
+  const router = useRouter();
 
   // Check-in and Check-out dates
   const today = new Date();
@@ -70,9 +74,55 @@ const PersonalInfo = ({ id, nextStep }) => {
       price: price ? price : 999,
     };
 
-    localStorage.setItem("bookingInfo", JSON.stringify(bookingInfo));
+    if (price) {
+      localStorage.setItem("bookingInfo", JSON.stringify(bookingInfo));
+      nextStep();
+    } else {
+      setResultMessage("Sending....");
+      const formData = new FormData();
+      formData.append("first name", name);
+      formData.append("last name", lastname);
+      formData.append("email", email);
+      formData.append("phone", number);
+      formData.append("checkin", checkin);
+      formData.append("checkout", checkout);
+      formData.append("guest count", guestCount);
+      formData.append("Hotel Id", hotelId);
 
-    nextStep();
+      const recipientEmail = "contact@theluxuryhotelconcierge.com";
+      const pageTitle = "Booking Form";
+
+      formData.append("pageTitle", pageTitle);
+      formData.append("pageUrl", window.location.href);
+
+      try {
+        const response = await fetch(
+          `https://lhc-email.onrender.com/send-email/${encodeURIComponent(
+            recipientEmail
+          )}`,
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
+
+        const data = await response.json();
+
+        if (data.success) {
+          setResultMessage("Form Submitted Successfully");
+          event.target.reset();
+          router.push("/hotels");
+        } else {
+          console.error("Error", data);
+          setResultMessage(data.message);
+        }
+      } catch (error) {
+        console.error("Form submission error", error);
+        setResultMessage(
+          "An error occurred while submitting the form. Please try again later."
+        );
+      }
+    }
   };
 
   const incrementGuestCount = () => {
@@ -224,6 +274,7 @@ const PersonalInfo = ({ id, nextStep }) => {
             {result}
           </button>
         </div>
+        <span>{resultMessage}</span>
       </form>
     </div>
   );

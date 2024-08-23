@@ -38,13 +38,22 @@ const Fixed = () => {
     setResult("Sending....");
     const formData = new FormData(event.target);
 
-    formData.append("access_key", KEY);
+    const recipientEmail = "contact@theluxuryhotelconcierge.com";
+    const pageTitle = "Contact";
+
+    formData.append("pageTitle", pageTitle);
+    formData.append("pageUrl", window.location.href);
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        `https://lhc-email.onrender.com/send-email/${encodeURIComponent(
+          recipientEmail
+        )}`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       const data = await response.json();
 
@@ -68,7 +77,7 @@ const Fixed = () => {
       {isVisible && (
         <div
           ref={widgetRef}
-          className="fixed bottom-[4rem] right-5 h-[27rem] w-[15rem] md:bottom-[5rem] md:h-[32rem] md:w-[20rem] xl:bottom-[6rem] xl:h-[34rem] xl:w-[25rem] rounded-xl bg-white border-2 border-black"
+          className="fixed right-5 bottom-[5rem] h-[32rem] w-[20rem] xl:bottom-[6rem] xl:h-[34rem] xl:w-[25rem] rounded-xl bg-white border-2 border-black"
         >
           <div className="w-full p-2">
             <div className="text-md md:text-lg text-center p-2">
@@ -76,7 +85,7 @@ const Fixed = () => {
             </div>
             <ContactIcons className="justify-center mb-4" />
             <form onSubmit={onSubmit}>
-              <div className="relative h-11 w-full md:px-3 md:mt-7">
+              <div className="relative h-11 w-full px-3 mt-7">
                 <input
                   name="name"
                   placeholder="Enter your name"
@@ -88,7 +97,7 @@ const Fixed = () => {
                   Name
                 </label>
               </div>
-              <div className="relative mt-7 h-11 w-full md:px-3 md:mt-7">
+              <div className="relative h-11 w-full px-3 mt-7">
                 <input
                   name="email"
                   placeholder="Enter your email"
@@ -100,7 +109,7 @@ const Fixed = () => {
                   Email
                 </label>
               </div>
-              <div className="mt-5 mb-3 md:px-3">
+              <div className="mt-5 mb-3 px-3">
                 <label className="block mb-2 text-sm font-medium text-gray-900">
                   Message
                 </label>
@@ -111,10 +120,10 @@ const Fixed = () => {
                   aria-label="Message"
                 ></textarea>
               </div>
-              <div className="w-full md:ml-5 ml-7 justify-center items-center">
+              <div className="w-full px-3 justify-center items-center">
                 <button
                   type="submit"
-                  className="md:mx-3 xl:w-[20rem] md:w-[15rem] w-[10rem] text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-700 font-medium rounded-full text-sm px-5 py-2.5 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+                  className="w-full text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-700 font-medium rounded-full text-sm px-5 py-2.5 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
                   aria-label="Send Message"
                 >
                   Send Message
