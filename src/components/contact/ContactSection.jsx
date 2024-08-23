@@ -1,23 +1,28 @@
 "use client";
 
-import React, { useState } from 'react';
-import { FaSquareFacebook, FaSquareXTwitter, FaLinkedin } from "react-icons/fa6";
+import React, { useState } from "react";
+import {
+  FaSquareFacebook,
+  FaSquareXTwitter,
+  FaLinkedin,
+} from "react-icons/fa6";
 import { RiInstagramFill } from "react-icons/ri";
-import Highlight from './Highlight';
+import Highlight from "./Highlight";
+import ContactIcons from "../ContactIcons";
 
 const components = [
-  { id: 1, name: 'Virtual Assistance' },
-  { id: 2, name: 'Hotel Reservations' },
-  { id: 3, name: 'Charter services' },
-  { id: 4, name: 'Cruise Reservations' },
-  { id: 5, name: 'Personal Event Planning' },
-  { id: 6, name: "Procurement Services" }
+  { id: 1, name: "Virtual Assistance" },
+  { id: 2, name: "Hotel Reservations" },
+  { id: 3, name: "Charter services" },
+  { id: 4, name: "Cruise Reservations" },
+  { id: 5, name: "Personal Event Planning" },
+  { id: 6, name: "Procurement Services" },
 ];
 
 export default function ContactSection() {
   const [highlighted, setHighlighted] = useState(null);
   const [result, setResult] = useState("");
-  const [selectedValue, setSelectedValue] = useState('');
+  const [selectedValue, setSelectedValue] = useState("");
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
@@ -32,20 +37,29 @@ export default function ContactSection() {
     setResult("Sending....");
     const formData = new FormData(event.target);
 
-    formData.append("interest", components.find(component => component.id === highlighted)?.name || "None");
+    formData.append(
+      "interest",
+      components.find((component) => component.id === highlighted)?.name ||
+        "None"
+    );
 
     // change these fields as per use
-    const recipientEmail = 'contact@theluxuryhotelconcierge.com'
-    const pageTitle = 'Contact Us'
+    const recipientEmail = "contact@theluxuryhotelconcierge.com";
+    const pageTitle = "Contact Us";
 
-    formData.append("pageTitle", pageTitle);              // this field name is fixed 'pageTitle'
-    formData.append("pageUrl", window.location.href);     // this field name is fixed 'pageUrl'
+    formData.append("pageTitle", pageTitle); // this field name is fixed 'pageTitle'
+    formData.append("pageUrl", window.location.href); // this field name is fixed 'pageUrl'
 
     try {
-      const response = await fetch(`https://lhc-email.onrender.com/send-email/${encodeURIComponent(recipientEmail)}`, {
-        method: "POST",
-        body: formData
-      });
+      const response = await fetch(
+        `https://lhc-email.onrender.com/send-email/${encodeURIComponent(
+          recipientEmail
+        )}`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       const data = await response.json();
 
@@ -58,54 +72,66 @@ export default function ContactSection() {
       }
     } catch (error) {
       console.error("Form submission error", error);
-      setResult("An error occurred while submitting the form. Please try again later.");
+      setResult(
+        "An error occurred while submitting the form. Please try again later."
+      );
     }
   };
 
   return (
     <div className="w-full p-4 mt-14">
       <div className="max-w-6xl mx-auto md:px-4">
-        <div className='md:flex '>
-          <div className='md:w-2/5 md:mt-10 md:pr-[5rem] mx-3'>
-            <div className='sm:text-3xl md:text-4xl text-2xl md:leading-normal leading-snug'>
+        <div className="md:flex ">
+          <div className="md:w-2/5 md:mt-10 md:pr-[5rem] mx-3">
+            <div className="sm:text-3xl md:text-4xl text-2xl md:leading-normal leading-snug">
               Reach out to us for more details & <b>custom bookings</b>
             </div>
-           <a href="mailto:contact@theluxuryhotelconcierge.com"> <div className='md:mt-[10rem] cursor-pointer my-1 text-gray-500'>Email: contact@theluxuryhotelconcierge.com</div></a>
-            <a href="tel:+91-9888334677"><div className='md:my-10 my-1 cursor-pointer text-gray-500'>Ph no: +91-9888334677</div></a>
+            <ContactIcons className="my-10 sm:mt-10" />
+            <a href="mailto:contact@theluxuryhotelconcierge.com">
+              {" "}
+              <div className="md:mt-[5rem] cursor-pointer my-1 text-gray-500">
+                Email: contact@theluxuryhotelconcierge.com
+              </div>
+            </a>
+            <a href="tel:+91-9888334677">
+              <div className="md:my-10 my-1 cursor-pointer text-gray-500">
+                Ph no: +91-9888334677
+              </div>
+            </a>
             <div className="text-gray-500 flex items-center md:gap-4 gap-2 text-xl md:text-2xl">
-            <a
+              <a
                 href="https://www.facebook.com/profile.php?id=61562328525447&mibextid=ZbWKwL"
                 target="_blank"
                 rel="noopener noreferrer"
-
-            >
-            <FaSquareFacebook className="text-xl md:text-2xl" />
-            </a>
-            <a
-                href=""
-                target="_blank"
-                rel="noopener noreferrer"
-
-            ><FaSquareXTwitter className="text-xl md:text-2xl" /></a>
+              >
+                <FaSquareFacebook className="text-xl md:text-2xl" />
+              </a>
+              <a href="" target="_blank" rel="noopener noreferrer">
+                <FaSquareXTwitter className="text-xl md:text-2xl" />
+              </a>
               <a
                 href="https://www.linkedin.com/company/luxuryhotelconcierge/"
                 target="_blank"
                 rel="noopener noreferrer"
-
-            ><FaLinkedin  className="text-xl md:text-2xl" /></a>
+              >
+                <FaLinkedin className="text-xl md:text-2xl" />
+              </a>
               <a
                 href="https://www.instagram.com/theluxuryhotelconcierge?igsh=MzRlODBiNWFlZA=="
                 target="_blank"
                 rel="noopener noreferrer"
-
-            ><RiInstagramFill className="text-xl md:text-2xl" /></a>
+              >
+                <RiInstagramFill className="text-xl md:text-2xl" />
+              </a>
             </div>
           </div>
-          <div className='md:w-3/5 border-gray-300 border-2 rounded-lg md:p-5 sm:p-4 p-3 md:my-0 my-3 md:mx-0 sm:mx-5 mx-1'>
+          <div className="md:w-3/5 border-gray-300 border-2 rounded-lg md:p-5 sm:p-4 p-3 md:my-0 my-3 md:mx-0 sm:mx-5 mx-1">
             <form onSubmit={onSubmit}>
-              <div className='md:text-xl text-lg'><b>I'm interested in:</b></div>
-              <div className='md:pb-5 md:pt-3 py-2 md:mr-[10rem] sm:mr-10 mr-5 md:text-sm text-xs flex flex-wrap'>
-                {components.map(component => (
+              <div className="md:text-xl text-lg">
+                <b>I'm interested in:</b>
+              </div>
+              <div className="md:pb-5 md:pt-3 py-2 md:mr-[10rem] sm:mr-10 mr-5 md:text-sm text-xs flex flex-wrap">
+                {components.map((component) => (
                   <Highlight
                     key={component.id}
                     id={component.id}
@@ -175,7 +201,9 @@ export default function ContactSection() {
                 </label>
               </div>
               <div className="my-6 md:px-3">
-                <label className="block mb-2 text-sm font-medium text-gray-900">Message</label>
+                <label className="block mb-2 text-sm font-medium text-gray-900">
+                  Message
+                </label>
                 <textarea
                   name="message"
                   className="w-full h-40 p-2 border border-gray-300 rounded-md hover:border-black"
