@@ -29,7 +29,7 @@ const HotelList = ({ hotels }) => {
       return;
     }
 
-    try {
+    try { 
       let updatedWishlist;
       if (liked) {
         await axios.delete(`${base_url}/user/remove-from-wishlist/${hotels._id}`, {
