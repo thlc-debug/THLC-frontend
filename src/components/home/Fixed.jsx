@@ -38,13 +38,22 @@ const Fixed = () => {
     setResult("Sending....");
     const formData = new FormData(event.target);
 
-    formData.append("access_key", KEY);
+    const recipientEmail = "contact@theluxuryhotelconcierge.com";
+    const pageTitle = "Contact";
+
+    formData.append("pageTitle", pageTitle);
+    formData.append("pageUrl", window.location.href);
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        `https://lhc-email.onrender.com/send-email/${encodeURIComponent(
+          recipientEmail
+        )}`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       const data = await response.json();
 
