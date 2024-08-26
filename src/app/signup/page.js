@@ -9,7 +9,7 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import "react-toastify/dist/ReactToastify.css";
 import { base_url } from "@/base_url";
 import { fetchUserDetails } from "@/utils/fetchUserDetails";
-
+import { setToken } from "@/utils/setToken";
 const Page = () => {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -131,6 +131,23 @@ const Page = () => {
       setErrors({ ...errors, password: "" });
     }
     setPassword(value);
+  };
+
+  const signUpGoogle = () =>{
+    window.open(`${base_url}/api/auth/google`, "_blank", "width=500,height=600");
+
+    const messageListener = (event) => {
+      if(event.data){
+        const { token } = event.data;
+        if(token){
+          setToken(token);
+        }
+        else{
+          router.push('/auth/failure');
+        }
+      }
+    };
+  window.addEventListener("message", messageListener, { once: true });
   };
 
   return (
@@ -257,6 +274,7 @@ const Page = () => {
             <button
               type="button"
               className="w-full py-2 bg-gray-800 text-white rounded-full hover:bg-gray-900 focus:outline-none focus:ring focus:ring-gray-300 mb-2"
+              onClick={signUpGoogle}
             >
               Sign Up with Google
             </button>
