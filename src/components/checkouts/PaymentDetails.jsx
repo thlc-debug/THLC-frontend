@@ -31,10 +31,12 @@ const PaymentDetails = ({ nextStep }) => {
   useEffect(() => {
     const storedBookingInfo = JSON.parse(localStorage.getItem("bookingInfo"));
 
-    const finalPrice = (
-      storedBookingInfo.price * storedBookingInfo.days
-    ).toFixed(2);
-    setAmount(finalPrice);
+    // const finalPrice = (
+    //   storedBookingInfo.price * storedBookingInfo.days
+    // ).toFixed(2);
+    // setAmount(finalPrice > 0 ? finalPrice : 499);
+
+    setAmount(storedBookingInfo.price);
   }, []);
 
   const handlePaymentMethodSelect = (e) => {

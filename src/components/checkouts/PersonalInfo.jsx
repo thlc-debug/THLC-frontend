@@ -18,7 +18,7 @@ const PersonalInfo = ({ id, nextStep }) => {
   const [name, setName] = useState("");
   const [lastname, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [country, setCountry] = useState({ countryCode: "us" });
+  const [country, setCountry] = useState({ countryCode: "in" });
   const [number, setNumber] = useState("");
   const [result, setResult] = useState(<FaArrowRightLong />);
   const [guestCount, setGuestCount] = useState(1);
@@ -127,58 +127,58 @@ const PersonalInfo = ({ id, nextStep }) => {
       guestCount,
       days,
       hotelId: id,
-      price: price ? price : 999,
+      price: price ? price * days : 499,
     };
 
-    if (price) {
-      localStorage.setItem("bookingInfo", JSON.stringify(bookingInfo));
-      nextStep();
-    } else {
-      setResultMessage("Sending....");
-      const formData = new FormData();
-      formData.append("first name", name);
-      formData.append("last name", lastname);
-      formData.append("email", email);
-      formData.append("phone", number);
-      formData.append("checkin", checkin);
-      formData.append("checkout", checkout);
-      formData.append("guest count", guestCount);
-      formData.append("Hotel Id", hotelId);
+    // if (price) {
+    localStorage.setItem("bookingInfo", JSON.stringify(bookingInfo));
+    nextStep();
+    // } else {
+    // setResultMessage("Sending....");
+    // const formData = new FormData();
+    // formData.append("first name", name);
+    // formData.append("last name", lastname);
+    // formData.append("email", email);
+    // formData.append("phone", number);
+    // formData.append("checkin", checkin);
+    // formData.append("checkout", checkout);
+    // formData.append("guest count", guestCount);
+    // formData.append("Hotel Id", hotelId);
 
-      const recipientEmail = "contact@theluxuryhotelconcierge.com";
-      const pageTitle = "Booking Form";
+    // const recipientEmail = "contact@theluxuryhotelconcierge.com";
+    // const pageTitle = "Booking Form";
 
-      formData.append("pageTitle", pageTitle);
-      formData.append("pageUrl", window.location.href);
+    // formData.append("pageTitle", pageTitle);
+    // formData.append("pageUrl", window.location.href);
 
-      try {
-        const response = await fetch(
-          `https://lhc-email.onrender.com/send-email/${encodeURIComponent(
-            recipientEmail
-          )}`,
-          {
-            method: "POST",
-            body: formData,
-          }
-        );
+    // try {
+    //   const response = await fetch(
+    //     `https://lhc-email.onrender.com/send-email/${encodeURIComponent(
+    //       recipientEmail
+    //     )}`,
+    //     {
+    //       method: "POST",
+    //       body: formData,
+    //     }
+    //   );
 
-        const data = await response.json();
+    //   const data = await response.json();
 
-        if (data.success) {
-          setResultMessage("Form Submitted Successfully");
-          event.target.reset();
-          router.push("/hotels");
-        } else {
-          console.error("Error", data);
-          setResultMessage(data.message);
-        }
-      } catch (error) {
-        console.error("Form submission error", error);
-        setResultMessage(
-          "An error occurred while submitting the form. Please try again later."
-        );
-      }
-    }
+    //   if (data.success) {
+    //     setResultMessage("Form Submitted Successfully");
+    //     event.target.reset();
+    //     router.push("/hotels");
+    //   } else {
+    //     console.error("Error", data);
+    //     setResultMessage(data.message);
+    //   }
+    // } catch (error) {
+    //   console.error("Form submission error", error);
+    //   setResultMessage(
+    //     "An error occurred while submitting the form. Please try again later."
+    //   );
+    // }
+    // }
   };
 
   const incrementGuestCount = () => {
@@ -213,7 +213,7 @@ const PersonalInfo = ({ id, nextStep }) => {
 
     const timeDifference = checkoutDate - checkinDate;
 
-    return Math.floor(timeDifference / (1000 * 60 * 60 * 24)) + 1;
+    return Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
   };
 
   const handlePhoneChange = (phone, country) => {
