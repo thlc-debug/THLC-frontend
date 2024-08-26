@@ -147,7 +147,6 @@ const Page = () => {
         }
       }
     };
-
   window.addEventListener("message", messageListener, { once: true });
   };
 
