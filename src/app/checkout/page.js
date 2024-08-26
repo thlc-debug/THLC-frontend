@@ -24,7 +24,6 @@ const Payment = () => {
   useEffect(() => {
     const idFromParams = searchParams.get("id");
     setId(idFromParams);
-    console.log(id);
   }, [searchParams]);
 
   const nextStep = () => setStep(step + 1);
