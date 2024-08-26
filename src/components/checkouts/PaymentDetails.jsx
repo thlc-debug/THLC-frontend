@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { FaCheckCircle, FaRegCreditCard, FaPaypal, FaGoogle, FaApplePay } from "react-icons/fa";
+import {
+  FaCheckCircle,
+  FaRegCreditCard,
+  FaPaypal,
+  FaGoogle,
+  FaApplePay,
+} from "react-icons/fa";
 import { IoIosArrowDropdown, IoIosArrowDropup } from "react-icons/io";
 import { CiSquarePlus } from "react-icons/ci";
 import Paypal from "./paypal/Paypal";
 
 const PaymentDetails = ({ nextStep }) => {
   const [showDropdown, setShowDropdown] = useState(true);
-  const [showPaypal, setShowPaypal] = useState(false)
-  const [amount, setAmount] = useState(null)
+  const [showPaypal, setShowPaypal] = useState(false);
+  const [amount, setAmount] = useState(null);
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
@@ -24,27 +30,32 @@ const PaymentDetails = ({ nextStep }) => {
 
   useEffect(() => {
     const storedBookingInfo = JSON.parse(localStorage.getItem("bookingInfo"));
-    setAmount(storedBookingInfo.price)
-  }, [])
+
+    const finalPrice = (
+      storedBookingInfo.price * storedBookingInfo.days
+    ).toFixed(2);
+    setAmount(finalPrice);
+  }, []);
 
   const handlePaymentMethodSelect = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (e.target.innerHTML === "Paypal") {
-      toggleDropdown()
-      setShowPaypal(true)
+      toggleDropdown();
+      setShowPaypal(true);
     }
-  }
+  };
 
   const handleStep = async () => {
     nextStep();
-  }
+  };
 
   return (
     <div className="flex flex-col gap-5 max-w-2xl mx-auto p-6 bg-gray-100 mt-10 rounded-md">
-
-
       {/* Payment Method Dropdown */}
-      <div className="flex bg-white justify-between items-center p-6 rounded-md shadow-md cursor-pointer" onClick={toggleDropdown}>
+      <div
+        className="flex bg-white justify-between items-center p-6 rounded-md shadow-md cursor-pointer"
+        onClick={toggleDropdown}
+      >
         <div className="flex justify-center items-center gap-3">
           <FaCheckCircle className="text-4xl text-green-500" />
           <h1 className="text-xl font-bold">Choose Payment Method</h1>
@@ -120,9 +131,7 @@ const PaymentDetails = ({ nextStep }) => {
         </table>
       </div> */}
 
-      {showPaypal && (
-        <Paypal nextStep={nextStep} />
-      )}
+      {showPaypal && <Paypal nextStep={nextStep} />}
 
       {/* Checkout Button */}
       {/* <div className="mt-5">
@@ -134,7 +143,6 @@ const PaymentDetails = ({ nextStep }) => {
           Checkout
         </button>
       </div> */}
-
     </div>
   );
 };
