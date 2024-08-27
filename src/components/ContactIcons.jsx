@@ -40,7 +40,7 @@ const ContactIcons = ({ className = "" }) => {
 
       {/* Phone */}
       <a
-        href="tel:xxxxxxxx96"
+        href="tel:18889285558"
         className="text-black hover:text-gray-700"
         aria-label="Phone"
       >
