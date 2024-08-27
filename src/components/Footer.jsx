@@ -112,7 +112,7 @@ const Footer = () => {
             </div>
           </Link>
           <div className="text-gray-400 leading-relaxed text-sm mt-3 md:text-lg flex gap-2 justify-center items-center md:items-start md:justify-start  ">
-            <MdCall className="text-[1.8rem] " /> +91-9888334677
+            <MdCall className="text-[1.8rem] " /> 18889285558
           </div>
         </div>
         <div className="leading-relaxed ">

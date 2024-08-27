@@ -7,7 +7,7 @@ const ContactIcons = ({ className = "" }) => {
     <div className={`flex space-x-4 ${className}`}>
       {/* WhatsApp */}
       <a
-        href="https://wa.me/919888334677"
+        href="https://wa.me/18889285558"
         target="_blank"
         rel="noopener noreferrer"
         className="text-black hover:text-gray-700"

@@ -43,7 +43,7 @@ export default function RootLayout({ children }) {
               logo: "https://www.example.com/logo.png",
               contactPoint: {
                 "@type": "ContactPoint",
-                telephone: "+91-9888334677",
+                telephone: "18889285558",
                 contactType: "Customer service",
               },
             }),
