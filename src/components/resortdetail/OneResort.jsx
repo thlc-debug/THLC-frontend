@@ -140,7 +140,8 @@ const OneHotel = ({ id }) => {
               {hotel.about ? "About" : ""}
             </div>
             <div className="text-lg leading-relaxed">
-              {hotel.about || "Discover the exquisite details of this hotel and secure your reservation today!"}
+              {hotel.about ||
+                "Discover the exquisite details of this hotel and secure your reservation today!"}
             </div>
             <StarRating rating={hotel.stars} />
           </div>
@@ -161,8 +162,8 @@ const OneHotel = ({ id }) => {
             <a
               href={
                 hotel.country === "India"
-                  ? "tel:+91-9888334677"
-                  : `skype:${hotel.phone || "+919888664677"}?call`
+                  ? "tel:18889285558"
+                  : `skype:${hotel.phone || "18889285558"}?call`
               }
             >
               <button className="bg-black text-white m-auto  mt-2 flex items-center justify-center rounded-full px-4 py-2 sm:px-6 sm:py-3 shadow-lg transform transition-transform duration-300 hover:scale-105">

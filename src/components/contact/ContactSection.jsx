@@ -93,9 +93,9 @@ export default function ContactSection() {
                 Email: contact@theluxuryhotelconcierge.com
               </div>
             </a>
-            <a href="tel:+91-9888334677">
+            <a href="tel:18889285558">
               <div className="md:my-10 my-1 cursor-pointer text-gray-500">
-                Ph no: +91-9888334677
+                Ph no: 18889285558
               </div>
             </a>
             <div className="text-gray-500 flex items-center md:gap-4 gap-2 text-xl md:text-2xl">
@@ -219,7 +219,7 @@ export default function ContactSection() {
                 >
                   Send Message
                 </button>
-                <a href="tel:+91-9888334677">
+                <a href="tel:18889285558">
                   <button
                     type="button"
                     className="md:mx-3 w-full text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-700 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"

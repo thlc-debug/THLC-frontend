@@ -154,11 +154,11 @@ const OneHotel = ({ id }) => {
 
         <div className="mt-5 sm:w-2/5 text-center m-auto md:mx-[5rem] text-black">
           <div className="bg-white p-6 rounded-lg shadow-md mt-5">
-          {hotel.price && hotel.price!==0 && (
-        <div className="text-xl font-bold mb-2">
-          $ {hotel.price} per night
-        </div>
-      )}
+            {hotel.price && hotel.price !== 0 && (
+              <div className="text-xl font-bold mb-2">
+                $ {hotel.price} per night
+              </div>
+            )}
             <Link href={`/checkout?id=${hotel._id}`}>
               <button className="bg-black text-white m-auto mb-5 mt-5 flex items-center justify-center rounded-full px-4 py-2 sm:px-6 sm:py-3 shadow-lg transform transition-transform duration-300 hover:scale-105">
                 Book Now <GoArrowUpRight className="ml-2" />
@@ -168,8 +168,8 @@ const OneHotel = ({ id }) => {
             <a
               href={
                 hotel.country === "India"
-                  ? "tel:+91-9888334677"
-                  : `skype:${hotel.phone || "+919888664677"}?call`
+                  ? "tel:18889285558"
+                  : `skype:${hotel.phone || "18889285558"}?call`
               }
             >
               <button className="bg-black text-white m-auto flex items-center justify-center rounded-full px-4 py-2 sm:px-6 sm:py-3 shadow-lg transform transition-transform duration-300 hover:scale-105">
