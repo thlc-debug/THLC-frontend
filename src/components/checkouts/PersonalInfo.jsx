@@ -114,6 +114,7 @@ const PersonalInfo = ({ id, nextStep }) => {
     }
 
     const days = CountNumberOfDays(checkin, checkout);
+    console.log(days);
 
     const price = await fetchHotelDetails();
 
@@ -213,7 +214,8 @@ const PersonalInfo = ({ id, nextStep }) => {
 
     const timeDifference = checkoutDate - checkinDate;
 
-    return Math.floor(timeDifference / (1000 * 60 * 60 * 24)) + 1;
+    // return Math.floor(timeDifference / (1000 * 60 * 60 * 24)) + 1;
+    return Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
   };
 
   const handlePhoneChange = (phone, country) => {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   FaCheckCircle,
   FaRegCreditCard,
@@ -13,6 +13,8 @@ import Paypal from "./paypal/Paypal";
 const PaymentDetails = ({ nextStep }) => {
   const [showDropdown, setShowDropdown] = useState(true);
   const [showPaypal, setShowPaypal] = useState(false);
+  const [showCCAvenue, setShowCCAvenue] = useState(false);
+  const [responseText, setResponseText] = useState("");
   const [amount, setAmount] = useState(null);
 
   const toggleDropdown = () => {
@@ -22,6 +24,7 @@ const PaymentDetails = ({ nextStep }) => {
   const cards = [
     // { name: "Credit", icon: <FaRegCreditCard className="text-blue-500" /> },
     // { name: "Debit", icon: <FaRegCreditCard className="text-red-400" /> },
+    { name: "CCAvenue", icon: <FaRegCreditCard className="text-red-400" /> },
     { name: "Paypal", icon: <FaPaypal className="text-blue-500" /> },
     // { name: "Gpay", icon: <FaGoogle className="text-black" /> },
     // { name: "Stripe", icon: <FaRegCreditCard className="text-red-400" /> },
@@ -42,6 +45,60 @@ const PaymentDetails = ({ nextStep }) => {
     if (e.target.innerHTML === "Paypal") {
       toggleDropdown();
       setShowPaypal(true);
+    }
+    if (e.target.innerHTML === "CCAvenue") {
+      toggleDropdown();
+      setShowCCAvenue(true);
+    }
+  };
+
+  const handleCCAvenue = async () => {
+    const storedBookingInfo = JSON.parse(localStorage.getItem("bookingInfo"));
+    const userDetails = JSON.parse(localStorage.getItem("userDetails"));
+    const userId = userDetails ? userDetails._id : "6694380c177c63bfcd747404";
+    const orderData = {
+      name: `${storedBookingInfo.name} ${storedBookingInfo.lastname}`,
+      email: storedBookingInfo.email,
+      phone: storedBookingInfo.phone,
+      no_of_people: storedBookingInfo?.people || 2,
+      check_in: storedBookingInfo?.checkIn || "2024-09-01",
+      check_out: storedBookingInfo?.checkOut || "2024-09-05",
+      user_id: userId,
+      hotel_id: storedBookingInfo.hotelId,
+      price: parseFloat(amount),
+      currency: "USD",
+    };
+
+    try {
+      const response = await fetch(
+        "http://localhost:4000/api/transactions/orders/ccavenue",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(orderData),
+        }
+      );
+
+      if (response.ok) {
+        const responseText = await response.text();
+
+        const container = document.createElement("div");
+        container.innerHTML = responseText;
+        const form = container.querySelector("form");
+
+        if (form) {
+          document.body.appendChild(form);
+          form.submit();
+        } else {
+          console.error("Failed to create CCAvenue order");
+        }
+      } else {
+        console.error("Failed to create CCAvenue order");
+      }
+    } catch (error) {
+      console.error("Error:", error);
     }
   };
 
@@ -94,8 +151,12 @@ const PaymentDetails = ({ nextStep }) => {
         <div className="flex justify-between items-center w-full mb-3">
           <div className="flex items-center gap-3">
             <FaRegCreditCard className="text-2xl text-blue-500" />
-            <h1 className="text-xl font-bold">Registered cards <span className="bg-gray-300 text-blue-500 rounded-full px-2">Visa</span></h1>
-            
+            <h1 className="text-xl font-bold">
+              Registered cards{" "}
+              <span className="bg-gray-300 text-blue-500 rounded-full px-2">
+                Visa
+              </span>
+            </h1>
           </div>
           <CiSquarePlus className="text-2xl cursor-pointer" />
         </div>
@@ -132,6 +193,28 @@ const PaymentDetails = ({ nextStep }) => {
       </div> */}
 
       {showPaypal && <Paypal nextStep={nextStep} />}
+
+      {showCCAvenue && (
+        <div className="flex flex-col bg-white items-center p-6 rounded-md shadow-md mt-5">
+          <div className="flex justify-between items-center w-full mb-3">
+            <div className="flex items-center gap-3">
+              <FaRegCreditCard className="text-2xl text-red-400" />
+              <h1 className="text-xl font-bold">CCAvenue</h1>
+            </div>
+
+            {/* create a submit button */}
+            <button
+              type="button"
+              onClick={handleCCAvenue}
+              className="bg-black text-white font-bold text-lg flex items-center justify-center py-2 px-4 rounded-[30px] focus:outline-none focus:shadow-outline"
+            >
+              Checkout
+            </button>
+          </div>
+
+          <div dangerouslySetInnerHTML={{ __html: responseText }} />
+        </div>
+      )}
 
       {/* Checkout Button */}
       {/* <div className="mt-5">
