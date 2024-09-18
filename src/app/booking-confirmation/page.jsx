@@ -12,19 +12,19 @@ const BookingConfirmation = () => {
   const searchParams = useSearchParams();
 
   const data = Object.fromEntries(searchParams.entries());
-  console.log(data);
+  // console.log(data);
 
   return (
     <>
       {data.order_status === "Success" ? (
         <div className="h-screen flex justify-center items-center bg-gray-100">
-          <div className="h-[90%] w-2/3 rounded-xl bg-white">
-            <div className="p-20">
+          <div className="min-h-[60%] lg:h-[90%] w-[95%] mx-auto lg:w-2/3 rounded-xl bg-white">
+            <div className="p-8 md:p-20">
               <div>
                 <div>
                   <div>
-                    <div className="flex gap-2">
-                      <h1 className="text-3xl font-medium font-f_2">
+                    <div className="flex flex-col-reverse md:flex-row gap-2">
+                      <h1 className="text-xl text-center md:text-3xl font-medium font-f_2">
                         Your Order is Confirmed!
                       </h1>
                       <div className="flex justify-start">
@@ -43,18 +43,18 @@ const BookingConfirmation = () => {
                       </div>
                     </div>
 
-                    <div className="mt-12">
-                      <p className="text-gray-500">
+                    <div className="mt-6 md:mt-12">
+                      <p className="text-gray-500 text-center md:text-left text-sm md:text-md">
                         Order ID: #{data.order_id}
                       </p>
-                      <p className="font-medium">
+                      <p className="font-medium text-center md:text-left text-sm md:text-md">
                         Thank you For choosing us,{" "}
                         {data.billing_name.split(" ")[0]}
                       </p>
                     </div>
                   </div>
 
-                  <div className="p-6 mt-12 border border-1 rounded-lg">
+                  <div className="p-6 mt-8 md:mt-12 border border-1 rounded-lg">
                     <h3 className="text-lg font-bold mb-4">Order Info</h3>
                     <div className="grid grid-cols-2 gap-4 text-sm text-gray-600">
                       {/* Order Date */}
@@ -120,13 +120,13 @@ const BookingConfirmation = () => {
               <div className="flex justify-center space-x-4 py-5">
                 <Link
                   href="/bookings"
-                  className="px-6 py-3 bg-blue-600 text-white rounded-lg text-lg font-medium hover:bg-blue-700"
+                  className="px-3 py-2 md:px-6 md:py-3 text-sm md:text-lg bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700"
                 >
                   View Orders
                 </Link>
                 <Link
                   href="/"
-                  className="px-6 py-3 bg-gray-600 text-white rounded-lg text-lg font-medium hover:bg-gray-700"
+                  className="px-3 py-2 md:px-6 md:py-3 text-sm md:text-lg bg-gray-600 text-white rounded-lg font-medium hover:bg-gray-700"
                 >
                   Continue Shopping
                 </Link>
@@ -136,7 +136,7 @@ const BookingConfirmation = () => {
         </div>
       ) : (
         <div className="h-screen flex justify-center items-center bg-gray-100">
-          <div className=" w-2/3 rounded-xl bg-white shadow-sm p-20">
+          <div className="w-[90%] lg:w-2/3 rounded-xl bg-white shadow-sm p-10 lg:p-20">
             <Lottie
               options={{
                 loop: true,
@@ -152,7 +152,7 @@ const BookingConfirmation = () => {
             <div className="flex justify-center items-center">
               <div>
                 <div className="mt-12 flex flex-col items-center justify-center">
-                  <h1 className="text-3xl font-medium font-f_2">
+                  <h1 className="text-xl md:text-3xl text-center font-medium font-f_2">
                     Your Order has Failed!
                   </h1>
                   <p className="text-gray-500 mt-4">
@@ -163,14 +163,14 @@ const BookingConfirmation = () => {
                 <div className="flex justify-center space-x-4 py-5">
                   <Link
                     href="/"
-                    className="px-6 py-3 bg-blue-600 text-white rounded-lg text-lg font-medium hover:bg-blue-700"
+                    className=" p-3 md:px-6 md:py-3 text-xs md:text-lg bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700"
                   >
                     Continue Shopping
                   </Link>
 
                   <Link
                     href="/bookings"
-                    className="px-6 py-3 bg-gray-600 text-white rounded-lg text-lg font-medium hover:bg-gray-700"
+                    className="p-3 md:px-6 md:py-3 text-xs md:text-lg bg-gray-600 text-white rounded-lg font-medium hover:bg-gray-700"
                   >
                     Previous Orders
                   </Link>

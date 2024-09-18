@@ -8,6 +8,9 @@ import {
 } from "react-icons/fa";
 import { IoIosArrowDropdown, IoIosArrowDropup } from "react-icons/io";
 import { CiSquarePlus } from "react-icons/ci";
+
+import { Convert } from "easy-currencies";
+
 import Paypal from "./paypal/Paypal";
 
 const PaymentDetails = ({ nextStep }) => {
@@ -15,7 +18,9 @@ const PaymentDetails = ({ nextStep }) => {
   const [showPaypal, setShowPaypal] = useState(false);
   const [showCCAvenue, setShowCCAvenue] = useState(false);
   const [responseText, setResponseText] = useState("");
+  const [actualAmount, setActualAmount] = useState(null);
   const [amount, setAmount] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
@@ -38,23 +43,31 @@ const PaymentDetails = ({ nextStep }) => {
     //   storedBookingInfo.price * storedBookingInfo.days
     // ).toFixed(2);
     // setAmount(finalPrice > 0 ? finalPrice : 499);
-
+    setActualAmount(storedBookingInfo.price);
     setAmount(storedBookingInfo.price);
   }, []);
 
-  const handlePaymentMethodSelect = (e) => {
+  const handlePaymentMethodSelect = async (e) => {
     e.preventDefault();
     if (e.target.innerHTML === "Paypal") {
       toggleDropdown();
+
+      setAmount(actualAmount);
+      setShowCCAvenue(false);
       setShowPaypal(true);
     }
     if (e.target.innerHTML === "CCAvenue") {
       toggleDropdown();
+
+      const value = await Convert(actualAmount).from("USD").to("INR");
+      setAmount(value.toFixed(2));
+      setShowPaypal(false);
       setShowCCAvenue(true);
     }
   };
 
   const handleCCAvenue = async () => {
+    setIsLoading(true);
     const storedBookingInfo = JSON.parse(localStorage.getItem("bookingInfo"));
     const userDetails = JSON.parse(localStorage.getItem("userDetails"));
     const userId = userDetails ? userDetails._id : "6694380c177c63bfcd747404";
@@ -67,7 +80,7 @@ const PaymentDetails = ({ nextStep }) => {
       check_out: storedBookingInfo?.checkOut || "2024-09-05",
       user_id: userId,
       hotel_id: storedBookingInfo.hotelId,
-      price: parseFloat(amount),
+      price: parseFloat(actualAmount),
       currency: "USD",
     };
 
@@ -101,6 +114,8 @@ const PaymentDetails = ({ nextStep }) => {
       }
     } catch (error) {
       console.error("Error:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -146,7 +161,10 @@ const PaymentDetails = ({ nextStep }) => {
       )}
 
       {amount && (
-        <div className="text-xl font-bold text-right">Amount: ${amount}</div>
+        <div className="text-xl font-bold text-right">
+          Amount: {showCCAvenue ? "Rs. " : "$"}
+          {amount}
+        </div>
       )}
 
       {/* <div className="flex flex-col bg-white items-center p-6 rounded-md shadow-md mt-5">
@@ -209,12 +227,11 @@ const PaymentDetails = ({ nextStep }) => {
               type="button"
               onClick={handleCCAvenue}
               className="bg-black text-white font-bold text-lg flex items-center justify-center py-2 px-4 rounded-[30px] focus:outline-none focus:shadow-outline"
+              isLoading={isLoading}
             >
               Checkout
             </button>
           </div>
-
-          <div dangerouslySetInnerHTML={{ __html: responseText }} />
         </div>
       )}
 
