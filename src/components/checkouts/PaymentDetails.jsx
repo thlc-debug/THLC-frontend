@@ -12,6 +12,7 @@ import { CiSquarePlus } from "react-icons/ci";
 import { Convert } from "easy-currencies";
 
 import Paypal from "./paypal/Paypal";
+import { base_url } from "@/base_url";
 
 const PaymentDetails = ({ nextStep }) => {
   const [showDropdown, setShowDropdown] = useState(true);
@@ -86,7 +87,7 @@ const PaymentDetails = ({ nextStep }) => {
 
     try {
       const response = await fetch(
-        "http://localhost:4000/api/transactions/orders/ccavenue",
+        `${base_url}/api/transactions/orders/ccavenue`,
         {
           method: "POST",
           headers: {
