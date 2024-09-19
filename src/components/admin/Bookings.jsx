@@ -62,7 +62,7 @@ const Bookings = () => {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file && file.type === "application/pdf") {
-      console.log("Selected PDF file:", file);
+      console.log("Selected Pdf file");
     } else {
       alert("Please select a valid PDF file.");
     }
