@@ -95,7 +95,6 @@ const Footer = () => {
       </div>
 
       <div className="flex flex-col md:flex-row md:justify-between justify-center items-center text-center md:text-left  md:items-start mt-5 md:mt-16 gap-[20px] md:gap-0">
-        
         <div className="md:w-1/4 ">
           <div className="text-lg text-gray-200 pb-2 md:pb-8">
             <b>TheLuxuryHotelConcierge</b>
@@ -103,16 +102,17 @@ const Footer = () => {
           {/* <div className="text-gray-400 leading-relaxed text-sm md:text-lg flex gap-[10px] mb-[10px]">
           <FaHotel className="text-[2.2rem]"/>  Welcome to The Luxury Hotel Concierge, the top destination for customised premium vacation experiences.
           </div> */}
-          <Link 
-href="https://www.google.co.in/maps/place/Chandigarh/@30.7219251,76.7521701,12z/data=!4m6!3m5!1s0x390fed0be66ec96b:0xa5ff67f9527319fe!8m2!3d30.7333148!4d76.7794179!16zL20vMDFmMXE4?entry=ttu"
-target="_blank"
->
-          <div className="text-gray-400 leading-relaxed text-sm md:text-lg flex  gap-[10px]">
-         <IoLocation className="text-[2.2rem]"/>Chandigarh, India
-                    </div>
-        </Link>
+          <Link
+            href="https://www.google.co.in/maps/place/Chandigarh/@30.7219251,76.7521701,12z/data=!4m6!3m5!1s0x390fed0be66ec96b:0xa5ff67f9527319fe!8m2!3d30.7333148!4d76.7794179!16zL20vMDFmMXE4?entry=ttu"
+            target="_blank"
+          >
+            <div className="text-gray-400 leading-relaxed text-sm md:text-lg flex  gap-[10px]">
+              <IoLocation className="text-[2.2rem]" />
+              Chandigarh, India
+            </div>
+          </Link>
           <div className="text-gray-400 leading-relaxed text-sm mt-3 md:text-lg flex gap-2 justify-center items-center md:items-start md:justify-start  ">
-            <MdCall className="text-[1.8rem] " /> +91-9888334677
+            <MdCall className="text-[1.8rem] " /> 18889285558
           </div>
         </div>
         <div className="leading-relaxed ">
@@ -129,42 +129,40 @@ target="_blank"
               About Us
             </div>
           </Link>
-          <Link
-            href="/contact"
-          >
+          <Link href="/contact">
             <div className="text-gray-400 cursor-pointer text-sm md:text-lg">
               Careers
             </div>
           </Link>
         </div>
         <div className="leading-relaxed">
-          <Link href="/contact">
+          {/* <Link href="/contact"> */}
           <div className="text-gray-200 text-lg pb-2">
             <b>Support</b>
           </div>
-           </Link>
+          {/* </Link> */}
           <Link href="/contact">
-          <div className="text-gray-400 cursor-pointer text-sm md:text-lg">
+            <div className="text-gray-400 cursor-pointer text-sm md:text-lg">
               Help Center
             </div>
-           </Link>
+          </Link>
           <Link href="/contact">
             <div className="text-gray-400 cursor-pointer text-sm md:text-lg">
               Contact Us
             </div>
           </Link>
-         <Link href="/contact">
-         <div className="text-gray-400 cursor-pointer text-sm md:text-lg">
-            Status
-          </div>
+          <Link href="/contact">
+            <div className="text-gray-400 cursor-pointer text-sm md:text-lg">
+              Status
+            </div>
           </Link>
         </div>
         <div className="leading-relaxed">
-          <Link href="/contact">
+          {/* <Link href="/contact"> */}
           <div className="text-gray-200 text-lg pb-2">
             <b>Legal</b>
           </div>
-          </Link>
+          {/* </Link> */}
           <a
             href="#"
             target="_blank"
@@ -175,14 +173,36 @@ target="_blank"
               Privacy Policy
             </div>
           </a>
+          <a
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={openPolicyPDF}
+          >
+            <div className="text-gray-400 cursor-pointer text-sm md:text-lg">
+              Terms and Conditions
+            </div>
+          </a>
+          <a
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={openPolicyPDF}
+          >
+            <div className="text-gray-400 cursor-pointer text-sm md:text-lg">
+              Cancellation and Refund
+            </div>
+          </a>
         </div>
       </div>
 
       <hr className="h-px my-6 bg-gray-200 border-0 dark:bg-gray-700" />
       <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-        <div className="text-gray-500 text-xs md:text-lg">© 2021-2024 TheLuxuryHotelConcierge. All rights reserved</div>
+        <div className="text-gray-500 text-xs md:text-lg">
+          © 2021-2024 TheLuxuryHotelConcierge. All rights reserved
+        </div>
         <div className="flex gap-4">
-          <div className="text-gray-500 text-xs md:text-lg cursor-pointer">
+          {/* <div className="text-gray-500 text-xs md:text-lg cursor-pointer">
             Terms
           </div>
           <div className="text-gray-500 text-xs md:text-lg cursor-pointer">
@@ -190,7 +210,7 @@ target="_blank"
           </div>
           <div className="text-gray-500 text-xs md:text-lg cursor-pointer">
             Privacy Policies
-          </div>
+          </div> */}
           <div className="text-gray-500 flex items-center gap-2 md:mr-5">
             <a
               href="https://www.facebook.com/profile.php?id=61562328525447&mibextid=ZbWKwL"
@@ -199,7 +219,11 @@ target="_blank"
             >
               <FaSquareFacebook className="text-xl md:text-2xl" />
             </a>
-            <a href="https://x.com/theluxuryh19009" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://x.com/theluxuryh19009"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FaSquareXTwitter className="text-xl md:text-2xl" />
             </a>
             <a
