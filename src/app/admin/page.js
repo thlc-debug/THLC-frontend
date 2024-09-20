@@ -9,9 +9,6 @@ import Bookings from '@/components/admin/Bookings';
 import Hotels from '@/components/admin/Hotels';
 import Users from '@/components/admin/Users';
 
-
-
-
 const Page = () => {
   const [currentView, setCurrentView] = useState('dashboard');
 
@@ -33,20 +30,20 @@ const Page = () => {
   return (
     <div className='flex font-f_3 min-h-screen bg-zinc-100 overflow-hidden'>
       {/* aside nav bar */}
-      <div className='fixed h-full w-[10%] flex flex-col shadow-lg items-center gap-10 bg-[#FFFFFF]'>
+      <div className='fixed h-full w-[25%] md:w-[15%] lg:w-[10%] flex flex-col shadow-lg items-center gap-10 bg-[#FFFFFF]'>
         <h1 className='text-[20px] text-black my-4'>LHC</h1>
         <MdOutlineSpaceDashboard
-        size={35}
-          className={` cursor-pointer ${currentView === 'dashboard' ? 'text-black' : 'text-gray-500'}`}
+          size={35}
+          className={`cursor-pointer ${currentView === 'dashboard' ? 'text-black' : 'text-gray-500'}`}
           onClick={() => setCurrentView('dashboard')}
         />
         <SlCalender
-        size={30}
+          size={30}
           className={`cursor-pointer ${currentView === 'bookings' ? 'text-black' : 'text-gray-500'}`}
           onClick={() => setCurrentView('bookings')}
         />
         <FaKey
-        size={30}
+          size={30}
           className={`cursor-pointer ${currentView === 'hotels' ? 'text-black' : 'text-gray-500'}`}
           onClick={() => setCurrentView('hotels')}
         />
@@ -58,7 +55,7 @@ const Page = () => {
       </div>
 
       {/* main content area */}
-      <div className='ml-[10%] w-[90%] h-full p-4 '>
+      <div className='ml-[25%] md:ml-[15%] lg:ml-[10%] w-[75%] md:w-[85%] lg:w-[90%] h-full p-4'>
         {renderComponent()}
       </div>
     </div>

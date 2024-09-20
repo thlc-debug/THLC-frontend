@@ -114,6 +114,7 @@ const PersonalInfo = ({ id, nextStep }) => {
     }
 
     const days = CountNumberOfDays(checkin, checkout);
+    console.log(days);
 
     const price = await fetchHotelDetails();
 
