@@ -116,6 +116,9 @@ const Bookings = () => {
                 <th className="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase">
                   Actions
                 </th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase">
+                  Tickets
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -180,6 +183,11 @@ const Bookings = () => {
                         onChange={handleFileChange}
                       />
                     </div>
+                  </td>
+                  <td className="px-4 py-4">
+                    <button className="bg-blue-500 text-white px-1.5 py-1 rounded-md">
+                      View Tickets
+                    </button>
                   </td>
                 </tr>
               ))}
