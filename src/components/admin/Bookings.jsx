@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
-import { FaPlus, FaPen } from "react-icons/fa";
+import { FaPen, FaUpload } from "react-icons/fa";
 import { LuDelete } from "react-icons/lu";
 import { HiDotsHorizontal } from "react-icons/hi";
 import axios from "axios";
 import { base_url } from "@/base_url";
-import { FaUpload } from "react-icons/fa6";
 
 const Bookings = () => {
   const [activeHeading, setActiveHeading] = useState("Recents");
@@ -12,6 +11,7 @@ const Bookings = () => {
   const [selectedBooking, setSelectedBooking] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const fileInputRef = useRef(null);
 
   const today = new Date();
 
@@ -25,7 +25,11 @@ const Bookings = () => {
       setLoading(true);
       try {
         const response = await axios.get(`${base_url}/reservation/`);
-        setReservations(response.data);
+        const updatedReservations = response.data.map((item) => ({
+          ...item,
+          documentStatus: "waitlist", // Setting initial value to waitlist
+        }));
+        setReservations(updatedReservations);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -53,8 +57,6 @@ const Bookings = () => {
   const handleHeadingClick = (heading) => {
     setActiveHeading(heading);
   };
-
-  const fileInputRef = useRef(null);
 
   const handleUploadClick = () => {
     fileInputRef.current.click();
@@ -85,14 +87,16 @@ const Bookings = () => {
             (heading) => (
               <div
                 key={heading}
-                className={`flex flex-col cursor-pointer ${activeHeading === heading ? "text-black" : "text-gray-500"
-                  }`}
+                className={`flex flex-col cursor-pointer ${
+                  activeHeading === heading ? "text-black" : "text-gray-500"
+                }`}
                 onClick={() => handleHeadingClick(heading)}
               >
                 <h1 className="text-lg">{heading}</h1>
                 <span
-                  className={`w-full h-[2px] ${activeHeading === heading ? "bg-black" : "bg-transparent"
-                    }`}
+                  className={`w-full h-[2px] ${
+                    activeHeading === heading ? "bg-black" : "bg-transparent"
+                  }`}
                 ></span>
               </div>
             )
@@ -123,6 +127,15 @@ const Bookings = () => {
                 <th className="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase">
                   Actions
                 </th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase">
+                  Document Uploadation
+                </th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase">
+                  Tickets
+                </th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase">
+                  Submit
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -143,20 +156,23 @@ const Bookings = () => {
                         </div>
                         <div className="ml-4">
                           <div className="text-sm font-medium text-gray-900">
-                            {item.hotel_id?.name}
+                            {item.hotel_id.name}
                           </div>
-                          <div className="text-sm text-gray-500">Code: XYZ123</div>
+                          <div className="text-sm text-gray-500">
+                            Code: XYZ123
+                          </div>
                         </div>
                       </div>
                     </td>
                     <td className="px-4 py-4 text-sm font-medium">
                       <span
-                        className={`px-2 py-1 rounded-md ${item.status === "confirmed"
+                        className={`px-2 py-1 rounded-md ${
+                          item.status === "confirmed"
                             ? "bg-green-500 text-white"
                             : item.status === "cancelled"
-                              ? "bg-red-500 text-white"
-                              : "bg-yellow-500 text-white"
-                          }`}
+                            ? "bg-red-500 text-white"
+                            : "bg-yellow-500 text-white"
+                        }`}
                       >
                         {item.status}
                       </span>
@@ -175,35 +191,103 @@ const Bookings = () => {
                         <HiDotsHorizontal />
                       </button>
                       <div>
-                        <button
-                          className="text-gray-500 hover:text-gray-900"
-                          onClick={handleUploadClick}
-                        >
-                          <FaUpload />
-                        </button>
+                        {item.status === "confirmed" && (
+                          <>
+                            <button
+                              className="text-gray-500 hover:text-gray-900"
+                              onClick={handleUploadClick}
+                            >
+                              <FaUpload />
+                            </button>
 
-                        <input
-                          type="file"
-                          ref={fileInputRef}
-                          style={{ display: "none" }}
-                          accept="application/pdf"
-                          onChange={handleFileChange}
-                        />
+                            <input
+                              type="file"
+                              ref={fileInputRef}
+                              style={{ display: "none" }}
+                              accept="application/pdf"
+                              onChange={handleFileChange}
+                            />
+                          </>
+                        )}
                       </div>
+                    </td>
+                    <td className="px-4 py-4">
+                      {item.status === "pending" ||
+                      item.status === "cancelled" ? (
+                        <span className="text-transparent">No Upload</span>
+                      ) : (
+                        <span
+                          className={`px-2 py-1 rounded-md ${
+                            item.documentStatus === "confirmed"
+                              ? "bg-green-500 text-white"
+                              : "bg-yellow-500 text-white"
+                          }`}
+                        >
+                          {item.documentStatus}
+                        </span>
+                      )}
+                    </td>
+                    <td className="px-4 py-4">
+                      {item.status === "pending" ||
+                      item.status === "cancelled" ? (
+                        <span className="text-transparent">View Tickets</span>
+                      ) : item.status === "confirmed" &&
+                        item.documentStatus === "confirmed" ? (
+                        <button className="bg-blue-500 text-white px-1.5 py-1 rounded-md">
+                          View Tickets
+                        </button>
+                      ) : item.status === "confirmed" &&
+                        item.documentStatus === "waitlist" ? (
+                        <button
+                          className="bg-gray-500 text-white px-1.5 py-1 rounded-md"
+                          disabled
+                        >
+                          View Tickets
+                        </button>
+                      ) : (
+                        <span className="text-transparent">View Tickets</span>
+                      )}
+                    </td>
+                    <td className="px-4 py-4">
+                      {item.status === "pending" ||
+                      item.status === "cancelled" ? (
+                        <span className="text-transparent">Submit</span>
+                      ) : item.status === "confirmed" &&
+                        item.documentStatus === "confirmed" ? (
+                        <button className="bg-green-500 text-white px-2 py-1 rounded-md">
+                          Submit
+                        </button>
+                      ) : item.status === "confirmed" &&
+                        item.documentStatus === "waitlist" ? (
+                        <button
+                          className="bg-gray-500 text-white px-2 py-1 rounded-md"
+                          disabled
+                        >
+                          Submit
+                        </button>
+                      ) : (
+                        <span className="text-transparent">Submit</span>
+                      )}
                     </td>
                   </tr>
                   {selectedBooking && selectedBooking._id === item._id && (
                     <tr>
-                      <td colSpan="4" className="p-6 bg-gray-100 rounded-lg shadow-lg">
+                      <td
+                        colSpan="4"
+                        className="p-6 bg-gray-100 rounded-lg shadow-lg"
+                      >
                         <div className="flex justify-between items-center mb-4">
-                          <h3 className="text-xl font-bold text-gray-800">Booking Details</h3>
+                          <h3 className="text-xl font-bold text-gray-800">
+                            Booking Details
+                          </h3>
                           <span
-                            className={`px-3 py-1 text-sm font-semibold rounded-full ${item.status === "confirmed"
+                            className={`px-3 py-1 text-sm font-semibold rounded-full ${
+                              item.status === "confirmed"
                                 ? "bg-green-100 text-green-600"
                                 : item.status === "cancelled"
-                                  ? "bg-red-100 text-red-600"
-                                  : "bg-yellow-100 text-yellow-600"
-                              }`}
+                                ? "bg-red-100 text-red-600"
+                                : "bg-yellow-100 text-yellow-600"
+                            }`}
                           >
                             {item.status}
                           </span>
@@ -221,20 +305,26 @@ const Bookings = () => {
                               {item.hotel_id?.name}
                             </h4>
                             <p className="text-sm text-gray-600">
-                              {item.hotel_id?.stars} stars | {item.hotel_id?.city},{" "}
-                              {item.hotel_id?.country}
+                              {item.hotel_id?.stars} stars |{" "}
+                              {item.hotel_id?.city}, {item.hotel_id?.country}
                             </p>
-                            <p className="text-sm text-gray-500 mt-2">{item.hotel_id?.about}</p>
+                            <p className="text-sm text-gray-500 mt-2">
+                              {item.hotel_id?.about}
+                            </p>
                           </div>
 
                           {/* Booking Information */}
                           <div className="bg-white p-4 rounded-lg shadow-sm">
-                            <h4 className="text-lg font-semibold text-gray-900 mb-3">Booking Information</h4>
+                            <h4 className="text-lg font-semibold text-gray-900 mb-3">
+                              Booking Information
+                            </h4>
                             <div className="text-sm text-gray-600 mb-2">
-                              <strong>Check-in:</strong> {new Date(item.check_in).toLocaleString()}
+                              <strong>Check-in:</strong>{" "}
+                              {new Date(item.check_in).toLocaleString()}
                             </div>
                             <div className="text-sm text-gray-600 mb-2">
-                              <strong>Check-out:</strong> {new Date(item.check_out).toLocaleString()}
+                              <strong>Check-out:</strong>{" "}
+                              {new Date(item.check_out).toLocaleString()}
                             </div>
                             <div className="text-sm text-gray-600 mb-2">
                               <strong>Guests:</strong> {item.no_of_people}
@@ -248,8 +338,11 @@ const Bookings = () => {
                             <div className="text-sm text-gray-600">
                               <strong>Payment Status:</strong>{" "}
                               <span
-                                className={`font-semibold ${item.is_payment_done ? "text-green-600" : "text-red-600"
-                                  }`}
+                                className={`font-semibold ${
+                                  item.is_payment_done
+                                    ? "text-green-600"
+                                    : "text-red-600"
+                                }`}
                               >
                                 {item.is_payment_done ? "Completed" : "Pending"}
                               </span>
@@ -258,23 +351,26 @@ const Bookings = () => {
 
                           {/* Hotel Facilities */}
                           <div className="bg-white p-4 rounded-lg shadow-sm md:col-span-2">
-                            <h4 className="text-lg font-semibold text-gray-900 mb-3">Facilities</h4>
+                            <h4 className="text-lg font-semibold text-gray-900 mb-3">
+                              Facilities
+                            </h4>
                             <ul className="flex flex-wrap gap-2">
-                              {item.hotel_id?.facilities.map((facility, index) => (
-                                <li
-                                  key={index}
-                                  className="bg-gray-200 text-sm text-gray-700 px-3 py-1 rounded-md"
-                                >
-                                  {facility}
-                                </li>
-                              ))}
+                              {item.hotel_id?.facilities.map(
+                                (facility, index) => (
+                                  <li
+                                    key={index}
+                                    className="bg-gray-200 text-sm text-gray-700 px-3 py-1 rounded-md"
+                                  >
+                                    {facility}
+                                  </li>
+                                )
+                              )}
                             </ul>
                           </div>
                         </div>
                       </td>
                     </tr>
                   )}
-
                 </React.Fragment>
               ))}
             </tbody>
