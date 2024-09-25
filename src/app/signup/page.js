@@ -10,6 +10,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { base_url } from "@/base_url";
 import { fetchUserDetails } from "@/utils/fetchUserDetails";
 import { setToken } from "@/utils/setToken";
+import { login } from "@/store/features/auth/auth-slice";
+import { useDispatch ,useSelector} from "react-redux";
 const Page = () => {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -26,12 +28,19 @@ const Page = () => {
   const router = useRouter();
   const api = base_url;
 
+  const dispatch = useDispatch(); // Redux dispatch hook
+  const auth = useSelector((state) => state.auth);
+
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token !== null && token !== undefined) {
+    console.log(auth);
+  }, [auth]);
+
+  useEffect(() => {
+    if (auth.token) {
       router.push("/");
     }
-  }, []);
+  }, [auth, router]);
+
 
   const generateOTP = async (e) => {
     e.preventDefault();
@@ -107,8 +116,11 @@ const Page = () => {
       setResponseMessage(result.message);
       setLoading(false);
 
-      if (result.token !== null && result.token !== undefined) {
-        localStorage.setItem("token", result.token);
+      if (result.token && result.data) {
+        dispatch(login({
+          token: result.token,
+          data: result.data, 
+        }));
         fetchUserDetails();
         router.push("/");
       } else {
@@ -137,17 +149,17 @@ const Page = () => {
     window.open(`${base_url}/api/auth/google`, "_blank", "width=500,height=600");
 
     const messageListener = (event) => {
-      if(event.data){
+      if (event.data) {
         const { token } = event.data;
-        if(token){
-          setToken(token);
-        }
-        else{
-          router.push('/auth/failure');
+        if (token) {
+          dispatch(login({ token })); // Dispatch login action with Google token
+        } else {
+          router.push("/auth/failure");
         }
       }
     };
-  window.addEventListener("message", messageListener, { once: true });
+
+    window.addEventListener("message", messageListener, { once: true });
   };
 
   return (

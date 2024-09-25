@@ -9,8 +9,25 @@ import "react-toastify/dist/ReactToastify.css";
 import ClipLoader from "react-spinners/ClipLoader";
 import { fetchUserDetails } from "@/utils/fetchUserDetails";
 import { setToken } from "@/utils/setToken";
+import { useSelector, useDispatch } from "react-redux";
+import { login } from "@/store/features/auth/auth-slice";
+
+<<<<<<< Updated upstream
+const SigninPage = () => {
+=======
+// redux
+// import { useSelector, useDispatch } from "react-redux";
 
 const SigninPage = () => {
+  const dispatch = useDispatch();
+
+  const auth = useSelector((state) => state.auth);
+  
+  useEffect(() => {
+    console.log(auth);
+  }, [auth]);
+
+>>>>>>> Stashed changes
   const [isHiddenDivVisible, setIsHiddenDivVisible] = useState(false);
   const [isPasswordResetVisible, setIsPasswordResetVisible] = useState(false);
   const [message, setMessage] = useState("");
@@ -26,11 +43,11 @@ const SigninPage = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token !== null && token !== undefined) {
+    if (auth.token) {
       router.push("/");
     }
-  }, []);
+  }, [auth, router]);
+
 
   const handleChange = (e) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -54,9 +71,14 @@ const SigninPage = () => {
 
       const response = await fetch(`${base_url}/api/auth/login`, requestOptions);
       const result = await response.json();
-      if (response.ok && result.token !== null && result.token !== undefined) {
-        localStorage.setItem("token", result.token);
-        fetchUserDetails();
+
+      if (result.token && result.data) {
+        dispatch(login({
+          token: result.token,
+          data: result.data, 
+        }));
+
+        fetchUserDetails(); // Optional: fetch additional user details
         router.push("/");
       } else {
         toast.error(result.message || "Failed to login. Please try again.");
@@ -139,11 +161,18 @@ const SigninPage = () => {
     const messageListener = (event) => {
       if(event.data){
         const { token } = event.data;
+<<<<<<< Updated upstream
         if(token){
           setToken(token);
         }
         else{
           router.push('/auth/failure');
+=======
+        if (token) {
+          dispatch(login({ token })); // Store Google login token in Redux
+        } else {
+          router.push("/auth/failure");
+>>>>>>> Stashed changes
         }
       }
     };
