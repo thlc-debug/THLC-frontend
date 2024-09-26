@@ -7,15 +7,14 @@ import { base_url } from "@/base_url";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ClipLoader from "react-spinners/ClipLoader";
-import { fetchUserDetails } from "@/utils/fetchUserDetails";
-import { setToken } from "@/utils/setToken";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "@/store/features/auth/auth-slice";
-
+import axios from "axios";
 
 const SigninPage = () => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
+
   const [isHiddenDivVisible, setIsHiddenDivVisible] = useState(false);
   const [isPasswordResetVisible, setIsPasswordResetVisible] = useState(false);
   const [message, setMessage] = useState("");
@@ -30,7 +29,7 @@ const SigninPage = () => {
     if (auth.token) {
       router.push("/");
     }
-  }, [auth, router]);
+  }, [auth.token, router]);
 
   const handleChange = (e) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -39,20 +38,22 @@ const SigninPage = () => {
   const handleClick = async (e) => {
     e.preventDefault();
     setLoading(true);
-    
     try {
-     
       const response = await fetch(`${base_url}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(inputs),
       });
+  
       const result = await response.json();
-
+  
       if (result.token) {
+       
         dispatch(login({ token: result.token }));
+  
         await fetchUserDetails(result.token);
         router.push("/");
+        
       } else {
         toast.error(result.message || "Failed to login. Please try again.");
       }
@@ -62,18 +63,32 @@ const SigninPage = () => {
       setLoading(false);
     }
   };
-
+  
   const fetchUserDetails = async (token) => {
     try {
       const response = await axios.get(`${base_url}/user/details`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      dispatch(login({ data: response.data }));
+  
+      if (response.data) {
+        dispatch(login({
+          token : token,
+          data: {
+            _id: response.data?._id,
+            name: response.data?.username,
+            userType: response.data?.accountType,
+            whishList: response.data?.wishlist,
+            lastLogin: response.data?.lastLoggedIn,
+          },
+        }));
+        console.log("user details new ",auth);
+       
+      }
     } catch (error) {
-      console.error("Error fetching user details:", error);
       toast.error("Failed to fetch user details. Please try again.");
     }
   };
+  
 
   const handleForgotPassword = async () => {
     setLoading(true);
@@ -83,8 +98,9 @@ const SigninPage = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ mail: forgotPasswordEmail }),
       });
+
       const result = await response.json();
-      
+
       if (response.ok) {
         setMessage("OTP sent to your email.");
         setIsPasswordResetVisible(true);
@@ -106,8 +122,9 @@ const SigninPage = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ mail: forgotPasswordEmail, otp, newPassword }),
       });
+
       const result = await response.json();
-      
+
       if (response.ok) {
         setMessage("Password has been reset successfully.");
         setIsHiddenDivVisible(false);
@@ -128,20 +145,35 @@ const SigninPage = () => {
   };
 
   const signInGoogle = () => {
-    window.open(`${base_url}/api/auth/google`, "_blank", "width=500,height=600");
+    
 
-    const messageListener = (event) => {
+    const messageListener = async (event) => {
+      console.log("event origin",event.origin);
+      console.log("event token",event.data.token);
+
+      console.log("event base url ",event.origin,base_url);
+
+      if (event.origin != 'https://thlc-backend.vercel.app') return;
+
       const { token } = event.data;
+      console.log("event token",event);
       if (token) {
         dispatch(login({ token }));
-        fetchUserDetails(token);
+        await fetchUserDetails(token);
+        router.push("/");
       } else {
         router.push("/auth/failure");
       }
     };
 
+    
+
     window.addEventListener("message", messageListener, { once: true });
+
+    window.open(`${base_url}/api/auth/google`, "_blank", "width=500,height=600");
   };
+  
+  // console.log("auth details",auth);
 
   return (
     <div className="font-f_3">
@@ -154,13 +186,10 @@ const SigninPage = () => {
       <div className="m-auto">
         {isHiddenDivVisible && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-            <div
-              onClick={toggleHiddenDiv}
-              className="absolute top-4 right-4 cursor-pointer text-white"
-            >
+            <div onClick={toggleHiddenDiv} className="absolute top-4 right-4 cursor-pointer text-white">
               <RxCross2 size={24} />
             </div>
-            <div className="relative bg-white rounded-3xl p-8 shadow-lg w-80 md:w-96 ">
+            <div className="relative bg-white rounded-3xl p-8 shadow-lg w-80 md:w-96">
               {!isPasswordResetVisible ? (
                 <>
                   <input
@@ -198,7 +227,7 @@ const SigninPage = () => {
                     <button
                       onClick={handleForgotPassword}
                       type="button"
-                      className="absolute mt-2 p-1 right-2 top-1/2 transform -translate-y-1/2 text-white bg-gray-800 hover:bg-gray-900 rounded-full "
+                      className="absolute mt-2 p-1 right-2 top-1/2 transform -translate-y-1/2 text-white bg-gray-800 hover:bg-gray-900 rounded-full"
                     >
                       Send OTP
                     </button>
@@ -229,12 +258,9 @@ const SigninPage = () => {
       <div className="flex flex-col md:flex-row h-screen w-screen">
         <div className="md:w-2/5 w-full h-full flex items-center justify-center p-4">
           <div className="max-w-md w-full">
-            <div className="text-center text-3xl mb-3">
-              LuxuryHotelConcierge
-            </div>
+            <div className="text-center text-3xl mb-3">LuxuryHotelConcierge</div>
             <div className="text-center text-gray-400 text-md">
-              Discover the epitome of luxury and comfort at our world-renowned
-              hotels.
+              Discover the epitome of luxury and comfort at our world-renowned hotels.
             </div>
             <div className="text-center text-3xl my-5">Sign In</div>
             <div className="mx-4 md:mx-10">
@@ -242,7 +268,7 @@ const SigninPage = () => {
                 <input
                   name="mail"
                   onChange={handleChange}
-                  type="mail"
+                  type="email"
                   className="w-full p-2 border rounded-full"
                   placeholder="Enter your email"
                 />
@@ -256,7 +282,6 @@ const SigninPage = () => {
                   placeholder="Enter your password"
                 />
               </div>
-
               <button
                 onClick={handleClick}
                 type="button"
@@ -264,10 +289,7 @@ const SigninPage = () => {
               >
                 Continue
               </button>
-              <div
-                onClick={toggleHiddenDiv}
-                className="text-gray-700 text-sm mb-2 text-center mt-4 cursor-pointer"
-              >
+              <div onClick={toggleHiddenDiv} className="text-gray-700 text-sm mb-2 text-center mt-4 cursor-pointer">
                 Forgot password?
               </div>
               <div className="relative flex py-2 items-center mx-4">
@@ -275,9 +297,7 @@ const SigninPage = () => {
                 <span className="flex-shrink mx-4 text-gray-400">or</span>
                 <div className="flex-grow border-t border-gray-400"></div>
               </div>
-              <div className="text-gray-700 text-sm text-center mb-2">
-                Sign in with
-              </div>
+              <div className="text-gray-700 text-sm text-center mb-2">Sign in with</div>
               <button
                 type="button"
                 className="w-full text-white bg-gray-800 hover:bg-gray-900 rounded-full py-2 mb-2"

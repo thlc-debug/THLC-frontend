@@ -16,9 +16,14 @@ import TopVillas from '@/components/home/TopVillas';
 import Services from '@/components/home/Services';
 import OurService from '@/components/home/OurService';
 import Script from 'next/script';
+import { useSelector } from 'react-redux';
 
 
 const Home = () => {
+
+  // const auth = useSelector((state) => state.auth);
+
+  // console.log("auth in deshboard" , auth);
 
   return (
     <div className='font-f_3'>
