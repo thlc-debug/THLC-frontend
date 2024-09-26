@@ -9,39 +9,28 @@ import "react-toastify/dist/ReactToastify.css";
 import ClipLoader from "react-spinners/ClipLoader";
 import { fetchUserDetails } from "@/utils/fetchUserDetails";
 import { setToken } from "@/utils/setToken";
-
-// redux
 import { useSelector, useDispatch } from "react-redux";
+import { login } from "@/store/features/auth/auth-slice";
+
 
 const SigninPage = () => {
   const dispatch = useDispatch();
-
   const auth = useSelector((state) => state.auth);
-
-  useEffect(() => {
-    console.log(auth);
-  }, []);
-
   const [isHiddenDivVisible, setIsHiddenDivVisible] = useState(false);
   const [isPasswordResetVisible, setIsPasswordResetVisible] = useState(false);
   const [message, setMessage] = useState("");
   const [forgotPasswordEmail, setForgotPasswordEmail] = useState("");
   const [otp, setOtp] = useState("");
   const [newPassword, setNewPassword] = useState("");
-  const [inputs, setInputs] = useState({
-    mail: "",
-    password: "",
-  });
+  const [inputs, setInputs] = useState({ mail: "", password: "" });
   const [loading, setLoading] = useState(false);
-
   const router = useRouter();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token !== null && token !== undefined) {
+    if (auth.token) {
       router.push("/");
     }
-  }, []);
+  }, [auth, router]);
 
   const handleChange = (e) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -50,27 +39,19 @@ const SigninPage = () => {
   const handleClick = async (e) => {
     e.preventDefault();
     setLoading(true);
+    
     try {
-      const myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
-
-      const raw = JSON.stringify(inputs);
-
-      const requestOptions = {
+     
+      const response = await fetch(`${base_url}/api/auth/login`, {
         method: "POST",
-        headers: myHeaders,
-        body: raw,
-        redirect: "follow",
-      };
-
-      const response = await fetch(
-        `${base_url}/api/auth/login`,
-        requestOptions
-      );
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(inputs),
+      });
       const result = await response.json();
-      if (response.ok && result.token !== null && result.token !== undefined) {
-        localStorage.setItem("token", result.token);
-        fetchUserDetails();
+
+      if (result.token) {
+        dispatch(login({ token: result.token }));
+        await fetchUserDetails(result.token);
         router.push("/");
       } else {
         toast.error(result.message || "Failed to login. Please try again.");
@@ -82,38 +63,33 @@ const SigninPage = () => {
     }
   };
 
-  const toggleHiddenDiv = () => {
-    setIsHiddenDivVisible(!isHiddenDivVisible);
-    if (!isHiddenDivVisible) {
-      setIsPasswordResetVisible(false);
+  const fetchUserDetails = async (token) => {
+    try {
+      const response = await axios.get(`${base_url}/user/details`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      dispatch(login({ data: response.data }));
+    } catch (error) {
+      console.error("Error fetching user details:", error);
+      toast.error("Failed to fetch user details. Please try again.");
     }
   };
 
   const handleForgotPassword = async () => {
-    setMessage(""); // Clear previous messages
     setLoading(true);
-
     try {
-      const response = await fetch(
-        `${base_url}/api/auth/request-password-reset`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ mail: forgotPasswordEmail }),
-        }
-      );
-
+      const response = await fetch(`${base_url}/api/auth/request-password-reset`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ mail: forgotPasswordEmail }),
+      });
       const result = await response.json();
-
+      
       if (response.ok) {
         setMessage("OTP sent to your email.");
         setIsPasswordResetVisible(true);
       } else {
-        toast.error(
-          result.message || "Failed to send OTP. Please check your email."
-        );
+        toast.error(result.message || "Failed to send OTP. Please check your email.");
       }
     } catch (error) {
       toast.error("An error occurred. Please try again later.");
@@ -123,28 +99,21 @@ const SigninPage = () => {
   };
 
   const handlePasswordReset = async () => {
-    setMessage(""); // Clear previous messages
     setLoading(true);
-
     try {
       const response = await fetch(`${base_url}/api/auth/reset-password`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ mail: forgotPasswordEmail, otp, newPassword }),
       });
-
       const result = await response.json();
-
+      
       if (response.ok) {
         setMessage("Password has been reset successfully.");
         setIsHiddenDivVisible(false);
         setIsPasswordResetVisible(false);
       } else {
-        toast.error(
-          result.message || "Failed to reset password. Please try again."
-        );
+        toast.error(result.message || "Failed to reset password. Please try again.");
       }
     } catch (error) {
       toast.error("An error occurred. Please try again later.");
@@ -153,21 +122,21 @@ const SigninPage = () => {
     }
   };
 
+  const toggleHiddenDiv = () => {
+    setIsHiddenDivVisible((prev) => !prev);
+    if (!isHiddenDivVisible) setIsPasswordResetVisible(false);
+  };
+
   const signInGoogle = () => {
-    window.open(
-      `${base_url}/api/auth/google`,
-      "_blank",
-      "width=500,height=600"
-    );
+    window.open(`${base_url}/api/auth/google`, "_blank", "width=500,height=600");
 
     const messageListener = (event) => {
-      if (event.data) {
-        const { token } = event.data;
-        if (token) {
-          setToken(token);
-        } else {
-          router.push("/auth/failure");
-        }
+      const { token } = event.data;
+      if (token) {
+        dispatch(login({ token }));
+        fetchUserDetails(token);
+      } else {
+        router.push("/auth/failure");
       }
     };
 
