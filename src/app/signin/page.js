@@ -8,7 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useSelector, useDispatch } from "react-redux";
-import { login } from "@/store/features/auth/auth-slice";
+import { login, setUserData } from "@/store/features/auth/auth-slice"; // Import setUserData
 import axios from "axios";
 
 const SigninPage = () => {
@@ -31,6 +31,13 @@ const SigninPage = () => {
     }
   }, [auth.token, router]);
 
+  useEffect(() => {
+    // Check if token exists but user details are missing
+    if (auth.token && !auth.data) {
+      fetchUserDetails(auth.token); // Fetch user details using the token
+    }
+  }, [auth.token]);
+
   const handleChange = (e) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
@@ -44,16 +51,14 @@ const SigninPage = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(inputs),
       });
-  
+
       const result = await response.json();
-  
+
       if (result.token) {
-       
         dispatch(login({ token: result.token }));
-  
+        localStorage.setItem("token", result.token);
         await fetchUserDetails(result.token);
         router.push("/");
-        
       } else {
         toast.error(result.message || "Failed to login. Please try again.");
       }
@@ -63,32 +68,28 @@ const SigninPage = () => {
       setLoading(false);
     }
   };
-  
+
   const fetchUserDetails = async (token) => {
     try {
       const response = await axios.get(`${base_url}/user/details`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-  
+      console.log("response data in sign in",response);
+
       if (response.data) {
-        dispatch(login({
-          token : token,
-          data: {
-            _id: response.data?._id,
-            name: response.data?.username,
-            userType: response.data?.accountType,
-            whishList: response.data?.wishlist,
-            lastLogin: response.data?.lastLoggedIn,
-          },
+        dispatch(setUserData({
+          _id: response.data._id,
+          name: response.data.username,
+          userType: response.data.accountType,
+          wishlist: response.data.wishlist,
+          lastLogin: response.data.lastLoggedIn,
+          mail : response.data.email
         }));
-        console.log("user details new ",auth);
-       
       }
     } catch (error) {
       toast.error("Failed to fetch user details. Please try again.");
     }
   };
-  
 
   const handleForgotPassword = async () => {
     setLoading(true);
@@ -145,20 +146,13 @@ const SigninPage = () => {
   };
 
   const signInGoogle = () => {
-    
-
     const messageListener = async (event) => {
-      console.log("event origin",event.origin);
-      console.log("event token",event.data.token);
-
-      console.log("event base url ",event.origin,base_url);
-
-      if (event.origin != 'https://thlc-backend.vercel.app') return;
+      if (event.origin !== 'https://thlc-backend.vercel.app') return;
 
       const { token } = event.data;
-      console.log("event token",event);
       if (token) {
         dispatch(login({ token }));
+        localStorage.setItem("token", token);
         await fetchUserDetails(token);
         router.push("/");
       } else {
@@ -166,15 +160,10 @@ const SigninPage = () => {
       }
     };
 
-    
-
     window.addEventListener("message", messageListener, { once: true });
 
     window.open(`${base_url}/api/auth/google`, "_blank", "width=500,height=600");
   };
-  
-  // console.log("auth details",auth);
-
   return (
     <div className="font-f_3">
       <ToastContainer />
