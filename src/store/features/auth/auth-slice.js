@@ -21,6 +21,7 @@ export const authSlice = createSlice({
         ...state.data, 
         ...action.payload.data, 
       };      
+      
     },
     logout: (state) => {
       state.token = null;

@@ -21,9 +21,9 @@ import { useSelector } from 'react-redux';
 
 const Home = () => {
 
-  // const auth = useSelector((state) => state.auth);
+  const auth = useSelector((state) => state.auth);
 
-  // console.log("auth in deshboard" , auth);
+  console.log("auth in deshboard" , auth);
 
   return (
     <div className='font-f_3'>
