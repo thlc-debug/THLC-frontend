@@ -6,8 +6,14 @@ import { BsSuitcaseLgFill } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import Fixed from './home/Fixed';
 import { fetchUserDetails } from '@/utils/fetchUserDetails';
+import { useSelector, useDispatch } from "react-redux";
+import { login, logout } from "@/store/features/auth/auth-slice";
 
 const Header = () => {
+
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
+
   const [isVisible, setIsVisible] = useState(false);
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
@@ -32,14 +38,17 @@ const Header = () => {
   }, [isVisible]);
 
   useEffect(() => {
-    fetchUserDetails()
-    const token = localStorage.getItem('token');
+    // fetchUserDetails()
+    // const token = localStorage.getItem('token');
+    console.log("auth in header",auth);
+    const token = auth.token;
     setIsAuthenticated(token !== null && token !== undefined);
   }, []);
 
   const handleSignout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('userDetails');
+    // localStorage.removeItem('token');
+    // localStorage.removeItem('userDetails');
+    dispatch(logout());
     router.push('/signin')
   }
 
@@ -51,6 +60,8 @@ const Header = () => {
     router.push(path);
     setIsOpen(false);
   };
+
+  
 
   return (
     <header className="flex justify-between items-center p-6 absolute w-full font-f_3 top-0 z-10 bg-opacity-50 px-8 mt-4">
