@@ -53,7 +53,7 @@ const Page = () => {
   const showSidebar = router.pathname !== "/newadmin";
 
   return (
-    <div className="h-screen bg-gray-200 w-full flex flex-col">
+    <div className="h-full bg-gray-200 w-full flex flex-col">
       {/* Header */}
       {showSidebar && (
         <div className="w-full">
@@ -70,7 +70,7 @@ const Page = () => {
         )}
 
         {/* Main content area */}
-        <div className="flex-1 p-6 m-4 rounded-md bg-white overflow-y-auto">
+        <div className="flex-1  m-5 bg-white rounded-md overflow-y-auto">
           {renderMainContent()}
         </div>
       </div>

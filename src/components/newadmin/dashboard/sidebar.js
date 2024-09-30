@@ -6,7 +6,7 @@ import { FaKey, FaSignOutAlt } from "react-icons/fa";
 
 const Sidebar = ({ setCurrentView, onLogout }) => {
   return (
-    <div className="h-[85vh] flex flex-col m-3 rounded-md justify-between bg-white shadow-lg">
+    <div className="h-[670px] flex flex-col m-3 rounded-md justify-between bg-white shadow-lg">
       {/* Sidebar */}
       <div className="flex flex-col h-full justify-between p-4">
         <nav className="flex-1">
