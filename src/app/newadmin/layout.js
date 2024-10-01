@@ -3,7 +3,7 @@
 const Layout = ({ children } ) => {
   return (
     <div>
-      <main>
+      <main className="bg-gray-100">
         {children}
       </main>
     </div>

@@ -3,6 +3,7 @@ import { MdOutlineSpaceDashboard } from "react-icons/md";
 import { HiOutlineUsers } from "react-icons/hi";
 import { SlCalender } from "react-icons/sl";
 import { FaKey, FaSignOutAlt } from "react-icons/fa";
+import { HiMiniHome } from "react-icons/hi2";
 
 const Sidebar = ({ setCurrentView, onLogout }) => {
   return (
@@ -17,7 +18,8 @@ const Sidebar = ({ setCurrentView, onLogout }) => {
                 className="flex items-center p-3 rounded-lg w-full hover:bg-gray-100"
                 onClick={() => setCurrentView("dashboard")}
               >
-                <MdOutlineSpaceDashboard size={24} className="mr-2" />
+                {/* <MdOutlineSpaceDashboard /> */}
+                <HiMiniHome size={24} className="mr-2" />
                 <span>Dashboard</span>
               </button>
             </li>
