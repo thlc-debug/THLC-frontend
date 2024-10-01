@@ -17,12 +17,9 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action) => {
-      state.token = action.payload.token;      
-      // state.data = {
-      //   ...state.data, 
-      //   ...action.payload.data, 
-      // };      
-      
+      state.token = action.payload.token;
+      state.data = action.payload.data;
+
     },
     logout: (state) => {
       state.token = null;
@@ -32,13 +29,14 @@ export const authSlice = createSlice({
         userType: "",
         whishList: [],
         lastLogin: "",
+
         mail:""
+
       };
     },
     updateWhishList: (state, action) => {
       state.data.whishList = action.payload;
     },
-
     setUserData: (state, action) => {
       state.data = action.payload; // Set user details temporarily after fetching
     },

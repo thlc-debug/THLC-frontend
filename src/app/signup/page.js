@@ -32,6 +32,7 @@ const Page = () => {
 
   const dispatch = useDispatch(); // Redux dispatch hook
   const auth = useSelector((state) => state.auth);
+
   useEffect(() => {
     console.log(auth);
   }, [auth]);
