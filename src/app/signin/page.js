@@ -12,9 +12,6 @@ import { setToken } from "@/utils/setToken";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "@/store/features/auth/auth-slice";
 
-<<<<<<< Updated upstream
-const SigninPage = () => {
-=======
 // redux
 // import { useSelector, useDispatch } from "react-redux";
 
@@ -22,12 +19,11 @@ const SigninPage = () => {
   const dispatch = useDispatch();
 
   const auth = useSelector((state) => state.auth);
-  
+
   useEffect(() => {
     console.log(auth);
   }, [auth]);
 
->>>>>>> Stashed changes
   const [isHiddenDivVisible, setIsHiddenDivVisible] = useState(false);
   const [isPasswordResetVisible, setIsPasswordResetVisible] = useState(false);
   const [message, setMessage] = useState("");
@@ -47,7 +43,6 @@ const SigninPage = () => {
       router.push("/");
     }
   }, [auth, router]);
-
 
   const handleChange = (e) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -69,14 +64,19 @@ const SigninPage = () => {
         redirect: "follow",
       };
 
-      const response = await fetch(`${base_url}/api/auth/login`, requestOptions);
+      const response = await fetch(
+        `${base_url}/api/auth/login`,
+        requestOptions
+      );
       const result = await response.json();
 
       if (result.token && result.data) {
-        dispatch(login({
-          token: result.token,
-          data: result.data, 
-        }));
+        dispatch(
+          login({
+            token: result.token,
+            data: result.data,
+          })
+        );
 
         fetchUserDetails(); // Optional: fetch additional user details
         router.push("/");
@@ -102,13 +102,16 @@ const SigninPage = () => {
     setLoading(true);
 
     try {
-      const response = await fetch(`${base_url}/api/auth/request-password-reset`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ mail: forgotPasswordEmail }),
-      });
+      const response = await fetch(
+        `${base_url}/api/auth/request-password-reset`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ mail: forgotPasswordEmail }),
+        }
+      );
 
       const result = await response.json();
 
@@ -116,7 +119,9 @@ const SigninPage = () => {
         setMessage("OTP sent to your email.");
         setIsPasswordResetVisible(true);
       } else {
-        toast.error(result.message || "Failed to send OTP. Please check your email.");
+        toast.error(
+          result.message || "Failed to send OTP. Please check your email."
+        );
       }
     } catch (error) {
       toast.error("An error occurred. Please try again later.");
@@ -145,7 +150,9 @@ const SigninPage = () => {
         setIsHiddenDivVisible(false);
         setIsPasswordResetVisible(false);
       } else {
-        toast.error(result.message || "Failed to reset password. Please try again.");
+        toast.error(
+          result.message || "Failed to reset password. Please try again."
+        );
       }
     } catch (error) {
       toast.error("An error occurred. Please try again later.");
@@ -154,32 +161,27 @@ const SigninPage = () => {
     }
   };
 
-  
-  const signInGoogle = () =>{
-    window.open(`${base_url}/api/auth/google`, "_blank", "width=500,height=600");
+  const signInGoogle = () => {
+    window.open(
+      `${base_url}/api/auth/google`,
+      "_blank",
+      "width=500,height=600"
+    );
 
     const messageListener = (event) => {
-      if(event.data){
+      if (event.data) {
         const { token } = event.data;
-<<<<<<< Updated upstream
-        if(token){
-          setToken(token);
-        }
-        else{
-          router.push('/auth/failure');
-=======
+
         if (token) {
           dispatch(login({ token })); // Store Google login token in Redux
         } else {
           router.push("/auth/failure");
->>>>>>> Stashed changes
         }
       }
     };
 
-  window.addEventListener("message", messageListener, { once: true });
-  }
-
+    window.addEventListener("message", messageListener, { once: true });
+  };
 
   return (
     <div className="font-f_3">
@@ -271,11 +273,10 @@ const SigninPage = () => {
               LuxuryHotelConcierge
             </div>
             <div className="text-center text-gray-400 text-md">
-              Discover the epitome of luxury and comfort at our world-renowned hotels.
+              Discover the epitome of luxury and comfort at our world-renowned
+              hotels.
             </div>
-            <div className="text-center text-3xl my-5">
-              Sign In
-            </div>
+            <div className="text-center text-3xl my-5">Sign In</div>
             <div className="mx-4 md:mx-10">
               <div className="mb-4">
                 <input
@@ -295,41 +296,41 @@ const SigninPage = () => {
                   placeholder="Enter your password"
                 />
               </div>
-           
-            <button
-              onClick={handleClick}
-              type="button"
-              className="w-full text-white bg-gray-800 hover:bg-gray-900 rounded-full py-2 mt-2"
-            >
-              Continue
-            </button>
-            <div
-              onClick={toggleHiddenDiv}
-              className="text-gray-700 text-sm mb-2 text-center mt-4 cursor-pointer"
-            >
-              Forgot password?
-            </div>
-            <div className="relative flex py-2 items-center mx-4">
-              <div className="flex-grow border-t border-gray-400"></div>
-              <span className="flex-shrink mx-4 text-gray-400">or</span>
-              <div className="flex-grow border-t border-gray-400"></div>
-            </div>
-            <div className="text-gray-700 text-sm text-center mb-2">
-              Sign in with
-            </div>
-            <button
-              type="button"
-              className="w-full text-white bg-gray-800 hover:bg-gray-900 rounded-full py-2 mb-2"
-              onClick={signInGoogle}
-            >
-              Google
-            </button>
-            <Link href="/signup">
-              <div className="text-gray-700 text-sm text-center mb-2">
-                Don't have an account? Sign Up
+
+              <button
+                onClick={handleClick}
+                type="button"
+                className="w-full text-white bg-gray-800 hover:bg-gray-900 rounded-full py-2 mt-2"
+              >
+                Continue
+              </button>
+              <div
+                onClick={toggleHiddenDiv}
+                className="text-gray-700 text-sm mb-2 text-center mt-4 cursor-pointer"
+              >
+                Forgot password?
               </div>
-            </Link>
-          </div>
+              <div className="relative flex py-2 items-center mx-4">
+                <div className="flex-grow border-t border-gray-400"></div>
+                <span className="flex-shrink mx-4 text-gray-400">or</span>
+                <div className="flex-grow border-t border-gray-400"></div>
+              </div>
+              <div className="text-gray-700 text-sm text-center mb-2">
+                Sign in with
+              </div>
+              <button
+                type="button"
+                className="w-full text-white bg-gray-800 hover:bg-gray-900 rounded-full py-2 mb-2"
+                onClick={signInGoogle}
+              >
+                Google
+              </button>
+              <Link href="/signup">
+                <div className="text-gray-700 text-sm text-center mb-2">
+                  Don't have an account? Sign Up
+                </div>
+              </Link>
+            </div>
           </div>
         </div>
         <img
