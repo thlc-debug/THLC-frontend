@@ -1,140 +1,151 @@
 import React, { useState } from "react";
-import { MdOutlineSpaceDashboard } from "react-icons/md";
+import { MdAssignment, MdOutlineSpaceDashboard } from "react-icons/md";
 import { HiOutlineUsers } from "react-icons/hi";
 import { SlCalender } from "react-icons/sl";
 import { FaKey, FaSignOutAlt } from "react-icons/fa";
-import { HiMiniHome } from "react-icons/hi2";
+import { HiChevronDown, HiChevronUp, HiMiniHome } from "react-icons/hi2";
+import { BsArrowReturnRight } from "react-icons/bs";
 
-import { MdNavigateNext } from "react-icons/md";
-
-const Sidebar = ({ setCurrentView, onLogout }) => {
-  // State to track the active sidebar item
-  const [activeItem, setActiveItem] = useState("dashboard");
-
-  // Function to handle clicking a sidebar item
-  const handleItemClick = (view) => {
-    setActiveItem(view); // Set the clicked item as active
-    setCurrentView(view); // Update the parent component with the current view
-  };
+const Sidebar = ({ setCurrentView, onLogout, currentView }) => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   return (
     <div className="h-[670px] flex flex-col m-3 rounded-md justify-between bg-white shadow-lg">
+      {/* Sidebar */}
       <div className="flex flex-col h-full justify-between p-4">
         <nav className="flex-1">
           <ul>
             {/* Sidebar buttons for each section */}
-            <li className="mb-2">
+            <li className="mb-2 ">
               <button
-                className={`flex items-center p-3 rounded-lg w-full ${activeItem === "dashboard"
-                  ? "bg-black text-white"
-                  : "hover:bg-gray-100"
-                  }`}
-                onClick={() => handleItemClick("dashboard")}
+                className={`flex items-center p-3 rounded-lg w-full hover:bg-gray-100 ${
+                  currentView === "dashboard" && "bg-gray-100"
+                }`}
+                onClick={() => setCurrentView("dashboard")}
               >
-                <div className="gap-10 flex flex-row">
-                  <div className="flex justify-between">
-                    <HiMiniHome
-                      size={24}
-                      className={`mr-2 ${activeItem === "dashboard" ? "text-white" : ""}`}
-                    />
-                    <span>Dashboard</span>
-                  </div>
-                  <div>
-                    {activeItem === "dashboard" && (
-                      <MdNavigateNext className='flex items-center ' size={25} />
-                    )}
-                  </div>
-                </div>
-
+                {/* <MdOutlineSpaceDashboard /> */}
+                <HiMiniHome size={24} className="mr-2" />
+                <span>Dashboard</span>
               </button>
             </li>
             <li className="mb-2">
               <button
-                className={`flex items-center p-3 rounded-lg w-full ${activeItem === "users" ? "bg-black text-white" : "hover:bg-gray-100"
-                  }`}
-                onClick={() => handleItemClick("users")}
+                className={`flex items-center p-3 rounded-lg w-full hover:bg-gray-100 ${
+                  currentView === "users" && "bg-gray-100"
+                }`}
+                onClick={() => setCurrentView("users")}
               >
-                <div className="gap-16 flex flex-row">
-                  <div className="flex justify-between">
-                    <HiOutlineUsers
-                      size={24}
-                      className={`mr-2 ${activeItem === "users" ? "text-white" : ""}`}
-                    />
-                    <span>Users</span>
-                  </div>
-
-                  <div>
-                    {activeItem === "users" && (
-                      <MdNavigateNext className='flex items-center ' size={25} />
-                    )}
-                  </div>
-                </div>
+                <HiOutlineUsers size={24} className="mr-2" />
+                <span>Users</span>
               </button>
             </li>
             <li className="mb-2">
               <button
-                className={`flex items-center p-3 rounded-lg w-full ${activeItem === "bookings" ? "bg-black text-white" : "hover:bg-gray-100"
-                  }`}
-                onClick={() => handleItemClick("bookings")}
+                className={`flex items-center p-3 rounded-lg w-full hover:bg-gray-100 ${
+                  currentView === "bookings" && "bg-gray-100"
+                }`}
+                onClick={() => setCurrentView("bookings")}
               >
-                <SlCalender
-                  size={24}
-                  className={`mr-2 ${activeItem === "bookings" ? "text-white" : ""}`}
-                />
+                <SlCalender size={24} className="mr-2" />
                 <span>Bookings</span>
               </button>
             </li>
             <li className="mb-2">
               <button
-                className={`flex items-center p-3 rounded-lg w-full ${activeItem === "hotels" ? "bg-black text-white" : "hover:bg-gray-100"
-                  }`}
-                onClick={() => handleItemClick("hotels")}
+                className={`flex items-center p-3 rounded-lg w-full hover:bg-gray-100 ${
+                  currentView === "hotels" && "bg-gray-100"
+                }`}
+                onClick={() => setCurrentView("hotels")}
               >
-                <FaKey
-                  size={24}
-                  className={`mr-2 ${activeItem === "hotels" ? "text-white" : ""}`}
-                />
+                <FaKey size={24} className="mr-2" />
                 <span>Hotels</span>
               </button>
             </li>
             <li className="mb-2">
               <button
-                className={`flex items-center p-3 rounded-lg w-full ${activeItem === "transaction"
-                  ? "bg-black text-white"
-                  : "hover:bg-gray-100"
-                  }`}
-                onClick={() => handleItemClick("transaction")}
+                className={`flex items-center p-3 rounded-lg w-full hover:bg-gray-100 ${
+                  currentView === "transaction" && "bg-gray-100"
+                }`}
+                onClick={() => setCurrentView("transaction")}
               >
-                <MdOutlineSpaceDashboard
-                  size={24}
-                  className={`mr-2 ${activeItem === "transaction" ? "text-white" : ""
-                    }`}
-                />
+                <MdOutlineSpaceDashboard size={24} className="mr-2" />
                 <span>Transaction</span>
               </button>
             </li>
             <li className="mb-2">
               <button
-                className={`flex items-center p-3 rounded-lg w-full  ${activeItem === "contact-us"
-                  ? "bg-black text-white"
-                  : "hover:bg-gray-100"
-                  }`}
-                onClick={() => handleItemClick("contact-us")}
+                className={`flex items-center p-3 rounded-lg w-full hover:bg-gray-100 ${
+                  currentView === "contact-us" && "bg-gray-100"
+                }`}
+                onClick={() => setCurrentView("contact-us")}
               >
-                <MdOutlineSpaceDashboard
-                  size={24}
-                  className={` ${activeItem === "contact-us" ? "text-white" : ""
-                    }`}
-                />
+                <MdOutlineSpaceDashboard size={24} className="mr-2" />
                 <span>Contact Us</span>
               </button>
+            </li>
+            <li className="mb-2">
+              <div className="relative">
+                <button
+                  className={`flex items-center p-3 rounded-lg w-full  ${
+                    dropdownOpen
+                      ? "bg-gray-800 text-gray-50"
+                      : "hover:bg-gray-100"
+                  }`}
+                  onClick={() => setDropdownOpen(!dropdownOpen)}
+                >
+                  <MdAssignment size={24} className="mr-2" />
+                  <span>Content Manage</span>
+                  {dropdownOpen ? (
+                    <HiChevronUp className="ml-auto" />
+                  ) : (
+                    <HiChevronDown className="ml-auto" />
+                  )}
+                </button>
+                {dropdownOpen && (
+                  <ul className="absolute left-0 mt-2 w-full bg-white rounded-md">
+                    <li className="mb-1">
+                      <button
+                        className={`flex items-center p-3 rounded-lg w-full hover:bg-gray-100 ${
+                          currentView === "blogs" && "bg-gray-100"
+                        }`}
+                        onClick={() => setCurrentView("blogs")}
+                      >
+                        <BsArrowReturnRight size={18} className="mr-2" />
+                        <span>Blogs</span>
+                      </button>
+                    </li>
+                    <li className="mb-1">
+                      <button
+                        className={`flex items-center p-3 rounded-lg w-full hover:bg-gray-100 ${
+                          currentView === "destinations" && "bg-gray-100"
+                        }`}
+                        onClick={() => setCurrentView("destinations")}
+                      >
+                        <BsArrowReturnRight size={18} className="mr-2" />
+                        <span>Destinations</span>
+                      </button>
+                    </li>
+                    <li className="mb-1">
+                      <button
+                        className={`flex items-center p-3 rounded-lg w-full hover:bg-gray-100 ${
+                          currentView === "notifications" && "bg-gray-100"
+                        }`}
+                        onClick={() => setCurrentView("notifications")}
+                      >
+                        <BsArrowReturnRight size={18} className="mr-2" />
+                        <span>Notifications</span>
+                      </button>
+                    </li>
+                  </ul>
+                )}
+              </div>
             </li>
           </ul>
         </nav>
 
         {/* Logout Button */}
         <button
-          className="flex items-center p-3 mb-8 rounded-lg text-black hover:bg-gray-100 w-full mt-auto"
+          className="flex items-center p-3 rounded-lg text-black hover:bg-gray-100 w-full mt-auto"
           onClick={onLogout}
         >
           <FaSignOutAlt size={24} className="mr-2" />

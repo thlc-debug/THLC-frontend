@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Sidebar from "../../../components/newadmin/dashboard/sidebar";
@@ -12,6 +12,9 @@ import Bookings from "../../../components/newadmin/dashboard/booking";
 import Hotels from "../../../components/newadmin/dashboard/hotels";
 import Transaction from "../../../components/newadmin/dashboard/transaction";
 import ContactUs from "../../../components/newadmin/dashboard/contactus";
+import Blogs from "@/components/newadmin/dashboard/Blogs";
+import Destinations from "@/components/newadmin/dashboard/Destinations";
+import Notifications from "@/components/newadmin/dashboard/Notifications";
 
 const Page = () => {
   const dispatch = useDispatch();
@@ -45,6 +48,12 @@ const Page = () => {
         return <Transaction />;
       case "contact-us":
         return <ContactUs />;
+      case "blogs":
+        return <Blogs />;
+      case "destinations":
+        return <Destinations />;
+      case "notifications":
+        return <Notifications />;
       default:
         return <DashBoard />;
     }
@@ -61,14 +70,19 @@ const Page = () => {
         </div>
       )}
 
-      <div className="flex flex-grow pt-16"> {/* Adjusted padding for the header */}
+      <div className="flex flex-grow pt-16">
+        {" "}
+        {/* Adjusted padding for the header */}
         {/* Fixed Sidebar */}
         {showSidebar && (
           <div className="fixed top-20 left-0 h-[calc(100vh-4rem)] w-64  shadow-md z-10">
-            <Sidebar setCurrentView={setCurrentView} onLogout={handleLogout} />
+            <Sidebar
+              currentView={currentView}
+              setCurrentView={setCurrentView}
+              onLogout={handleLogout}
+            />
           </div>
         )}
-
         {/* Main Content Area */}
         <div className="ml-64 mt-8 flex-1 m-6 p-6 mr-4 bg-white overflow-y-auto">
           {renderMainContent()}
