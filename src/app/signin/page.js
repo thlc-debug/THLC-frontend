@@ -7,13 +7,24 @@ import { base_url } from "@/base_url";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ClipLoader from "react-spinners/ClipLoader";
+
+import { fetchUserDetails } from "@/utils/fetchUserDetails";
+import { setToken } from "@/utils/setToken";
 import { useSelector, useDispatch } from "react-redux";
-import { login, setUserData } from "@/store/features/auth/auth-slice"; // Import setUserData
+import { login } from "@/store/features/auth/auth-slice";
+
+
 import axios from "axios";
+
 
 const SigninPage = () => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
+
+
+  useEffect(() => {
+    console.log(auth);
+  }, [auth]);
 
   const [isHiddenDivVisible, setIsHiddenDivVisible] = useState(false);
   const [isPasswordResetVisible, setIsPasswordResetVisible] = useState(false);
@@ -29,6 +40,7 @@ const SigninPage = () => {
     if (auth.token) {
       router.push("/");
     }
+
   }, [auth.token, router]);
 
   useEffect(() => {
@@ -54,10 +66,16 @@ const SigninPage = () => {
 
       const result = await response.json();
 
-      if (result.token) {
-        dispatch(login({ token: result.token }));
-        localStorage.setItem("token", result.token);
-        await fetchUserDetails(result.token);
+      if (result.token && result.data) {
+        dispatch(
+          login({
+            token: result.token,
+            data: result.data,
+          })
+        );
+
+        fetchUserDetails(); // Optional: fetch additional user details
+
         router.push("/");
       } else {
         toast.error(result.message || "Failed to login. Please try again.");
@@ -149,14 +167,17 @@ const SigninPage = () => {
     const messageListener = async (event) => {
       if (event.origin !== 'https://thlc-backend.vercel.app') return;
 
-      const { token } = event.data;
-      if (token) {
-        dispatch(login({ token }));
-        localStorage.setItem("token", token);
-        await fetchUserDetails(token);
-        router.push("/");
-      } else {
-        router.push("/auth/failure");
+
+    const messageListener = (event) => {
+      if (event.data) {
+        const { token } = event.data;
+
+        if (token) {
+          dispatch(login({ token })); // Store Google login token in Redux
+        } else {
+          router.push("/auth/failure");
+        }
+
       }
     };
 
