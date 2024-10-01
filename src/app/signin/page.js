@@ -5,22 +5,17 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { base_url } from "@/base_url";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import "react-toastify/dist/ReactToastify.css"; // Correct spelling
 import ClipLoader from "react-spinners/ClipLoader";
 
-import { fetchUserDetails } from "@/utils/fetchUserDetails";
-import { setToken } from "@/utils/setToken";
+// Removed unused imports
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "@/store/features/auth/auth-slice";
 
-
 import axios from "axios";
 
-
-const SigninPage = () => {
-  const dispatch = useDispatch();
+const SignInPage = () => {
   const auth = useSelector((state) => state.auth);
-
 
   useEffect(() => {
     console.log(auth);
@@ -40,7 +35,6 @@ const SigninPage = () => {
     if (auth.token) {
       router.push("/");
     }
-
   }, [auth.token, router]);
 
   useEffect(() => {
@@ -92,17 +86,19 @@ const SigninPage = () => {
       const response = await axios.get(`${base_url}/user/details`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      console.log("response data in sign in",response);
+      console.log("response data in sign in", response);
 
       if (response.data) {
-        dispatch(setUserData({
-          _id: response.data._id,
-          name: response.data.username,
-          userType: response.data.accountType,
-          wishlist: response.data.wishlist,
-          lastLogin: response.data.lastLoggedIn,
-          mail : response.data.email
-        }));
+        dispatch(
+          setUserData({
+            _id: response.data._id,
+            name: response.data.username,
+            userType: response.data.accountType,
+            wishlist: response.data.wishlist,
+            lastLogin: response.data.lastLoggedIn,
+            mail: response.data.email,
+          })
+        );
       }
     } catch (error) {
       toast.error("Failed to fetch user details. Please try again.");
@@ -112,11 +108,14 @@ const SigninPage = () => {
   const handleForgotPassword = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`${base_url}/api/auth/request-password-reset`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ mail: forgotPasswordEmail }),
-      });
+      const response = await fetch(
+        `${base_url}/api/auth/request-password-reset`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ mail: forgotPasswordEmail }),
+        }
+      );
 
       const result = await response.json();
 
@@ -124,7 +123,9 @@ const SigninPage = () => {
         setMessage("OTP sent to your email.");
         setIsPasswordResetVisible(true);
       } else {
-        toast.error(result.message || "Failed to send OTP. Please check your email.");
+        toast.error(
+          result.message || "Failed to send OTP. Please check your email."
+        );
       }
     } catch (error) {
       toast.error("An error occurred. Please try again later.");
@@ -149,7 +150,9 @@ const SigninPage = () => {
         setIsHiddenDivVisible(false);
         setIsPasswordResetVisible(false);
       } else {
-        toast.error(result.message || "Failed to reset password. Please try again.");
+        toast.error(
+          result.message || "Failed to reset password. Please try again."
+        );
       }
     } catch (error) {
       toast.error("An error occurred. Please try again later.");
@@ -165,25 +168,28 @@ const SigninPage = () => {
 
   const signInGoogle = () => {
     const messageListener = async (event) => {
-      if (event.origin !== 'https://thlc-backend.vercel.app') return;
+      if (event.origin !== "https://thlc-backend.vercel.app") return;
 
+      const messageListener = (event) => {
+        if (event.data) {
+          const { token } = event.data;
 
-    const messageListener = (event) => {
-      if (event.data) {
-        const { token } = event.data;
-
-        if (token) {
-          dispatch(login({ token })); // Store Google login token in Redux
-        } else {
-          router.push("/auth/failure");
+          if (token) {
+            dispatch(login({ token })); // Store Google login token in Redux
+          } else {
+            router.push("/auth/failure");
+          }
         }
-
-      }
+      };
     };
 
     window.addEventListener("message", messageListener, { once: true });
 
-    window.open(`${base_url}/api/auth/google`, "_blank", "width=500,height=600");
+    window.open(
+      `${base_url}/api/auth/google`,
+      "_blank",
+      "width=500,height=600"
+    );
   };
   return (
     <div className="font-f_3">
@@ -196,7 +202,10 @@ const SigninPage = () => {
       <div className="m-auto">
         {isHiddenDivVisible && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-            <div onClick={toggleHiddenDiv} className="absolute top-4 right-4 cursor-pointer text-white">
+            <div
+              onClick={toggleHiddenDiv}
+              className="absolute top-4 right-4 cursor-pointer text-white"
+            >
               <RxCross2 size={24} />
             </div>
             <div className="relative bg-white rounded-3xl p-8 shadow-lg w-80 md:w-96">
@@ -268,9 +277,12 @@ const SigninPage = () => {
       <div className="flex flex-col md:flex-row h-screen w-screen">
         <div className="md:w-2/5 w-full h-full flex items-center justify-center p-4">
           <div className="max-w-md w-full">
-            <div className="text-center text-3xl mb-3">LuxuryHotelConcierge</div>
+            <div className="text-center text-3xl mb-3">
+              LuxuryHotelConcierge
+            </div>
             <div className="text-center text-gray-400 text-md">
-              Discover the epitome of luxury and comfort at our world-renowned hotels.
+              Discover the epitome of luxury and comfort at our world-renowned
+              hotels.
             </div>
             <div className="text-center text-3xl my-5">Sign In</div>
             <div className="mx-4 md:mx-10">
@@ -299,7 +311,10 @@ const SigninPage = () => {
               >
                 Continue
               </button>
-              <div onClick={toggleHiddenDiv} className="text-gray-700 text-sm mb-2 text-center mt-4 cursor-pointer">
+              <div
+                onClick={toggleHiddenDiv}
+                className="text-gray-700 text-sm mb-2 text-center mt-4 cursor-pointer"
+              >
                 Forgot password?
               </div>
               <div className="relative flex py-2 items-center mx-4">
@@ -307,7 +322,9 @@ const SigninPage = () => {
                 <span className="flex-shrink mx-4 text-gray-400">or</span>
                 <div className="flex-grow border-t border-gray-400"></div>
               </div>
-              <div className="text-gray-700 text-sm text-center mb-2">Sign in with</div>
+              <div className="text-gray-700 text-sm text-center mb-2">
+                Sign in with
+              </div>
               <button
                 type="button"
                 className="w-full text-white bg-gray-800 hover:bg-gray-900 rounded-full py-2 mb-2"
@@ -333,4 +350,4 @@ const SigninPage = () => {
   );
 };
 
-export default SigninPage;
+export default SignInPage;
