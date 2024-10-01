@@ -70,7 +70,9 @@ const Users = () => {
         <div className="bg-gray-100 rounded-md flex border">
           <button
             className={`px-6 py-2 font-medium ${
-              activeTab === "all" ? "bg-white border-b-2 border-black" : "text-gray-500 bg-white"
+              activeTab === "all"
+                ? "bg-white border-b-2 border-black"
+                : "text-gray-500 bg-white"
             }`}
             onClick={() => setActiveTab("all")}
           >
@@ -78,19 +80,29 @@ const Users = () => {
           </button>
           <button
             className={`px-6 py-2 font-medium ${
-              activeTab === "recent" ? "bg-white border-b-2 border-black" : "text-gray-500 bg-white"
+              activeTab === "recent"
+                ? "bg-white border-b-2 border-black"
+                : "text-gray-500 bg-white"
             }`}
             onClick={() => setActiveTab("recent")}
           >
-            Recent <span className="ml-2 bg-gray-300 px-2 py-1 rounded-full text-sm">130</span>
+            Recent{" "}
+            <span className="ml-2 bg-gray-300 px-2 py-1 rounded-full text-sm">
+              130
+            </span>
           </button>
           <button
             className={`px-6 py-2 font-medium ${
-              activeTab === "pending" ? "bg-white border-b-2 border-black" : "text-gray-500 bg-white"
+              activeTab === "pending"
+                ? "bg-white border-b-2 border-black"
+                : "text-gray-500 bg-white"
             }`}
             onClick={() => setActiveTab("pending")}
           >
-            Pending <span className="ml-2 bg-gray-300 px-2 py-1 rounded-full text-sm">20</span>
+            Pending{" "}
+            <span className="ml-2 bg-gray-300 px-2 py-1 rounded-full text-sm">
+              20
+            </span>
           </button>
         </div>
 
@@ -115,15 +127,33 @@ const Users = () => {
               <th className="px-6 py-3 text-left text-sm font-medium text-gray-500">
                 <input type="checkbox" className="form-checkbox h-4 w-4" />
               </th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Customers</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Transaction Id</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Purchase Products</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Amount</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Payment Methods</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Date</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Time</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Status</th>
-              <th className="px-6 py-3 text-center text-sm font-medium text-gray-500">Actions</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Customers
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Transaction Id
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Purchase Products
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Amount
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Payment Methods
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Date
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Time
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Status
+              </th>
+              <th className="px-6 py-3 text-center text-sm font-medium text-gray-500">
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -133,10 +163,18 @@ const Users = () => {
                   <input type="checkbox" className="form-checkbox h-4 w-4" />
                 </td>
                 <td className="px-4 py-2 text-sm font-semibold">{user.name}</td>
-                <td className="px-4 py-2 text-sm text-gray-500">{user.transactionId}</td>
-                <td className="px-4 py-2 text-sm text-gray-500">{user.product}</td>
-                <td className="px-4 py-2 text-sm text-gray-500">{user.amount}</td>
-                <td className="px-4 py-2 text-sm text-gray-500">{user.paymentMethod}</td>
+                <td className="px-4 py-2 text-sm text-gray-500">
+                  {user.transactionId}
+                </td>
+                <td className="px-4 py-2 text-sm text-gray-500">
+                  {user.product}
+                </td>
+                <td className="px-4 py-2 text-sm text-gray-500">
+                  {user.amount}
+                </td>
+                <td className="px-4 py-2 text-sm text-gray-500">
+                  {user.paymentMethod}
+                </td>
                 <td className="px-4 py-2 text-sm text-gray-500">{user.date}</td>
                 <td className="px-4 py-2 text-sm text-gray-500">{user.time}</td>
                 <td className="px-6 py-4 text-sm">

@@ -100,7 +100,9 @@ const BookingDashboard = () => {
         <div className="bg-gray-100 rounded-md flex border">
           <button
             className={`px-6 py-2 font-medium ${
-              activeTab === "all" ? "bg-white border-b-2 border-black" : "text-gray-500"
+              activeTab === "all"
+                ? "bg-white border-b-2 border-black"
+                : "text-gray-500"
             }`}
             onClick={() => setActiveTab("all")}
           >
@@ -108,27 +110,42 @@ const BookingDashboard = () => {
           </button>
           <button
             className={`px-6 py-2 font-medium ${
-              activeTab === "pending" ? "bg-white border-b-2 border-black" : "text-gray-500"
+              activeTab === "pending"
+                ? "bg-white border-b-2 border-black"
+                : "text-gray-500"
             }`}
             onClick={() => setActiveTab("pending")}
           >
-            Pending <span className="ml-2 bg-gray-300 px-2 py-1 rounded-full text-sm">20</span>
+            Pending{" "}
+            <span className="ml-2 bg-gray-300 px-2 py-1 rounded-full text-sm">
+              20
+            </span>
           </button>
           <button
             className={`px-6 py-2 font-medium ${
-              activeTab === "confirmed" ? "bg-white border-b-2 border-black" : "text-gray-500"
+              activeTab === "confirmed"
+                ? "bg-white border-b-2 border-black"
+                : "text-gray-500"
             }`}
             onClick={() => setActiveTab("confirmed")}
           >
-            Confirmed <span className="ml-2 bg-gray-300 px-2 py-1 rounded-full text-sm">11</span>
+            Confirmed{" "}
+            <span className="ml-2 bg-gray-300 px-2 py-1 rounded-full text-sm">
+              11
+            </span>
           </button>
           <button
             className={`px-6 py-2 font-medium ${
-              activeTab === "canceled" ? "bg-white border-b-2 border-black" : "text-gray-500"
+              activeTab === "canceled"
+                ? "bg-white border-b-2 border-black"
+                : "text-gray-500"
             }`}
             onClick={() => setActiveTab("canceled")}
           >
-            Canceled <span className="ml-2 bg-gray-300 px-2 py-1 rounded-full text-sm">8</span>
+            Canceled{" "}
+            <span className="ml-2 bg-gray-300 px-2 py-1 rounded-full text-sm">
+              8
+            </span>
           </button>
         </div>
 
@@ -153,16 +170,36 @@ const BookingDashboard = () => {
               <th className="px-6 py-3 text-left text-sm font-medium text-gray-500">
                 <input type="checkbox" className="form-checkbox h-4 w-4" />
               </th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Name</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Hotel Name</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Persons</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Rooms</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Date Range</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Days</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Nights</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Status</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Date & Time</th>
-              <th className="px-6 py-3 text-center text-sm font-medium text-gray-500">Actions</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Name
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Hotel Name
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Persons
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Rooms
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Date Range
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Days
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Nights
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Status
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Date & Time
+              </th>
+              <th className="px-6 py-3 text-center text-sm font-medium text-gray-500">
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -171,13 +208,27 @@ const BookingDashboard = () => {
                 <td className="px-6 py-4">
                   <input type="checkbox" className="form-checkbox h-4 w-4" />
                 </td>
-                <td className="px-4 py-2 text-sm font-semibold">{booking.name}</td>
-                <td className="px-4 py-2 text-sm text-gray-500">{booking.hotelName}</td>
-                <td className="px-4 py-2 text-sm text-gray-500">{booking.persons}</td>
-                <td className="px-4 py-2 text-sm text-gray-500">{booking.rooms}</td>
-                <td className="px-4 py-2 text-sm text-gray-500">{booking.dateRange}</td>
-                <td className="px-4 py-2 text-sm text-gray-500">{booking.days}</td>
-                <td className="px-4 py-2 text-sm text-gray-500">{booking.nights}</td>
+                <td className="px-4 py-2 text-sm font-semibold">
+                  {booking.name}
+                </td>
+                <td className="px-4 py-2 text-sm text-gray-500">
+                  {booking.hotelName}
+                </td>
+                <td className="px-4 py-2 text-sm text-gray-500">
+                  {booking.persons}
+                </td>
+                <td className="px-4 py-2 text-sm text-gray-500">
+                  {booking.rooms}
+                </td>
+                <td className="px-4 py-2 text-sm text-gray-500">
+                  {booking.dateRange}
+                </td>
+                <td className="px-4 py-2 text-sm text-gray-500">
+                  {booking.days}
+                </td>
+                <td className="px-4 py-2 text-sm text-gray-500">
+                  {booking.nights}
+                </td>
                 <td className="px-4 py-2 text-sm">
                   <span
                     className={`px-3 py-1 rounded-full text-xs ${
@@ -189,7 +240,9 @@ const BookingDashboard = () => {
                     {booking.status}
                   </span>
                 </td>
-                <td className="px-4 py-2 text-sm text-gray-500">{booking.dateTime}</td>
+                <td className="px-4 py-2 text-sm text-gray-500">
+                  {booking.dateTime}
+                </td>
                 <td className="px-6 py-4 text-center">
                   <BiDotsVerticalRounded className="w-6 h-6 text-gray-400 cursor-pointer" />
                 </td>

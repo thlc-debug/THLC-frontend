@@ -67,7 +67,9 @@ const Users = () => {
         <div className="bg-gray-100 rounded-md flex border">
           <button
             className={`px-6 py-2 font-medium ${
-              activeTab === "all" ? "bg-white border-b-2 border-black" : "text-gray-500 bg-white"
+              activeTab === "all"
+                ? "bg-white border-b-2 border-black"
+                : "text-gray-500 bg-white"
             }`}
             onClick={() => setActiveTab("all")}
           >
@@ -75,11 +77,16 @@ const Users = () => {
           </button>
           <button
             className={`px-6 py-2 font-medium ${
-              activeTab === "newJoined" ? "bg-white border-b-2 border-black" : "text-gray-500 bg-white"
+              activeTab === "newJoined"
+                ? "bg-white border-b-2 border-black"
+                : "text-gray-500 bg-white"
             }`}
             onClick={() => setActiveTab("newJoined")}
           >
-            New Joined <span className="ml-2 bg-gray-300 px-2 py-1 rounded-full text-sm">20</span>
+            New Joined{" "}
+            <span className="ml-2 bg-gray-300 px-2 py-1 rounded-full text-sm">
+              20
+            </span>
           </button>
         </div>
 
@@ -104,13 +111,27 @@ const Users = () => {
               <th className="px-6 py-3 text-left text-sm font-medium text-gray-500">
                 <input type="checkbox" className="form-checkbox h-4 w-4" />
               </th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Name</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">User Id</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Mobile Number</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Email Address</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Joining Date & Time</th>
-              <th className="px-6 py-3 text-left text-sm font-medium text-gray-500">Status</th>
-              <th className="px-6 py-3 text-center text-sm font-medium text-gray-500">Actions</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Name
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                User Id
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Mobile Number
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Email Address
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Joining Date & Time
+              </th>
+              <th className="px-6 py-3 text-left text-sm font-medium text-gray-500">
+                Status
+              </th>
+              <th className="px-6 py-3 text-center text-sm font-medium text-gray-500">
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -120,9 +141,15 @@ const Users = () => {
                   <input type="checkbox" className="form-checkbox h-4 w-4" />
                 </td>
                 <td className="px-4 py-2 text-sm font-semibold">{user.name}</td>
-                <td className="px-4 py-2 text-sm text-gray-500">{user.userId}</td>
-                <td className="px-4 py-2 text-sm text-gray-500">{user.mobileNumber}</td>
-                <td className="px-4 py-2 text-sm text-gray-500">{user.email}</td>
+                <td className="px-4 py-2 text-sm text-gray-500">
+                  {user.userId}
+                </td>
+                <td className="px-4 py-2 text-sm text-gray-500">
+                  {user.mobileNumber}
+                </td>
+                <td className="px-4 py-2 text-sm text-gray-500">
+                  {user.email}
+                </td>
                 <td className="px-4 py-2 text-sm text-gray-500">
                   {user.joiningDate}, {user.joiningTime}
                 </td>
