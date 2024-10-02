@@ -1,4 +1,3 @@
-
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -9,6 +8,7 @@ const initialState = {
     userType: "",
     whishList: [],
     lastLogin: "",
+    mail:"",
   },
 };
 
@@ -19,6 +19,7 @@ export const authSlice = createSlice({
     login: (state, action) => {
       state.token = action.payload.token;
       state.data = action.payload.data;
+
     },
     logout: (state) => {
       state.token = null;
@@ -28,14 +29,19 @@ export const authSlice = createSlice({
         userType: "",
         whishList: [],
         lastLogin: "",
+
+        mail:""
+
       };
     },
     updateWhishList: (state, action) => {
       state.data.whishList = action.payload;
     },
+    setUserData: (state, action) => {
+      state.data = action.payload; // Set user details temporarily after fetching
+    },
   },
 });
 
-export const { login, logout, updateWhishList } = authSlice.actions;
-
+export const { login, logout, updateWhishList, setUserData  } = authSlice.actions;
 export default authSlice.reducer;

@@ -11,7 +11,7 @@ const Booking = () => {
   const [selectedBooking, setSelectedBooking] = useState(null); // State for selected booking
   const [isModalOpen, setIsModalOpen] = useState(false); // Modal visibility state
   const router = useRouter(); // Next.js router
-  const [isAdmin, setIsAdmin] = useState(false); // State to check if admin confirmed
+  const [isAdmin, setIsAdmin] = useState(true); // State to check if admin confirmed
 
   useEffect(() => {
     const details = localStorage.getItem("userDetails");

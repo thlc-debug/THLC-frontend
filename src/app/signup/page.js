@@ -12,6 +12,7 @@ import { fetchUserDetails } from "@/utils/fetchUserDetails";
 import { setToken } from "@/utils/setToken";
 import { login } from "@/store/features/auth/auth-slice";
 import { useDispatch ,useSelector} from "react-redux";
+
 const Page = () => {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -24,6 +25,7 @@ const Page = () => {
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  
 
   const router = useRouter();
   const api = base_url;
@@ -40,7 +42,6 @@ const Page = () => {
       router.push("/");
     }
   }, [auth, router]);
-
 
   const generateOTP = async (e) => {
     e.preventDefault();
@@ -158,7 +159,6 @@ const Page = () => {
         }
       }
     };
-
     window.addEventListener("message", messageListener, { once: true });
   };
 
