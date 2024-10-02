@@ -99,9 +99,7 @@ const Footer = () => {
           <div className="text-lg text-gray-200 pb-2 md:pb-8">
             <b>TheLuxuryHotelConcierge</b>
           </div>
-          {/* <div className="text-gray-400 leading-relaxed text-sm md:text-lg flex gap-[10px] mb-[10px]">
-          <FaHotel className="text-[2.2rem]"/>  Welcome to The Luxury Hotel Concierge, the top destination for customised premium vacation experiences.
-          </div> */}
+        
           <Link
             href="https://www.google.co.in/maps/place/Chandigarh/@30.7219251,76.7521701,12z/data=!4m6!3m5!1s0x390fed0be66ec96b:0xa5ff67f9527319fe!8m2!3d30.7333148!4d76.7794179!16zL20vMDFmMXE4?entry=ttu"
             target="_blank"
@@ -111,14 +109,36 @@ const Footer = () => {
               Chandigarh, India
             </div>
           </Link>
-          <div className="text-gray-400 leading-relaxed text-sm mt-3 md:text-lg flex gap-2 justify-center items-center md:items-start md:justify-start  ">
-            <MdCall className="text-[1.8rem] " /> 18889285558
+          <div className="text-gray-400 leading-relaxed text-sm mt-3 md:text-lg flex gap-2 justify-center items-center md:items-start md:justify-start">
+            <MdCall className="text-[1.6rem] ml-2" />
+            <a
+              href="tel:18889285558"
+              className="text-gray-400 hover:text-gray-500"
+            >
+              18889285558
+            </a>
           </div>
         </div>
         <div className="leading-relaxed ">
           <div className="text-gray-200 text-lg pb-2">
             <b>Company</b>
           </div>
+         
+          <Link href="/explore">
+            <div className="cursor-pointer text-gray-400 text-sm md:text-lg">
+              Explore
+            </div>
+          </Link>
+          <Link href="/destinations">
+            <div className="cursor-pointer text-gray-400 text-sm md:text-lg">
+             Destinations
+            </div>
+          </Link>
+          <Link href="/hotels">
+            <div className="cursor-pointer text-gray-400 text-sm md:text-lg">
+             Hotels
+            </div>
+          </Link>
           <Link href="/blog">
             <div className="cursor-pointer text-gray-400 text-sm md:text-lg">
               Blog
