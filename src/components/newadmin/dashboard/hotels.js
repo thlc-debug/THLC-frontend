@@ -198,7 +198,7 @@ const Hotels = () => {
   }, []);
 
   return (
-    <div className="p-3 bg-white rounded-md h-full flex flex-col">
+    <div className=" bg-white rounded-md h-full flex flex-col">
       {/* Header */}
       <div></div>
 
