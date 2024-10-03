@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { BiDotsVerticalRounded, BiFilterAlt } from "react-icons/bi";
 import Modal from './user/addUser';
 import UserDetails from './user/userDetails';
+import { AiOutlinePlus, AiOutlineDownload } from "react-icons/ai";
 
 const Users = () => {
     const [users, setUsers] = useState([]);
@@ -67,16 +68,24 @@ const Users = () => {
                             <p className="text-gray-500">Total 5073 users joined</p>
                         </div>
                         <div className="flex space-x-3">
-                            <button className="px-4 py-2 border text-black font-semibold rounded-md hover:bg-gray-100" onClick={openModal}>
-                                Add
-                            </button>
-                            <button
-                                className="px-4 py-2 border text-black font-semibold rounded-md hover:bg-gray-100"
-                                onClick={() => alert("PDF Report Downloaded")}
-                            >
-                                Download PDF Report
-                            </button>
-                        </div>
+  {/* Add Button */}
+  <button
+    className="px-4 py-2 border text-black font-semibold rounded-md flex items-center space-x-2 hover:bg-gray-100"
+    onClick={openModal}
+  >
+    <AiOutlinePlus className="w-5 h-5" />
+    <span>Add</span>
+  </button>
+
+  {/* Download PDF Report Button */}
+  <button
+    className="px-4 py-2 border text-black font-semibold rounded-md flex items-center space-x-2 hover:bg-gray-100"
+    onClick={() => alert("PDF Report Downloaded")}
+  >
+    <AiOutlineDownload className="w-5 h-5" />
+    <span>Download PDF Report</span>
+  </button>
+</div>
                     </div>
 
                     {/* Tabs and Search */}

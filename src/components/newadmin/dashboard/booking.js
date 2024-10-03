@@ -7,6 +7,8 @@ import Paypal from '../../../../public/adminicons/payment/paypal.svg'
 // import Debit from '../../../../../public/adminicons/payment/debit.svg'
 // import Credit from '../../../../../public/adminicons/payment/credit.svg'
 import Gpay from '../../../../public/adminicons/payment/gpay.svg'
+import BookingDetails from "./booking/bookingDetails";
+import { AiOutlinePlus, AiOutlineDownload } from "react-icons/ai";
 
 
 const BookingDashboard = () => {
@@ -15,7 +17,15 @@ const BookingDashboard = () => {
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState("");
   const [isPaymentMethodSelected, setIsPaymentMethodSelected] = useState(false); 
+  const [selectedUser, setSelectedUser] = useState(null);
 
+  const handleRowClick = (user) => {
+    setSelectedUser(user);
+  };
+
+  const closeBookingDetails = () => {
+    setSelectedUser(null); // Close the modal by resetting the selected user
+  };
   useEffect(() => {
     setTimeout(() => {
       setBookings([
@@ -133,7 +143,7 @@ if(isFormVisible && !isPaymentMethodSelected){
   <div className="p-6 bg-white rounded-md h-full flex flex-col">
   {/* Header */}
   <div className="flex items-center mb-6">
-        <button className="text-gray-500 font-semibold flex items-center" onClick={handleBack}>
+        <button className="text-black-500 font-semibold flex items-center" onClick={handleBack}>
         <span className="text-3xl mr-2"><GrFormPreviousLink size={40} /></span> 
           <p className="text-2xl font-bold">New Bookings</p>
           </button>
@@ -366,44 +376,52 @@ if(isFormVisible && !isPaymentMethodSelected){
 
 
   return (
-    <div className="p-3 bg-white rounded-md h-full flex flex-col">
+    <div className="bg-white rounded-md h-full flex flex-col">
+      {selectedUser? (
+       <BookingDetails
+       user={selectedUser}
+       onClose={closeBookingDetails}
+       />
+      ):(
+        <div className="p-3 bg-white rounded-md h-full flex flex-col">
       {/* Statistic Cards */}
       <div className="grid grid-cols-4 gap-6 mb-6">
-        {[
-          { title: "Recent Bookings", count: 2689 },
-          { title: "Pending Bookings", count: 10573 },
-          { title: "Confirm Bookings", count: 10293 },
-          { title: "Canceled Bookings", count: 89000 },
-        ].map((stat, index) => (
-          <div
-            key={index}
-            className="relative p-4 bg-gray-100 rounded-md shadow-md"
-          >
-            {/* Top-right "Today" label */}
-            <div className="absolute top-2 right-2 flex items-center space-x-1">
-              <span className="text-gray-500 text-sm">Today</span>
-              <svg
-                className="w-3 h-3 text-gray-500"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </div>
-
-            {/* Main content */}
-            <h3 className="text-lg font-bold">{stat.title}</h3>
-            <p className="text-3xl mt-2 font-semibold">{stat.count}</p>
-          </div>
-        ))}
+  {[
+    { title: "Recent Bookings", count: 2689 },
+    { title: "Pending Bookings", count: 10573 },
+    { title: "Confirm Bookings", count: 10293 },
+    { title: "Canceled Bookings", count: 89000 },
+  ].map((stat, index) => (
+    <div
+      key={index}
+      className="relative p-6 bg-white rounded-xl shadow-lg border border-gray-200"
+    >
+      {/* Top-right "Today" label */}
+      <div className="absolute top-4 right-4 flex items-center space-x-1">
+        <span className="text-gray-400 text-sm">Today</span>
+        <svg
+          className="w-4 h-4 text-gray-400"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
       </div>
+
+      {/* Main content */}
+      <h3 className="text-sm font-semibold text-gray-500">{stat.title}</h3>
+      <p className="text-4xl font-bold text-black mt-2">{stat.count.toLocaleString()}</p>
+    </div>
+  ))}
+</div>
+
 
       {/* Header for Table Section */}
       <div className="flex justify-between items-center mb-6">
@@ -412,15 +430,20 @@ if(isFormVisible && !isPaymentMethodSelected){
           <p className="text-gray-500">Manage your booking and hotel details</p>
         </div>
         <div className="flex space-x-3">
-          <button onClick={()=>setIsFormVisible(true)} className="px-4 py-2 border text-black font-semibold rounded-md hover:bg-gray-100">
-            Add
-          </button>
-          <button
-            className="px-4 py-2 border text-black font-semibold rounded-md hover:bg-gray-100"
+        <button
+            onClick={() => setIsFormVisible(true)}
+            className="px-4 py-2 border text-black font-semibold rounded-md flex items-center space-x-2 hover:bg-gray-100"
+         >
+            <AiOutlinePlus className="w-5 h-5" />
+               <span>Add</span>
+           </button>
+            <button
+            className="px-4 py-2 border text-black font-semibold rounded-md flex items-center space-x-2 hover:bg-gray-100"
             onClick={() => alert("PDF Report Downloaded")}
-          >
-            Download PDF Report
-          </button>
+            >
+           <AiOutlineDownload className="w-5 h-5" />
+           <span>Download PDF Report</span>
+           </button>
         </div>
       </div>
 
@@ -533,7 +556,9 @@ if(isFormVisible && !isPaymentMethodSelected){
           </thead>
           <tbody>
             {bookings.map((booking, index) => (
-              <tr key={index} className="border-t">
+              <tr key={index} className="border-t"
+              onClick={()=>handleRowClick(booking)}
+              >
                 <td className="px-6 py-4">
                   <input type="checkbox" className="form-checkbox h-4 w-4" />
                 </td>
@@ -580,6 +605,8 @@ if(isFormVisible && !isPaymentMethodSelected){
           </tbody>
         </table>
       </div>
+    </div>
+      )}
     </div>
   );
 };
