@@ -2,10 +2,14 @@ import React from 'react';
 // import Experts from '../../../../public/adminicons/export.svg';
 import Image from 'next/image';
 import { MdNavigateNext } from "react-icons/md";
+import { FaCheck } from "react-icons/fa6";
 import { FaChevronDown } from "react-icons/fa";
 import { FaDownload } from "react-icons/fa6";
 import { CiFilter } from "react-icons/ci";
 import { IoSearchSharp } from "react-icons/io5";
+import { RxCross2 } from "react-icons/rx";
+import { IoReturnUpBack } from "react-icons/io5";
+import { FaRegStar } from "react-icons/fa";
 import user from '../../../../public/adminicons/user.png'
 import Img from '../../../../public/adminicons/hotel.jpeg'
 
@@ -90,7 +94,7 @@ const DashboardOverview = () => {
   ];
 
   return (
-    <div className="container mx-auto  ">
+    <div className="container mx-auto rounded-md  ">
       <div className='flex flex-row w-[100%] items-center justify-between '>
         <div>
           <h1 className="text-2xl font-bold mb-4">Overview</h1>
@@ -98,8 +102,8 @@ const DashboardOverview = () => {
         </div>
         <div className="flex justify-between mb-6 h-10 w-[60%]  g-2">
           <div className="relative w-[60%] flex items-center text-gray-400 gap-2">
-          
-           <IoSearchSharp size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2"/>
+
+            <IoSearchSharp size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2" />
             <input
               type="text"
               placeholder="Search by name, email, user id..."
@@ -111,13 +115,13 @@ const DashboardOverview = () => {
           <div className="flex space-x-4">
 
             <button className="p-2 border border-gray text-gray-400  rounded-lg pr-5 pl-5 flex flex-row items-center gap-2">
-             
-              <CiFilter size={18} color='gray'/>
+
+              <CiFilter size={18} color='gray' />
               filter</button>
             <button className="p-2  border border-gray text-black-400 w-[100%] rounded-lg flex flex-row whitespace-nowrap items-center gap-2">
 
               {/* <Experts/> */}
-              <FaDownload size={18} className='flex items-center'/>
+              <FaDownload size={18} className='flex items-center' />
 
               Export Report</button>
           </div>
@@ -168,7 +172,10 @@ const DashboardOverview = () => {
                   <div>{transaction.hotel}</div>
                   <div className="text-gray-500">{transaction.location}</div>
                 </div>
-                <div className={`w-1/4 text-right ${transaction.status === 'Success' ? 'text-green-800 bg-green-200 rounded-lg pl-2 pr-2 w-[10%] flex items-center ' : transaction.status === 'Cancelled' ? 'text-red-800 rounded-lg pl-2 pr-2 w-[10%] bg-red-200 ' : 'text-gray-800 pl-2 pr-2 rounded-lg w-[10%] bg-gray-200 '}`}>
+                <div className={`w-1/4 text-right ${transaction.status === 'Success' ? 'text-green-800 bg-green-200 rounded-lg pl-2 pr-2 w-[15%] flex items-center' : transaction.status === 'Cancelled' ? 'text-red-800 rounded-lg pl-2 pr-2 w-[15%] bg-red-200 flex items-center' : 'text-gray-800 pl-2 pr-2 rounded-lg  w-[15%] flex items-center bg-gray-200'}`}>
+                  {transaction.status === 'Success' && <FaCheck color='green' className="mr-1"  size={13}/>} 
+                  {transaction.status === 'Cancelled' && <RxCross2 color='red' className="mr-1"  size={13}/>}
+                  {transaction.status === 'Refunded' && <IoReturnUpBack color='gray' className="mr-1 font-bold "   size={18}/>} 
                   {transaction.status}
                 </div>
               </div>
@@ -184,15 +191,15 @@ const DashboardOverview = () => {
             {customers.map((customer, index) => (
               <div key={index} className="flex items-center space-x-4 justify-between gap-4">
                 <div className='flex flex-row items-center gap-4'><Image
-                height={30} width={30}
+                  height={30} width={30}
                   src={customer.avatar}
                   alt={customer.name}
                   className="w-10 h-10 rounded-full"
                 />
-                <div>
-                  <h3 className="font-semibold">{customer.name}</h3>
-                  <p className="text-gray-500 text-sm">{customer.email}</p>
-                </div></div>
+                  <div>
+                    <h3 className="font-semibold">{customer.name}</h3>
+                    <p className="text-gray-500 text-sm">{customer.email}</p>
+                  </div></div>
                 <div className="ml-auto text-gray-500 text-sm">
                   {customer.time}
                 </div>
@@ -210,7 +217,7 @@ const DashboardOverview = () => {
               <h3 className="text-lg font-semibold">Customer Joined</h3>
               <p className="text-sm text-gray-500">235648 User base status</p>
             </div>
-            <span className="text-sm text-gray-500 flex flex-row  items-center gap-2">Yearly <FaChevronDown size={10}/></span>
+            <span className="text-sm text-gray-500 flex flex-row  items-center gap-2">Yearly <FaChevronDown size={10} /></span>
           </div>
           <div className="h-48 bg-gray-100 rounded-lg flex items-center justify-center">
             {/* Replace with your chart */}
@@ -226,7 +233,7 @@ const DashboardOverview = () => {
                 <h3 className="text-lg font-semibold">Booking</h3>
                 <p className="text-sm text-gray-500">235648 hotel booking status</p>
               </div>
-              <span className="text-sm text-gray-500 flex flex-row  items-center gap-2">Yearly <FaChevronDown size={10}/></span>
+              <span className="text-sm text-gray-500 flex flex-row  items-center gap-2">Yearly <FaChevronDown size={10} /></span>
             </div>
 
             <div className="space-y-3">
@@ -267,7 +274,7 @@ const DashboardOverview = () => {
           <div className="bg-white shadow-md rounded-lg p-4  h-[80%]">
             <div className="flex justify-between items-center ">
               <div className='flex flex-row items-center gap-4'>
-                <Image src='' width={40} height={40}  className='bg-gray-800 rounded-xl object-cover"'/>
+                <Image src='' width={40} height={40} className='bg-gray-800 rounded-xl object-cover"' />
 
                 <h3 className="text-lg font-semibold"> Top Hotel Booking</h3>
                 {/* <p className="text-sm text-gray-500">235648 hotel booking status</p> */}
@@ -290,7 +297,7 @@ const DashboardOverview = () => {
               <h3 className="text-lg font-semibold">Booking Transaction</h3>
               <p className="text-sm text-gray-500">Your current sales summary and activity.</p>
             </div>
-            <span className="text-sm text-gray-500 flex flex-row  items-center gap-2">Yearly <FaChevronDown size={10}/></span>
+            <span className="text-sm text-gray-500 flex flex-row  items-center gap-2">Yearly <FaChevronDown size={10} /></span>
           </div>
 
           <div className="grid grid-cols-3 gap-6 mb-6">
@@ -331,7 +338,7 @@ const DashboardOverview = () => {
               <h3 className="text-lg font-semibold">Top Rated Hotel</h3>
               <p className="text-sm text-gray-500">235648 All hotel reviews</p>
             </div>
-            <span className="text-sm text-gray-500 flex flex-row  items-center gap-2">Yearly  <FaChevronDown size={10}/></span>
+            <span className="text-sm text-gray-500 flex flex-row  items-center gap-2">Yearly  <FaChevronDown size={10} /></span>
           </div>
 
           <div className="flex flex-row  justify-between mb-6">
@@ -350,7 +357,7 @@ const DashboardOverview = () => {
             {["Jackson Hotel Brokens", "Jackson Hotel Brokens", "Jackson Hotel Brokens"].map((hotel, index) => (
               <div className="flex justify-between items-center  ">
                 <div className='flex flex-row items-center gap-4  mb-2' >
-                  <Image src='' width={40} height={40} className='bg-gray-800 rounded-xl'/>
+                  <Image src='' width={40} height={40} className='bg-gray-800 rounded-xl' />
 
                   <h3 className="text-md font-medium"> {hotel}</h3>
                   {/* <p className="text-sm text-gray-500">235648 hotel booking status</p> */}

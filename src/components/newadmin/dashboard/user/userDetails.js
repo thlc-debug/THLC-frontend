@@ -2,8 +2,11 @@ import React from 'react';
 import { MdNavigateNext } from "react-icons/md";
 import { GrFormPreviousLink } from "react-icons/gr";
 import { GrFormPrevious } from "react-icons/gr";
+import { FaCheck } from "react-icons/fa6";
+import { RxCross2 } from "react-icons/rx";
+import { IoReturnUpBack } from "react-icons/io5";
 
-const user = ({onClose}) => {
+const user = ({ onClose }) => {
 
 
 
@@ -52,7 +55,7 @@ const user = ({onClose}) => {
         <div className="w-full mx-auto rounded-lg ">
             {/* Header Section */}
             <div className="flex justify-between items-center mb-6">
-            <button className="text-gray-500 font-semibold flex items-center" onClick={onClose} > {/* Navigate back */}
+                <button className="text-gray-500 font-semibold flex items-center" onClick={onClose} > {/* Navigate back */}
                     <span className="text-3xl mr-2"><GrFormPreviousLink size={40} /></span> <p className='text-2xl'>Users</p>
                 </button>
                 <div className=''>
@@ -111,13 +114,16 @@ const user = ({onClose}) => {
                                 <td className="py-4 px-6">
                                     <div className='flex flex-row-reverse'>
                                         <span
-                                            className={`text-sm font-semibold px-3 py-1 rounded-full ${activity.status === "Success"
+                                            className={`text-sm font-medium px-3 py-1 rounded-full flex flex-row items-center ${activity.status === "Success"
                                                 ? "bg-green-100 text-green-600"
                                                 : activity.status === "Canceled"
                                                     ? "bg-red-100 text-red-600"
-                                                    : "bg-blue-100 text-blue-600"
+                                                    : "bg-blue-100 text-gray-600"
                                                 }`}
                                         >
+                                            {activity.status === 'Success' && <FaCheck color='green' className="mr-1" size={13} />}
+                                            {activity.status === 'Canceled' && <RxCross2 color='red' className="mr-1" size={13} />}
+                                            {activity.status === 'Refunded' && <IoReturnUpBack color='gray' className="mr-1 font-bold " size={13} />}
                                             {activity.status}
                                         </span>
                                     </div>
