@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { BiDotsVerticalRounded, BiFilterAlt } from 'react-icons/bi';
+import { FaDownload } from "react-icons/fa6";
 
 const ContactUs = () => {
   const [contacts, setContacts] = useState([]);
@@ -120,11 +121,12 @@ const ContactUs = () => {
           <p className="text-gray-500">Total 506 Customers</p>
         </div>
         <button
-          className="px-4 py-2 border text-black font-semibold rounded-md hover:bg-gray-100"
-          onClick={() => alert("PDF Report Downloaded")}
-        >
-          Download PDF Report
-        </button>
+                                className="px-4 py-2 border text-black font-semibold rounded-md hover:bg-gray-100 flex flex-row gap-2"
+                                onClick={() => alert("PDF Report Downloaded")}
+                            >
+                                <FaDownload size={18} className='flex items-center' />
+                                Download PDF Report
+                            </button>
       </div>
 
       {/* Tabs and Search */}
@@ -184,7 +186,7 @@ const ContactUs = () => {
           </thead>
           <tbody>
             {contacts.map((contact, index) => (
-              <tr key={index} className="border-t">
+              <tr key={index} className="border-t hover:bg-gray-100 cursor-pointer">
                 <td className="px-6 py-4">
                   <input type="checkbox" className="form-checkbox h-4 w-4" />
                 </td>

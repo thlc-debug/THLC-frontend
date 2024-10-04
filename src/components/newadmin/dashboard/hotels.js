@@ -2,6 +2,9 @@
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { BiDotsVerticalRounded, BiFilterAlt } from "react-icons/bi";
+import { LuPlusSquare } from "react-icons/lu";
+import { FaDownload } from "react-icons/fa6";
+
 
 const Hotels = () => {
   const [hotels, setHotels] = useState([]);
@@ -16,6 +19,7 @@ const Hotels = () => {
 
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
+
   const features = () => {
     setShow(!show);
   }
@@ -213,7 +217,7 @@ const Hotels = () => {
       {show ? (
 
         <div>
-          <div className="flex">
+          <div className="flex ">
             <button onClick={features} className="pr-3"><Image src="/solararrow.png" width={30} height={30} alt="backimg" /></button>
             <p className="text-2xl font-bold">Create Hotel</p>
           </div>
@@ -232,7 +236,7 @@ const Hotels = () => {
                   <div>
                     <input
                       type={field.type}
-                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder=" " required />
+                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5 " placeholder=" " required />
                   </div>
                 </div>
 
@@ -240,10 +244,10 @@ const Hotels = () => {
 
             </div>
 
-            <div className="flex flex-col">
+            <div className="flex flex-col ">
               <div className="text-gray-500">About Hotel*: </div>
 
-              <textarea id="message" rows="4" class="block p-2.5 mt-3 h-[200px] text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your thoughts here..."></textarea>
+              <textarea id="message" rows="4" class="block p-2.5 mt-3 h-[200px] text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Write your thoughts here..."></textarea>
 
               <div className="text-gray-500 my-3">Photos*: </div>
 
@@ -465,14 +469,14 @@ const Hotels = () => {
                   <p className="text-gray-500">Total 506 Hotels</p>
                 </div>
                 <div className="flex space-x-3">
-                  <button onClick={features} className="px-4 py-2 border text-black font-semibold rounded-md hover:bg-gray-100">
-                    Add
-                  </button>
+                <button  className="px-4 py-2 border bg-black text-white font-medium rounded-md flex flex-row items-center gap-2" onClick={features}>
+                                <LuPlusSquare size={20} /> Add
+                            </button>
                   <button
-                    className="px-4 py-2 border text-black font-semibold rounded-md hover:bg-gray-100"
+                    className="px-4 py-2 border text-black font-semibold rounded-md hover:bg-gray-100 flex flex-row gap-2"
                     onClick={() => alert("PDF Report Downloaded")}
                   >
-                    Download PDF Report
+                    <FaDownload size={18} className='flex items-center' />  Download PDF Report
                   </button>
                 </div>
               </div>
@@ -541,7 +545,7 @@ const Hotels = () => {
                   </thead>
                   <tbody>
                     {hotels.map((hotel, index) => (
-                      <tr key={index} onClick={() => handleRowClick(index)} className="border-t">
+                      <tr key={index} onClick={() => handleRowClick(index)} className="border-t hover:bg-gray-100 cursor-pointer">
                         <td className="px-6 py-4">
                           <input type="checkbox" className="form-checkbox h-4 w-4" />
                         </td>

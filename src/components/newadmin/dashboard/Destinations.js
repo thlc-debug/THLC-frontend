@@ -2,6 +2,8 @@ import React, { useState, useRef } from "react";
 import { BiDotsVerticalRounded, BiFilterAlt, BiCloudUpload } from "react-icons/bi";
 import HotelImage from "../../../../public/hotels/india.jpg";
 import Image from "next/image";
+import { LuPlusSquare } from "react-icons/lu";
+
 
 const data = [
   {
@@ -94,10 +96,10 @@ const Destinations = () => {
           </div>
 
           <button
-            className="px-4 py-2 border text-white bg-gray-900 font-semibold rounded-md hover:bg-gray-700"
+            className="px-4 py-2 border text-white bg-gray-900 font-semibold rounded-md hover:bg-gray-700 flex items-center gap-2"
             onClick={handleCreateModal}
           >
-            Add New
+           <LuPlusSquare size={20}/> Add New
           </button>
         </div>
       </div>
@@ -120,7 +122,7 @@ const Destinations = () => {
           </thead>
           <tbody>
             {data.map((row, index) => (
-              <tr key={index} className="border-t">
+              <tr key={index} className="border-t hover:bg-gray-100 cursor-pointer">
                 <td className="px-6 py-4">
                   <input type="checkbox" className="form-checkbox h-4 w-4" />
                 </td>

@@ -556,7 +556,7 @@ if(isFormVisible && !isPaymentMethodSelected){
           </thead>
           <tbody>
             {bookings.map((booking, index) => (
-              <tr key={index} className="border-t"
+              <tr key={index} className="border-t hover:bg-gray-100 cursor-pointer"
               onClick={()=>handleRowClick(booking)}
               >
                 <td className="px-6 py-4">

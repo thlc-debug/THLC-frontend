@@ -55,8 +55,8 @@ const user = ({ onClose }) => {
         <div className="w-full mx-auto rounded-lg ">
             {/* Header Section */}
             <div className="flex justify-between items-center mb-6">
-                <button className="text-gray-500 font-semibold flex items-center" onClick={onClose} > {/* Navigate back */}
-                    <span className="text-3xl mr-2"><GrFormPreviousLink size={40} /></span> <p className='text-2xl'>Users</p>
+                <button className="text-black font-semibold flex items-center" onClick={onClose} > {/* Navigate back */}
+                    <span className="text-3xl "><GrFormPreviousLink size={40} /></span> <p className='text-2xl'>Users</p>
                 </button>
                 <div className=''>
                     <p className="text-gray-400 flex flex-row gap-2">1245 of 1953 <GrFormPrevious ClassName='flex items-center ' size={20} />

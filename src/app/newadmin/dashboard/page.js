@@ -75,7 +75,7 @@ const Page = () => {
         {/* Adjusted padding for the header */}
         {/* Fixed Sidebar */}
         {showSidebar && (
-          <div className="fixed top-20 left-0 h-[calc(100vh-4rem)] w-64   z-10">
+          <div className="fixed  top-20 left-0 h-[calc(100vh-4rem)] w-64   z-10">
             <Sidebar
               currentView={currentView}
               setCurrentView={setCurrentView}

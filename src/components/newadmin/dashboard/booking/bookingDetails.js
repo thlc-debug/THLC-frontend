@@ -26,11 +26,11 @@ const bookingData={
 }
 
   return (
-    <div className="w-full mx-auto rounded-lg p-8">
+    <div className="w-full mx-auto rounded-lg ">
       {/* Header Section */}
       <div className="flex justify-between items-center mb-6">
-        <button className="text-black-500 font-semibold flex items-center" onClick={onClose}>
-          <span className="text-3xl mr-2"><GrFormPreviousLink size={40} /></span>
+        <button className="text-black-500   font-semibold flex items-center " onClick={onClose}>
+          <span className="text-3xl "><GrFormPreviousLink size={40} /></span>
           <p className='text-2xl'>Booking</p>
         </button>
         <div className='text-gray-400'>

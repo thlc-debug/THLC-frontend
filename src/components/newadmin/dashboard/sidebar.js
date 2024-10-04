@@ -48,11 +48,7 @@ const Sidebar = ({ setCurrentView, onLogout, currentView }) => {
               >
                 <div className="flex items-center justify-between w-full">
                   <div className="flex flex-row items-center">
-                    {/* <HiMiniHome
-                      size={24}
-                      className={`mr-2 ${currentView === "dashboard" ? "text-white" : ""
-                        }`}
-                    /> */}
+                   
                     <Image
                       src={currentView === "dashboard" ? HomeIcon : HomeIconDark}
                       alt="Home Icon"
@@ -217,7 +213,7 @@ const Sidebar = ({ setCurrentView, onLogout, currentView }) => {
                     height={20}
                     className={`mr-2 ${currentView === "contact-us" ? "text-white" : ""}`}
                   />
-                  {/* <MdAssignment size={24} className="mr-2" /> */}
+                 
                   <span>Content Manage</span>
                   {dropdownOpen ? (
                     <HiChevronUp className="ml-auto" />
