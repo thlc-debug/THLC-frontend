@@ -46,11 +46,9 @@ const Users = () => {
                     joiningTime: "09:42 PM",
                     status: "Deactivate",
                 },
-                // Add more users here to populate the table
             ]);
         }, 1000);
     }, []);
-
 
     const handleRowClick = (user) => {
         setSelectedUser(user);
@@ -58,7 +56,6 @@ const Users = () => {
 
     return (
         <div className=" bg-white rounded-md h-full flex flex-col">
-
             {selectedUser ? (
                 <UserDetails user={selectedUser} onClose={() => setSelectedUser(null)} />
             ) : (
@@ -105,15 +102,11 @@ const Users = () => {
 
                         {/* Search and Filter */}
                         <div className="flex items-center space-x-3">
-
                             <div className="relative flex items-center text-gray-400 gap-2">
-
                                 <IoSearchSharp size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 flex items-center" />
                                 <input
                                     type="text"
                                     placeholder="Search by name, email, user id..."
-                                    // value={searchTerm}
-                                    // onChange={handleSearch}
                                     className="px-4 py-2 border text-sm rounded-md focus:outline-none pl-9 "
                                 />
                             </div>
