@@ -16,6 +16,7 @@ import axios from "axios";
 
 const SignInPage = () => {
   const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     console.log(auth);
@@ -69,7 +70,7 @@ const SignInPage = () => {
           })
         );
 
-        // fetchUserDetails(); // Optional: fetch additional user details
+       
 
         router.push("/");
       } else {
