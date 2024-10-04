@@ -75,7 +75,7 @@ const Page = () => {
         {/* Adjusted padding for the header */}
         {/* Fixed Sidebar */}
         {showSidebar && (
-          <div className="fixed top-20 left-0 h-[calc(100vh-4rem)] w-64  shadow-md z-10">
+          <div className="fixed top-20 left-0 h-[calc(100vh-4rem)] w-64   z-10">
             <Sidebar
               currentView={currentView}
               setCurrentView={setCurrentView}
@@ -84,7 +84,7 @@ const Page = () => {
           </div>
         )}
         {/* Main Content Area */}
-        <div className="ml-64 mt-8 flex-1 m-6 p-6 mr-4 bg-white overflow-y-auto">
+        <div className="ml-64 mt-7 flex-1 m-6 p-6 mr-4 bg-white overflow-y-auto rounded-md ">
           {renderMainContent()}
         </div>
       </div>

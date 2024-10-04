@@ -140,7 +140,7 @@ const BookingDashboard = () => {
   
 if(isFormVisible && !isPaymentMethodSelected){
   return (
-  <div className="p-6 bg-white rounded-md h-full flex flex-col">
+  <div className="p-3 bg-white rounded-md h-full flex flex-col">
   {/* Header */}
   <div className="flex items-center mb-6">
         <button className="text-black-500 font-semibold flex items-center" onClick={handleBack}>
