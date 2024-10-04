@@ -26,7 +26,7 @@ const Page = () => {
 
   useEffect(() => {
     if (!user) {
-      router.push("/newadmin/dashboard");
+      router.push("/admin/dashboard");
     }
   }, [user]);
 

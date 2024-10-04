@@ -18,7 +18,7 @@ export const authSlice = createSlice({
   reducers: {
     login: (state, action) => {
       state.token = action.payload.token;
-      state.data = action.payload.data;
+      // state.data = action.payload.data;
 
     },
     logout: (state) => {

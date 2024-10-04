@@ -59,16 +59,17 @@ const SignInPage = () => {
       });
 
       const result = await response.json();
+      console.log(result);
 
-      if (result.token && result.data) {
+      if (result.token ) {
         dispatch(
           login({
             token: result.token,
-            data: result.data,
+            
           })
         );
 
-        fetchUserDetails(); // Optional: fetch additional user details
+        // fetchUserDetails(); // Optional: fetch additional user details
 
         router.push("/");
       } else {
