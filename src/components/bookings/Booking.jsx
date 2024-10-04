@@ -11,12 +11,14 @@ const Booking = () => {
   const [selectedBooking, setSelectedBooking] = useState(null); // State for selected booking
   const [isModalOpen, setIsModalOpen] = useState(false); // Modal visibility state
   const router = useRouter(); // Next.js router
+  const [isAdmin, setIsAdmin] = useState(true); // State to check if admin confirmed
 
   useEffect(() => {
     const details = localStorage.getItem("userDetails");
     if (details) {
       const parsedData = JSON.parse(details);
       setId(parsedData._id);
+      // Assuming isAdmin is part of userDetails
     }
   }, []);
 
@@ -47,7 +49,6 @@ const Booking = () => {
   };
 
   const handleCheckout = () => {
-    // Redirect to the checkout page (example: /checkout)
     router.push(`/checkout?id=${selectedBooking._id}`);
   };
 
@@ -91,12 +92,16 @@ const Booking = () => {
                     <div className="flex items-center gap-2">
                       <span
                         className={`text-sm 
-                        ${booking.status === "pending" && "text-red-500"}
-                        ${booking.status === "confirmed" && "text-green-500"}
-                        ${booking.status === "cancelled" && "text-black"}
+                          ${booking.status === "pending" && "text-red-500"}
+                          ${booking.status === "confirmed" && "text-green-500"}
+                          ${booking.status === "cancelled" && "text-black"}
                         `}
                       >
-                        {booking.status}
+                        {booking.status === "confirmed" && isAdmin
+                          ? "Confirmed"
+                          : booking.status === "confirmed"
+                            ? "Waitlisted"
+                            : booking.status}
                       </span>
                     </div>
                   </div>
@@ -174,17 +179,27 @@ const Booking = () => {
               <strong>Facilities:</strong> {selectedBooking.hotel_id.facilities.join(", ")}
             </p>
             <p className="text-gray-600 mb-4">
-              <strong>Booking Status: </strong> 
+              <strong>Booking Status: </strong>
               <span
                 className={`font-semibold 
                 ${selectedBooking.status === "pending" && "text-red-500"}
                 ${selectedBooking.status === "confirmed" && "text-green-500"}
                 ${selectedBooking.status === "cancelled" && "text-black"}
-                `}
+              `}
               >
-                {selectedBooking.status}
+                {selectedBooking.status === "confirmed" && isAdmin
+                  ? "Confirmed"
+                  : selectedBooking.status === "confirmed"
+                    ? "Waitlisted"
+                    : selectedBooking.status}
               </span>
             </p>
+            {/* Message for waitlisted bookings */}
+            {selectedBooking.status === "confirmed" && !isAdmin && (
+              <p className="text-orange-500 mb-4">
+                Wait while your ticket will be confirmed.
+              </p>
+            )}
             <p className="text-gray-600 mb-4">
               <strong>Price:</strong> ${selectedBooking.price}
             </p>
@@ -198,6 +213,15 @@ const Booking = () => {
                 Proceed to Checkout
               </button>
             )}
+            {selectedBooking.status === "confirmed" && isAdmin &&(
+              <button
+                className="bg-black text-white px-4 py-2 rounded-full"
+                
+              >
+                Download Ticket
+              </button>
+            )}
+           
           </div>
         </div>
       )}

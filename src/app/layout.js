@@ -1,6 +1,7 @@
 import { ToastContainer } from "react-toastify";
 import "./globals.css";
 import Script from "next/script";
+import ReduxContextProvider from "@/context/ReduxContextProvider";
 
 export const metadata = {
   title: "The Luxury Hotel Concierge | Personalized Luxury Services",
@@ -52,7 +53,9 @@ export default function RootLayout({ children }) {
 
         <link rel="canonical" href="https://theluxuryhotelconcierge.com/" />
       </head>
-      <body className="font-f_3">{children}</body>
+      <body className="font-f_3">
+        <ReduxContextProvider>{children}</ReduxContextProvider>
+      </body>
     </html>
   );
 }
